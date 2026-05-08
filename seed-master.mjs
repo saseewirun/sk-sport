@@ -1,10 +1,11 @@
 /**
  * seed-master.mjs
  *
- * รันครั้งเดียวหลัง deploy เพื่อ set user ปัจจุบันเป็น master
+ * รันครั้งเดียวหลัง Vercel deploy เสร็จ เพื่อ set user ปัจจุบันเป็น master
  * คำสั่ง: node seed-master.mjs
  *
  * ⚠️  ต้องมีไฟล์ .env ในโฟลเดอร์เดียวกัน และมี DATABASE_URI
+ * ⚠️  ต้องรอให้ Vercel deploy เสร็จก่อน (เพื่อให้คอลัมน์ role ถูกสร้าง)
  */
 
 import pg from 'pg'
@@ -12,7 +13,6 @@ import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 import readline from 'readline'
 
-// โหลด .env แบบง่าย (ไม่ต้องติดตั้ง dotenv)
 function loadEnv() {
   const envPath = resolve(process.cwd(), '.env')
   if (!existsSync(envPath)) {
@@ -26,7 +26,10 @@ function loadEnv() {
     const idx = trimmed.indexOf('=')
     if (idx === -1) continue
     const key = trimmed.slice(0, idx).trim()
-    const val = trimmed.slice(idx + 1).trim().replace(/^["']|["']$/g, '')
+    const val = trimmed
+      .slice(idx + 1)
+      .trim()
+      .replace(/^["']|["']$/g, '')
     if (!process.env[key]) process.env[key] = val
   }
 }
@@ -53,7 +56,20 @@ async function main() {
   const client = new pg.Client({ connectionString: dbUri })
   await client.connect()
 
-  // ดึงรายชื่อ users ทั้งหมดที่มีอยู่
+  // ตรวจสอบว่าคอลัมน์ role มีแล้วหรือยัง
+  const { rows: cols } = await client.query(`
+    SELECT column_name FROM information_schema.columns
+    WHERE table_schema = 'payload' AND table_name = 'users' AND column_name = 'role'
+  `)
+
+  if (cols.length === 0) {
+    console.error('❌  คอลัมน์ "role" ยังไม่มีใน database')
+    console.error('    กรุณารอให้ Vercel deploy เสร็จก่อน แล้วรัน script นี้ใหม่')
+    await client.end()
+    process.exit(1)
+  }
+
+  // ดึงรายชื่อ users ทั้งหมด (ไม่ select role เพื่อ safety)
   const { rows: users } = await client.query(
     `SELECT id, email, role FROM payload.users ORDER BY "createdAt" ASC`,
   )
@@ -87,10 +103,8 @@ async function main() {
   )
 
   console.log('\n✅  อัปเดตสำเร็จ:')
-  updated.forEach((u) => console.log(`  • ${u.email}  →  role: ${u.role}`))
-
-  console.log('\n🎉  เสร็จแล้ว! user ที่มีอยู่ทั้งหมดถูก set เป็น master แล้ว')
-  console.log('    ผู้ใช้ใหม่ที่เพิ่มผ่าน CMS จะได้ role = editor โดยอัตโนมัติ')
+  updated.forEach((u) => console.log(`  •  ${u.email}  →  role: ${u.role}`))
+  console.log('\n🎉  เสร็จแล้ว! ผู้ใช้ใหม่ที่เพิ่มผ่าน CMS จะได้ role = editor โดยอัตโนมัติ')
 
   await client.end()
 }
