@@ -1,5 +1,12 @@
 import type { CollectionConfig } from 'payload'
 
+type UserWithRole = { id: string; role?: string | null }
+
+const isMaster = (user: unknown): boolean => {
+  const u = user as UserWithRole | null | undefined
+  return u?.role === 'master'
+}
+
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
@@ -10,16 +17,16 @@ export const Users: CollectionConfig = {
   access: {
     read: ({ req: { user } }) => {
       if (!user) return false
-      if (user.role === 'master') return true
-      return { id: { equals: user.id } }
+      if (isMaster(user)) return true
+      return { id: { equals: (user as UserWithRole).id } }
     },
-    create: ({ req: { user } }) => user?.role === 'master',
+    create: ({ req: { user } }) => isMaster(user),
     update: ({ req: { user } }) => {
       if (!user) return false
-      if (user.role === 'master') return true
-      return { id: { equals: user.id } }
+      if (isMaster(user)) return true
+      return { id: { equals: (user as UserWithRole).id } }
     },
-    delete: ({ req: { user } }) => user?.role === 'master',
+    delete: ({ req: { user } }) => isMaster(user),
   },
   fields: [
     {
@@ -34,8 +41,8 @@ export const Users: CollectionConfig = {
         { label: 'Editor (ผู้แก้ไขเนื้อหา)', value: 'editor' },
       ],
       access: {
-        create: ({ req: { user } }) => user?.role === 'master',
-        update: ({ req: { user } }) => user?.role === 'master',
+        create: ({ req: { user } }) => isMaster(user),
+        update: ({ req: { user } }) => isMaster(user),
       },
       admin: {
         description:
