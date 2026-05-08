@@ -140,63 +140,75 @@ export const QuoteRequests: CollectionConfig = {
   fields: [
     {
       name: 'status',
+      label: 'สถานะ',
       type: 'select',
       defaultValue: 'new',
       options: [
-        { label: 'New', value: 'new' },
-        { label: 'Contacted', value: 'contacted' },
-        { label: 'Closed', value: 'closed' },
+        { label: 'ใหม่', value: 'new' },
+        { label: 'ติดต่อแล้ว', value: 'contacted' },
+        { label: 'ปิดแล้ว', value: 'closed' },
       ],
     },
     {
       name: 'customerName',
+      label: 'ชื่อลูกค้า',
       type: 'text',
       required: true,
     },
     {
       name: 'email',
+      label: 'อีเมล',
       type: 'email',
       required: true,
     },
     {
       name: 'phone',
+      label: 'เบอร์โทร',
       type: 'text',
     },
     {
       name: 'companyName',
+      label: 'ชื่อบริษัท',
       type: 'text',
     },
     {
       name: 'message',
+      label: 'ข้อความจากลูกค้า',
       type: 'textarea',
     },
     {
       name: 'lineItems',
+      label: 'รายการสินค้าที่ขอใบเสนอราคา',
       type: 'array',
       required: true,
       minRows: 1,
       fields: [
         {
           name: 'productId',
+          label: 'รหัสสินค้า',
           type: 'text',
           required: true,
         },
         {
           name: 'slug',
+          label: 'Slug สินค้า',
           type: 'text',
           required: true,
         },
         {
           name: 'title',
+          label: 'ชื่อสินค้า',
           type: 'text',
           required: true,
         },
         {
           name: 'category',
+          label: 'หมวดหมู่',
           type: 'text',
         },
         {
           name: 'quantity',
+          label: 'จำนวน',
           type: 'number',
           required: true,
           min: 1,
@@ -205,6 +217,7 @@ export const QuoteRequests: CollectionConfig = {
     },
     {
       name: 'adminNotes',
+      label: 'หมายเหตุผู้ดูแล',
       type: 'textarea',
     },
   ],

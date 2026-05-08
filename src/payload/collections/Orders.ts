@@ -290,83 +290,99 @@ export const Orders: CollectionConfig = {
   fields: [
     {
       name: 'status',
+      label: 'สถานะออเดอร์',
       type: 'select',
       defaultValue: 'awaiting_verification',
       options: [
-        { label: 'Awaiting verification', value: 'awaiting_verification' },
-        { label: 'Confirmed', value: 'confirmed' },
-        { label: 'Cancelled', value: 'cancelled' },
+        { label: 'รอตรวจสอบ', value: 'awaiting_verification' },
+        { label: 'ยืนยันแล้ว', value: 'confirmed' },
+        { label: 'ยกเลิก', value: 'cancelled' },
       ],
     },
     {
       name: 'paymentMethod',
+      label: 'วิธีการชำระเงิน',
       type: 'select',
       defaultValue: 'bank_transfer',
-      options: [{ label: 'Bank transfer', value: 'bank_transfer' }],
+      options: [{ label: 'โอนเงินผ่านธนาคาร', value: 'bank_transfer' }],
     },
     {
       name: 'customerName',
+      label: 'ชื่อลูกค้า',
       type: 'text',
       required: true,
     },
     {
       name: 'email',
+      label: 'อีเมล',
       type: 'email',
       required: true,
     },
     {
       name: 'phone',
+      label: 'เบอร์โทร',
       type: 'text',
     },
     {
       name: 'address',
+      label: 'ที่อยู่จัดส่ง',
       type: 'textarea',
     },
     {
       name: 'customerNote',
+      label: 'หมายเหตุจากลูกค้า',
       type: 'textarea',
     },
     {
       name: 'currency',
+      label: 'สกุลเงิน',
       type: 'text',
       defaultValue: 'THB',
     },
     {
       name: 'subtotal',
+      label: 'ยอดรวม',
       type: 'number',
       required: true,
     },
     {
       name: 'lineItems',
+      label: 'รายการสินค้า',
       type: 'array',
       required: true,
       minRows: 1,
       fields: [
         {
           name: 'productId',
+          label: 'รหัสสินค้า',
           type: 'text',
         },
         {
           name: 'slug',
+          label: 'Slug สินค้า',
           type: 'text',
         },
         {
           name: 'title',
+          label: 'ชื่อสินค้า',
           type: 'text',
           required: true,
         },
         {
           name: 'quantity',
+          label: 'จำนวน',
           type: 'number',
           required: true,
         },
         {
           name: 'unitPrice',
+          label: 'ราคาต่อชิ้น',
           type: 'number',
           required: true,
         },
         {
           name: 'lineTotal',
+          label: 'ราคารวมรายการ',
           type: 'number',
           required: true,
         },
@@ -377,17 +393,17 @@ export const Orders: CollectionConfig = {
       type: 'relationship',
       relationTo: 'payment-slips',
       hasMany: false,
-      label: 'Payment slip',
+      label: 'หลักฐานการโอนเงิน',
       admin: {
         description:
-          'Linked upload from the Payment slips collection. A preview (image) or file link (PDF) appears in the field below when a slip is selected.',
+          'เชื่อมกับไฟล์ใน Payment slips — เมื่อเลือกแล้วจะแสดงภาพตัวอย่าง (รูปภาพ) หรือลิงก์เปิดไฟล์ (PDF) ด้านล่าง',
       },
     },
     {
       name: 'slipPreview',
       type: 'ui',
       label:
-        'Payment slip preview — image below when applicable; PDF/other files open in a new tab. Full file lives in Payment slips (not duplicated).',
+        'ภาพตัวอย่างหลักฐานโอนเงิน — แสดงรูปเมื่อเป็นไฟล์ภาพ, PDF และไฟล์อื่นจะเปิดในแท็บใหม่',
       admin: {
         components: {
           Field: {
@@ -398,6 +414,7 @@ export const Orders: CollectionConfig = {
     },
     {
       name: 'adminNotes',
+      label: 'หมายเหตุผู้ดูแล',
       type: 'textarea',
     },
   ],

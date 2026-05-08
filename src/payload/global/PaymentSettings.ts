@@ -14,48 +14,48 @@ export const PaymentSettings: GlobalConfig = {
       name: 'isEnabled',
       type: 'checkbox',
       defaultValue: true,
-      label: 'Enable bank transfer instructions on checkout',
+      label: 'เปิดใช้งานการชำระเงินผ่านการโอนเงิน',
     },
     {
       name: 'orderNotificationEmail',
       type: 'email',
-      label: 'Order notification email',
+      label: 'อีเมลรับแจ้งเตือนออเดอร์',
       admin: {
         description:
-          'Email address that receives new order notifications. If empty, system falls back to ORDER_NOTIFY_EMAIL or default business email.',
+          'อีเมลที่จะได้รับการแจ้งเตือนเมื่อมีออเดอร์ใหม่ หากเว้นว่างระบบจะใช้ค่า ORDER_NOTIFY_EMAIL หรืออีเมลสำรองของธุรกิจ',
       },
     },
     {
       name: 'bankName',
       type: 'text',
-      label: 'Bank name',
+      label: 'ชื่อธนาคาร',
     },
     {
       name: 'accountName',
       type: 'text',
-      label: 'Account name',
+      label: 'ชื่อบัญชี',
     },
     {
       name: 'accountNumber',
       type: 'text',
-      label: 'Account number',
+      label: 'เลขที่บัญชี',
     },
     {
       name: 'branch',
       type: 'text',
-      label: 'Branch',
+      label: 'สาขา',
     },
     {
       name: 'paymentInstructions',
       type: 'textarea',
-      label: 'Payment instructions',
+      label: 'คำแนะนำการชำระเงิน',
     },
     {
       name: 'qrCodeImage',
       type: 'relationship',
       relationTo: 'gallery-media',
       hasMany: false,
-      label: 'QR code (optional)',
+      label: 'รูป QR Code (ไม่บังคับ)',
     },
   ],
 }

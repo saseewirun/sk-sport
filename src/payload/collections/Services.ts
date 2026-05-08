@@ -15,24 +15,24 @@ export const Services: CollectionConfig = {
   fields: [
     {
       name: 'title',
-      label: 'Service Title',
+      label: 'ชื่อบริการ',
       type: 'text',
       required: true,
     },
     {
       name: 'subtitle',
-      label: 'Service Subtitle',
+      label: 'ชื่อรองบริการ',
       type: 'text',
     },
     {
       name: 'hero',
-      label: 'Hero Image',
+      label: 'รูปภาพแบนเนอร์บริการ',
       type: 'upload',
       relationTo: 'service-media',
     },
     {
       name: 'slug',
-      label: 'Slug (Title as default)',
+      label: 'Slug (ที่อยู่ URL — ใช้ชื่อบริการเป็นค่าเริ่มต้น)',
       type: 'text',
       required: true,
       unique: true,
@@ -52,34 +52,34 @@ export const Services: CollectionConfig = {
     },
     {
       name: 'sections',
-      label: 'Service Sections',
+      label: 'ส่วนเนื้อหาบริการ',
       type: 'array',
       fields: [
         {
           name: 'sectionTitle',
-          label: 'Section Title',
+          label: 'หัวข้อส่วนนี้',
           type: 'text',
           required: true,
         },
         {
           name: 'description',
-          label: 'Description',
+          label: 'คำอธิบาย',
           type: 'textarea',
         },
         {
           name: 'variant',
-          label: 'Layout Variant',
+          label: 'รูปแบบการแสดงผล',
           type: 'select',
           options: [
-            { label: 'Column (Images Grid)', value: 'column' },
-            { label: 'Row (Image + Text)', value: 'row' },
+            { label: 'แบบตาราง (กริดรูปภาพหลายรูป)', value: 'column' },
+            { label: 'แบบแถว (รูปภาพ + ข้อความ)', value: 'row' },
           ],
           defaultValue: 'column',
           required: true,
         },
         {
           name: 'images',
-          label: 'Images',
+          label: 'รูปภาพ (หลายรูป)',
           type: 'array',
           admin: {
             condition: (_: Partial<Service>, siblingData: { variant?: string }) =>
@@ -88,7 +88,7 @@ export const Services: CollectionConfig = {
           fields: [
             {
               name: 'image',
-              label: 'Image',
+              label: 'รูปภาพ',
               type: 'upload',
               relationTo: 'service-media',
               required: true,
@@ -97,7 +97,7 @@ export const Services: CollectionConfig = {
         },
         {
           name: 'image',
-          label: 'Single Image',
+          label: 'รูปภาพ (รูปเดียว)',
           type: 'upload',
           relationTo: 'service-media',
           admin: {
@@ -107,11 +107,11 @@ export const Services: CollectionConfig = {
         },
         {
           name: 'alignment',
-          label: 'Image Alignment',
+          label: 'ตำแหน่งรูปภาพ',
           type: 'select',
           options: [
-            { label: 'Left', value: 'left' },
-            { label: 'Right', value: 'right' },
+            { label: 'ซ้าย', value: 'left' },
+            { label: 'ขวา', value: 'right' },
           ],
           defaultValue: 'left',
           admin: {
@@ -123,12 +123,12 @@ export const Services: CollectionConfig = {
     },
     {
       name: 'tags',
-      label: 'Tags',
+      label: 'แท็ก',
       type: 'array',
       fields: [
         {
           name: 'tag',
-          label: 'Tag',
+          label: 'แท็ก',
           type: 'text',
         },
       ],
