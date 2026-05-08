@@ -33,9 +33,8 @@ export const Users: CollectionConfig = {
       name: 'role',
       label: 'บทบาท',
       type: 'select',
-      required: true,
-      defaultValue: 'editor',
       saveToJWT: true,
+      defaultValue: 'editor',
       options: [
         { label: 'Master (ผู้ดูแลหลัก)', value: 'master' },
         { label: 'Editor (ผู้แก้ไขเนื้อหา)', value: 'editor' },
