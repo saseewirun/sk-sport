@@ -13,7 +13,6 @@ interface HeroImageItem {
 }
 
 export interface PortfolioHeroProps {
-  /** Listing page hero: shorter on small screens, same detail behavior when omitted */
   variant?: 'detail' | 'listing'
   imageSrc?: string
   heroImages?: HeroImageItem[]
@@ -21,9 +20,7 @@ export interface PortfolioHeroProps {
   title: string
   subtitle?: string
   publishedDate?: string
-  /** Clamped at page level (px). When set, controls main hero title only. */
   titleFontSizePx?: number
-  /** Listing only (px). When set, controls hero subtitle. */
   subtitleFontSizePx?: number
 }
 
@@ -44,8 +41,8 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
   return (
     <div
       className={cn(
-        'relative flex w-full flex-col justify-end overflow-hidden',
-        isListing ? 'hero-wrapper-height' : 'h-100 md:h-150',
+        'relative flex w-full flex-col overflow-hidden',
+        isListing ? 'hero-wrapper-height justify-center' : 'h-100 md:h-150 justify-end',
       )}
     >
       {isListing ? (
@@ -60,12 +57,18 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
 
       {!isListing && <div className="absolute inset-0 bg-gradient-card-left" />}
 
-      <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 pb-5 md:pb-8 flex flex-col items-start">
+      <div
+        className={cn(
+          'relative z-10 w-full px-4 md:px-8 lg:px-12 flex flex-col items-start',
+          isListing ? 'py-6 md:py-8' : 'pb-5 md:pb-8',
+        )}
+      >
         {category && <CategoryBadge text={category} className="mb-2 md:mb-6" />}
 
         <h2
           className={cn(
-            'text-primary-content font-heading tracking-wide break-words leading-snug',
+            'font-heading tracking-wide break-words leading-snug',
+            isListing ? 'text-primary-content hero-text-stroke' : 'text-primary-content',
             titleFontSizePx == null &&
               (isListing
                 ? 'mb-2 max-w-4xl text-3xl sm:text-4xl md:text-5xl md:mb-3'
@@ -81,7 +84,10 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
         {subtitle && (
           <p
             className={cn(
-              'text-primary-content/90 max-w-2xl',
+              'max-w-2xl',
+              isListing
+                ? 'text-primary-content/90 hero-text-stroke'
+                : 'text-primary-content/90',
               subtitleFontSizePx != null
                 ? isListing
                   ? 'leading-snug md:leading-relaxed'

@@ -31,7 +31,7 @@ export default function AboutHero({
         {heroTitle && (
           <h1
             className={cn(
-              'max-w-4xl font-semibold leading-tight tracking-wide text-primary-content drop-shadow-sm',
+              'max-w-4xl font-semibold leading-tight tracking-wide text-primary-content hero-text-stroke',
               titleFontSizePx == null && 'text-3xl md:text-5xl lg:text-6xl',
             )}
             style={titleFontSizePx != null ? { fontSize: `${titleFontSizePx}px` } : undefined}
@@ -43,7 +43,7 @@ export default function AboutHero({
           <>
             <p
               className={cn(
-                'mt-4 max-w-2xl font-medium leading-relaxed text-primary-content/90 md:mt-5',
+                'mt-4 max-w-2xl font-medium leading-relaxed text-primary-content/90 hero-text-stroke md:mt-5',
                 subtitleFontSizePx == null && 'text-sm md:text-lg',
               )}
               style={

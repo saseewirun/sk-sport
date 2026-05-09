@@ -66,8 +66,8 @@ export const ServiceHero: React.FC<ServiceHeroProps> = ({
           <h1
             className={
               titleFontSizePx != null
-                ? 'font-heading font-medium leading-tight md:leading-tight tracking-wider text-primary-content'
-                : 'text-3xl sm:text-4xl lg:text-5xl font-heading font-medium leading-tight md:leading-tight tracking-wider text-primary-content'
+                ? 'font-heading font-medium leading-tight md:leading-tight tracking-wider text-primary-content hero-text-stroke'
+                : 'text-3xl sm:text-4xl lg:text-5xl font-heading font-medium leading-tight md:leading-tight tracking-wider text-primary-content hero-text-stroke'
             }
             style={titleFontSizePx != null ? { fontSize: `${titleFontSizePx}px` } : undefined}
           >
@@ -80,8 +80,8 @@ export const ServiceHero: React.FC<ServiceHeroProps> = ({
               <p
                 className={
                   subtitleFontSizePx != null
-                    ? 'font-body font-normal leading-snug tracking-wider text-primary-content/90 max-w-[95%] md:max-w-xl'
-                    : 'font-body text-sm md:text-base font-normal leading-snug tracking-wider text-primary-content/90 max-w-[95%] md:max-w-xl'
+                    ? 'font-body font-normal leading-snug tracking-wider text-primary-content/90 hero-text-stroke max-w-[95%] md:max-w-xl'
+                    : 'font-body text-sm md:text-base font-normal leading-snug tracking-wider text-primary-content/90 hero-text-stroke max-w-[95%] md:max-w-xl'
                 }
                 style={
                   subtitleFontSizePx != null ? { fontSize: `${subtitleFontSizePx}px` } : undefined

@@ -43,7 +43,7 @@ export function ContactPageHero({
         <div className="flex flex-col items-center gap-4 pointer-events-auto">
           {title && (
             <h1
-              className="pointer-events-auto font-heading font-semibold leading-tight tracking-wider text-primary-content drop-shadow-md"
+              className="pointer-events-auto font-heading font-semibold leading-tight tracking-wider text-primary-content hero-text-stroke"
               style={{ fontSize: `${titleFontSizePx}px` }}
             >
               {title}
@@ -51,7 +51,7 @@ export function ContactPageHero({
           )}
           {description && (
             <div
-              className="max-w-2xl text-primary-content/90 drop-shadow-sm pointer-events-auto md:max-w-2xl"
+              className="max-w-2xl text-primary-content/90 hero-text-stroke pointer-events-auto md:max-w-2xl"
               style={{ fontSize: `${subtitleFontSizePx}px` }}
             >
               {description}

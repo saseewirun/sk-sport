@@ -54,12 +54,12 @@ export const ProductHero: React.FC<ProductHeroProps> = ({
                 {eyebrow}
               </p>
             )}
-            <h1 className="text-primary-content" style={{ fontSize: `${titleFontSizePx}px` }}>
+            <h1 className="text-primary-content hero-text-stroke" style={{ fontSize: `${titleFontSizePx}px` }}>
               {title}
             </h1>
             {subtitle && (
               <p
-                className="body-lg text-primary-content/80 mt-3 max-w-lg"
+                className="body-lg text-primary-content/80 hero-text-stroke mt-3 max-w-lg"
                 style={{ fontSize: `${subtitleFontSizePx}px` }}
               >
                 {subtitle}
