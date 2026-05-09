@@ -167,7 +167,10 @@ export const ContactForm = (props: ContactFormTypography) => {
           >
             Get in touch
           </h2>
-          <p className="mb-8 text-base-content" style={{ fontSize: `${contactInfoBodyFontSizePx}px` }}>
+          <p
+            className="mb-8 text-base-content"
+            style={{ fontSize: `${contactInfoBodyFontSizePx}px` }}
+          >
             Let&apos;s keep the conversation going! <br />
             You can find my contact details right here.
           </p>

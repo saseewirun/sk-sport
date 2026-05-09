@@ -32,9 +32,7 @@ export const DetailRowCard = ({
       {sectionTitle && (
         <h2
           style={
-            contentTitleFontSizePx != null
-              ? { fontSize: `${contentTitleFontSizePx}px` }
-              : undefined
+            contentTitleFontSizePx != null ? { fontSize: `${contentTitleFontSizePx}px` } : undefined
           }
         >
           {sectionTitle}
@@ -42,7 +40,9 @@ export const DetailRowCard = ({
       )}
       <p
         className={contentBodyFontSizePx == null ? 'body-sm' : undefined}
-        style={contentBodyFontSizePx != null ? { fontSize: `${contentBodyFontSizePx}px` } : undefined}
+        style={
+          contentBodyFontSizePx != null ? { fontSize: `${contentBodyFontSizePx}px` } : undefined
+        }
       >
         {description}
       </p>

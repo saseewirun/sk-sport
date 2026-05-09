@@ -28,11 +28,7 @@ export interface CardArticleProps {
   titleFontSizePx?: number
 }
 
-export const CardArticle: React.FC<CardArticleProps> = ({
-  data,
-  onClick,
-  titleFontSizePx,
-}) => {
+export const CardArticle: React.FC<CardArticleProps> = ({ data, onClick, titleFontSizePx }) => {
   const { category, title, subtitle, image } = data
 
   return (

@@ -31,9 +31,7 @@ export const DetailColumnCard = ({
       {sectionTitle && (
         <h2
           style={
-            contentTitleFontSizePx != null
-              ? { fontSize: `${contentTitleFontSizePx}px` }
-              : undefined
+            contentTitleFontSizePx != null ? { fontSize: `${contentTitleFontSizePx}px` } : undefined
           }
         >
           {sectionTitle}
@@ -100,7 +98,9 @@ export const DetailColumnCard = ({
       <div className="flex flex-col gap-3">
         <p
           className={contentBodyFontSizePx == null ? 'body-sm' : undefined}
-          style={contentBodyFontSizePx != null ? { fontSize: `${contentBodyFontSizePx}px` } : undefined}
+          style={
+            contentBodyFontSizePx != null ? { fontSize: `${contentBodyFontSizePx}px` } : undefined
+          }
         >
           {description}
         </p>

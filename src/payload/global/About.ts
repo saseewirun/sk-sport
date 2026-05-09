@@ -326,7 +326,8 @@ export const About: GlobalConfig = {
       min: 14,
       max: 24,
       admin: {
-        description: 'เนื้อหาหลัก (คำอธิบาย) บนหน้า founder — ไม่รวมคำคมใน blockquote หรือลิงก์กลับ',
+        description:
+          'เนื้อหาหลัก (คำอธิบาย) บนหน้า founder — ไม่รวมคำคมใน blockquote หรือลิงก์กลับ',
       },
     },
   ],

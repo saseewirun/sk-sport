@@ -25,16 +25,10 @@ export const AboutCompany = ({
   return (
     <div className="w-full flex flex-col gap-8 pt-10">
       <div className="text-center space-y-2">
-        <p
-          className="text-primary"
-          style={{ fontSize: `${cardBodyFontSizePx}px` }}
-        >
+        <p className="text-primary" style={{ fontSize: `${cardBodyFontSizePx}px` }}>
           Professional <br /> with
         </p>
-        <h2
-          className="text-primary"
-          style={{ fontSize: `${sectionTitleFontSizePx}px` }}
-        >
+        <h2 className="text-primary" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
           Our Company
         </h2>
       </div>
@@ -51,10 +45,7 @@ export const AboutCompany = ({
           <div className="w-full md:w-1/2 flex flex-col gap-6 text-primary-content md:pl-10">
             <h3 style={{ fontSize: `${highlightTitleFontSizePx}px` }}>{t(`title`)}</h3>
 
-            <p
-              className="indent-1"
-              style={{ fontSize: `${highlightBodyFontSizePx}px` }}
-            >
+            <p className="indent-1" style={{ fontSize: `${highlightBodyFontSizePx}px` }}>
               {t(`detail`)}
             </p>
 

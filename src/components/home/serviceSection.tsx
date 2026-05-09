@@ -90,16 +90,10 @@ export const Services = ({
   return (
     <section className="w-full">
       <div className="relative text-primary space-y-4 text-center py-12 px-4">
-        <h2
-          className="font-body font-semibold"
-          style={{ fontSize: `${sectionTitleFontSizePx}px` }}
-        >
+        <h2 className="font-body font-semibold" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
           Our Services
         </h2>
-        <p
-          className="font-body"
-          style={{ fontSize: `${taglineFontSizePx}px` }}
-        >
+        <p className="font-body" style={{ fontSize: `${taglineFontSizePx}px` }}>
           Professional solution for sports facility development
         </p>
       </div>

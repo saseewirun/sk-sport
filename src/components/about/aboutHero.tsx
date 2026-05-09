@@ -48,7 +48,9 @@ export default function AboutHero({
                 'mt-4 max-w-2xl font-medium leading-relaxed text-primary-content/90 md:mt-5',
                 subtitleFontSizePx == null && 'text-sm md:text-lg',
               )}
-              style={subtitleFontSizePx != null ? { fontSize: `${subtitleFontSizePx}px` } : undefined}
+              style={
+                subtitleFontSizePx != null ? { fontSize: `${subtitleFontSizePx}px` } : undefined
+              }
             >
               {heroSubtitle}
             </p>

@@ -67,10 +67,7 @@ export const Gallery = ({ media, sectionTitleFontSizePx }: GalleryProps) => {
   return (
     <section className="w-full pt-10 pb-24 overflow-hidden">
       <div className="mx-auto w-full max-w-screen-xl px-4">
-        <h2
-          className="h2 pb-10 leading-tight"
-          style={{ fontSize: `${sectionTitleFontSizePx}px` }}
-        >
+        <h2 className="h2 pb-10 leading-tight" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
           <span className="text-primary">Our</span>
           <span> </span>
           <span className="text-primary">Gallery</span>

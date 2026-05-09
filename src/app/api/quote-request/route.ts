@@ -81,9 +81,7 @@ function parseItems(body: unknown): ItemInput[] | null {
   return out
 }
 
-export async function POST(
-  request: Request,
-): Promise<NextResponse<SuccessBody | ErrorBody>> {
+export async function POST(request: Request): Promise<NextResponse<SuccessBody | ErrorBody>> {
   let body: unknown
   try {
     body = await request.json()

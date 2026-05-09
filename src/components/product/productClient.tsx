@@ -50,26 +50,17 @@ const PRODUCT_PRICE_PX_DEFAULT = 16
 
 function clampCategoryTitlePx(v: number | null | undefined): number {
   if (v == null || !Number.isFinite(v)) return CATEGORY_TITLE_PX_DEFAULT
-  return Math.min(
-    CATEGORY_TITLE_PX_MAX,
-    Math.max(CATEGORY_TITLE_PX_MIN, Math.round(v)),
-  )
+  return Math.min(CATEGORY_TITLE_PX_MAX, Math.max(CATEGORY_TITLE_PX_MIN, Math.round(v)))
 }
 
 function clampProductCardTitlePx(v: number | null | undefined): number {
   if (v == null || !Number.isFinite(v)) return PRODUCT_CARD_TITLE_PX_DEFAULT
-  return Math.min(
-    PRODUCT_CARD_TITLE_PX_MAX,
-    Math.max(PRODUCT_CARD_TITLE_PX_MIN, Math.round(v)),
-  )
+  return Math.min(PRODUCT_CARD_TITLE_PX_MAX, Math.max(PRODUCT_CARD_TITLE_PX_MIN, Math.round(v)))
 }
 
 function clampProductPricePx(v: number | null | undefined): number {
   if (v == null || !Number.isFinite(v)) return PRODUCT_PRICE_PX_DEFAULT
-  return Math.min(
-    PRODUCT_PRICE_PX_MAX,
-    Math.max(PRODUCT_PRICE_PX_MIN, Math.round(v)),
-  )
+  return Math.min(PRODUCT_PRICE_PX_MAX, Math.max(PRODUCT_PRICE_PX_MIN, Math.round(v)))
 }
 
 export type ProductListingPurchaseFilter = 'all' | 'readyToBuy' | 'requestQuote'

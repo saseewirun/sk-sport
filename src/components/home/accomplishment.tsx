@@ -25,10 +25,7 @@ export const Accomplishment = ({
     <div className="w-full overflow-hidden">
       <div className="mx-auto md:px-10 px-6 md:pt-16 pt-8 md:pb-8">
         <div className="flex items-center justify-between">
-          <h2
-            className="text-primary"
-            style={{ fontSize: `${sectionTitleFontSizePx}px` }}
-          >
+          <h2 className="text-primary" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
             Our Company’s Accomplishments
           </h2>
           <button
@@ -40,10 +37,7 @@ export const Accomplishment = ({
         </div>
       </div>
       <div className="w-full md:px-6 px-4">
-        <HomeAccomplishmentArticleList
-          items={items}
-          cardTitleFontSizePx={cardTitleFontSizePx}
-        />
+        <HomeAccomplishmentArticleList items={items} cardTitleFontSizePx={cardTitleFontSizePx} />
       </div>
     </div>
   )

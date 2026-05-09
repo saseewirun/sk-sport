@@ -59,7 +59,8 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
               (isListing
                 ? 'mb-2 max-w-4xl text-3xl sm:text-4xl md:text-5xl md:mb-3'
                 : 'mb-2 max-w-md text-base sm:text-lg md:mb-4 md:max-w-lg md:text-xl'),
-            titleFontSizePx != null && (isListing ? 'mb-2 max-w-4xl md:mb-3' : 'mb-2 max-w-md md:mb-4 md:max-w-lg'),
+            titleFontSizePx != null &&
+              (isListing ? 'mb-2 max-w-4xl md:mb-3' : 'mb-2 max-w-md md:mb-4 md:max-w-lg'),
           )}
           style={titleFontSizePx != null ? { fontSize: `${titleFontSizePx}px` } : undefined}
         >

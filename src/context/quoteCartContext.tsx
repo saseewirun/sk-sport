@@ -148,7 +148,14 @@ export function QuoteCartProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <QuoteCartContext.Provider
-      value={{ items: state.items, totalQuoteItems, addItem, removeItem, updateQuantity, clearQuoteCart }}
+      value={{
+        items: state.items,
+        totalQuoteItems,
+        addItem,
+        removeItem,
+        updateQuantity,
+        clearQuoteCart,
+      }}
     >
       {children}
     </QuoteCartContext.Provider>

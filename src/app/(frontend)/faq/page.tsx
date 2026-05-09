@@ -12,12 +12,7 @@ function clampInt(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)))
 }
 
-function px(
-  v: number | null | undefined,
-  min: number,
-  max: number,
-  fallback: number,
-): number {
+function px(v: number | null | undefined, min: number, max: number, fallback: number): number {
   if (v == null || !Number.isFinite(v)) return fallback
   return clampInt(v, min, max)
 }
@@ -46,10 +41,7 @@ export default async function FaqPage() {
     <main className="flex w-full flex-col items-center">
       <section className="section-bg-to-right w-full py-16 md:py-24">
         <div className="relative z-10 container mx-auto px-6">
-          <h1
-            className="text-primary-content"
-            style={{ fontSize: `${tf.heroTitle}px` }}
-          >
+          <h1 className="text-primary-content" style={{ fontSize: `${tf.heroTitle}px` }}>
             {heroTitle}
           </h1>
           <p
@@ -66,16 +58,10 @@ export default async function FaqPage() {
           <div className="flex flex-col divide-y divide-base-300">
             {faqItems.map((item, index) => (
               <div key={item.id ?? index} className="py-6 first:pt-0 last:pb-0">
-                <h3
-                  className="mb-3 text-base-content"
-                  style={{ fontSize: `${tf.question}px` }}
-                >
+                <h3 className="mb-3 text-base-content" style={{ fontSize: `${tf.question}px` }}>
                   {item.question}
                 </h3>
-                <p
-                  className="text-subtle leading-relaxed"
-                  style={{ fontSize: `${tf.answer}px` }}
-                >
+                <p className="text-subtle leading-relaxed" style={{ fontSize: `${tf.answer}px` }}>
                   {item.answer}
                 </p>
               </div>
@@ -83,10 +69,7 @@ export default async function FaqPage() {
           </div>
 
           <div className="mt-12 rounded-box border border-base-300 bg-primary-content px-6 py-6 shadow-sm text-center">
-            <p
-              className="text-subtle"
-              style={{ fontSize: `${tf.bottomCtaTitle}px` }}
-            >
+            <p className="text-subtle" style={{ fontSize: `${tf.bottomCtaTitle}px` }}>
               Can&apos;t find what you&apos;re looking for?
             </p>
             <p

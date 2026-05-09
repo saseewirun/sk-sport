@@ -1,0 +1,1820 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Sport Trading — คู่มือการจัดการเนื้อหาเว็บไซต์</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ─── BASE ─── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blue: #1a56db;
+        --dark-blue: #1e3a8a;
+        --mid-blue: #1e40af;
+        --light-blue: #dbeafe;
+        --bg-blue: #eff6ff;
+        --line-blue: #bfdbfe;
+        --warn-bg: #fef3c7;
+        --warn-border: #f59e0b;
+        --warn-text: #92400e;
+        --note-bg: #d1fae5;
+        --note-border: #059669;
+        --note-text: #065f46;
+        --danger-bg: #fee2e2;
+        --danger-border: #ef4444;
+        --danger-text: #991b1b;
+        --gray: #374151;
+        --gray-light: #6b7280;
+        --row-alt: #f0f4ff;
+      }
+
+      body {
+        font-family: 'Sarabun', sans-serif;
+        font-size: 16px;
+        color: var(--gray);
+        background: #fff;
+        line-height: 1.7;
+      }
+
+      /* ─── PRINT ─── */
+      @media print {
+        body {
+          font-size: 12pt;
+        }
+        .no-print,
+        nav,
+        .toc-sidebar {
+          display: none !important;
+        }
+        .chapter {
+          page-break-before: always;
+        }
+        .cover {
+          page-break-after: always;
+        }
+        h1 {
+          page-break-before: always;
+        }
+        table {
+          page-break-inside: avoid;
+        }
+        .box {
+          page-break-inside: avoid;
+        }
+      }
+      @page {
+        margin: 2cm;
+      }
+
+      /* ─── LAYOUT ─── */
+      .page-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 32px 80px;
+      }
+
+      /* ─── COVER ─── */
+      .cover {
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%);
+        border-radius: 16px;
+        padding: 64px 48px;
+        text-align: center;
+        margin-bottom: 48px;
+        border: 1px solid var(--line-blue);
+      }
+      .cover .brand {
+        font-size: 42pt;
+        font-weight: 700;
+        color: var(--blue);
+        margin-bottom: 8px;
+      }
+      .cover .title {
+        font-size: 24pt;
+        font-weight: 400;
+        color: var(--dark-blue);
+        margin-bottom: 16px;
+      }
+      .cover .sub {
+        font-size: 13pt;
+        color: var(--gray-light);
+        margin-bottom: 8px;
+      }
+      .cover .badge {
+        display: inline-block;
+        background: var(--blue);
+        color: #fff;
+        padding: 6px 20px;
+        border-radius: 20px;
+        font-size: 11pt;
+        font-weight: 500;
+        margin-top: 16px;
+      }
+
+      /* ─── HEADER / FOOTER strip ─── */
+      .doc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--line-blue);
+        padding-bottom: 10px;
+        margin-bottom: 32px;
+        color: var(--gray-light);
+        font-size: 10pt;
+      }
+      .doc-header .brand {
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      /* ─── TOC ─── */
+      .toc {
+        background: var(--bg-blue);
+        border: 1px solid var(--line-blue);
+        border-radius: 12px;
+        padding: 32px 40px;
+        margin-bottom: 48px;
+      }
+      .toc h2 {
+        color: var(--blue);
+        font-size: 18pt;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--line-blue);
+      }
+      .toc ol {
+        padding-left: 20px;
+      }
+      .toc li {
+        margin: 6px 0;
+      }
+      .toc a {
+        color: var(--mid-blue);
+        text-decoration: none;
+        font-size: 11pt;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+      .toc .sub-item {
+        font-size: 10pt;
+        color: var(--gray-light);
+        margin-left: 12px;
+        display: block;
+        margin-top: 3px;
+      }
+
+      /* ─── CHAPTER ─── */
+      .chapter {
+        margin-bottom: 56px;
+      }
+
+      /* ─── HEADINGS ─── */
+      h1 {
+        font-size: 22pt;
+        font-weight: 700;
+        color: var(--blue);
+        padding-bottom: 12px;
+        border-bottom: 3px solid var(--line-blue);
+        margin: 48px 0 24px;
+      }
+      h1:first-child {
+        margin-top: 0;
+      }
+      h2 {
+        font-size: 15pt;
+        font-weight: 600;
+        color: var(--dark-blue);
+        margin: 32px 0 14px;
+      }
+      h3 {
+        font-size: 13pt;
+        font-weight: 600;
+        color: var(--mid-blue);
+        margin: 24px 0 10px;
+      }
+
+      /* ─── PARAGRAPH ─── */
+      p {
+        margin-bottom: 10px;
+      }
+
+      /* ─── LISTS ─── */
+      ul,
+      ol {
+        padding-left: 22px;
+        margin-bottom: 12px;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      ol.steps {
+        counter-reset: step-counter;
+        list-style: none;
+        padding-left: 0;
+      }
+      ol.steps li {
+        counter-increment: step-counter;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 8px;
+      }
+      ol.steps li::before {
+        content: counter(step-counter);
+        background: var(--blue);
+        color: #fff;
+        font-size: 11pt;
+        font-weight: 700;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* ─── FIELD TABLE ─── */
+      .field-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 20px;
+        font-size: 10.5pt;
+      }
+      .field-table th {
+        background: var(--mid-blue);
+        color: #fff;
+        padding: 9px 14px;
+        text-align: left;
+        font-weight: 600;
+      }
+      .field-table th:first-child {
+        width: 34%;
+        border-radius: 6px 0 0 0;
+      }
+      .field-table th:last-child {
+        border-radius: 0 6px 0 0;
+      }
+      .field-table td {
+        padding: 8px 14px;
+        border-bottom: 1px solid var(--line-blue);
+        vertical-align: top;
+      }
+      .field-table tr:nth-child(odd) td:first-child {
+        background: var(--bg-blue);
+      }
+      .field-table tr:nth-child(odd) td:last-child {
+        background: #f8faff;
+      }
+      .field-table tr:nth-child(even) td {
+        background: #fff;
+      }
+      .field-table td:first-child {
+        font-weight: 600;
+        color: var(--dark-blue);
+      }
+
+      /* ─── INFO BOXES ─── */
+      .box {
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin: 16px 0 20px;
+        border-left: 4px solid;
+        font-size: 10.5pt;
+      }
+      .box .box-title {
+        font-weight: 700;
+        font-size: 11pt;
+        margin-bottom: 8px;
+      }
+      .box ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .box li {
+        margin-bottom: 4px;
+      }
+      .box ol.steps li::before {
+        width: 22px;
+        height: 22px;
+        font-size: 10pt;
+      }
+
+      .box-warn {
+        background: var(--warn-bg);
+        border-color: var(--warn-border);
+        color: var(--warn-text);
+      }
+      .box-note {
+        background: var(--note-bg);
+        border-color: var(--note-border);
+        color: var(--note-text);
+      }
+      .box-danger {
+        background: var(--danger-bg);
+        border-color: var(--danger-border);
+        color: var(--danger-text);
+      }
+      .box-info {
+        background: var(--bg-blue);
+        border-color: var(--blue);
+        color: var(--dark-blue);
+      }
+
+      /* ─── NEW BADGE ─── */
+      .new-badge {
+        display: inline-block;
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+        padding: 1px 10px;
+        border-radius: 20px;
+        font-size: 9pt;
+        font-weight: 600;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      /* ─── NAV BUTTONS (screen only) ─── */
+      @media screen {
+        .no-print {
+          display: block;
+        }
+        .print-btn {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: var(--blue);
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 8px;
+          font-family: 'Sarabun', sans-serif;
+          font-size: 11pt;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(26, 86, 219, 0.35);
+          z-index: 100;
+        }
+        .print-btn:hover {
+          background: var(--dark-blue);
+        }
+      }
+
+      /* ─── ANCHOR OFFSET ─── */
+      [id] {
+        scroll-margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="print-btn no-print" onclick="window.print()">🖨 พิมพ์ / บันทึก PDF</button>
+
+    <div class="page-wrap">
+      <!-- HEADER STRIP -->
+      <div class="doc-header">
+        <span><span class="brand">SK Sport Trading</span> — คู่มือการจัดการเนื้อหาเว็บไซต์</span>
+        <span>ฉบับปรับปรุง พฤษภาคม 2568</span>
+      </div>
+
+      <!-- COVER -->
+      <div class="cover">
+        <div class="brand">SK Sport Trading</div>
+        <div class="title">คู่มือการจัดการเนื้อหาเว็บไซต์</div>
+        <div class="sub">สำหรับทีมงาน SK Sport — ฉบับปรับปรุงล่าสุด</div>
+        <div class="sub">เพิ่มเนื้อหา: ระบบทีมงาน (Team Member) หลายคน &amp; วิดีโอ YouTube</div>
+        <div class="badge">เวอร์ชัน 2.0 | พฤษภาคม 2568</div>
+      </div>
+
+      <!-- TABLE OF CONTENTS -->
+      <div class="toc" id="toc">
+        <h2>📋 สารบัญ</h2>
+        <ol>
+          <li>
+            <a href="#ch1">บทที่ 1: เริ่มต้นใช้งานระบบ CMS</a>
+            <span class="sub-item">การเข้าสู่ระบบ • ภาพรวมเมนูทั้งหมด • การอัปโหลดรูปภาพ 2 วิธี</span>
+          </li>
+          <li>
+            <a href="#ch2">บทที่ 2: หน้า Home (หน้าหลัก)</a>
+            <span class="sub-item">Content → Home — รูปภาพ Hero • แกลเลอรี • พาร์ตเนอร์ • ขนาดตัวอักษร</span>
+          </li>
+          <li>
+            <a href="#ch3">บทที่ 3: หน้า About Us (เกี่ยวกับเรา)</a>
+            <span class="sub-item">Content → About, Founders | Page Heroes → About Hero — Banner • ข้อมูลบริษัท • พันธกิจ/วิสัยทัศน์ • ทีมงาน • วิดีโอ YouTube</span>
+          </li>
+          <li>
+            <a href="#ch4">บทที่ 4: สินค้า (Products)</a>
+            <span class="sub-item">Content → Products | Page Heroes → Products Hero</span>
+          </li>
+          <li>
+            <a href="#ch5">บทที่ 5: บริการ (Services)</a>
+            <span class="sub-item">Content → Services | Page Heroes → Services Hero</span>
+          </li>
+          <li>
+            <a href="#ch6">บทที่ 6: ผลงาน (Portfolio)</a>
+            <span class="sub-item">Content → Portfolio Articles | Page Heroes → Portfolio Hero</span>
+          </li>
+          <li>
+            <a href="#ch7">บทที่ 7: ติดต่อเรา (Contact)</a>
+            <span class="sub-item">Page Heroes → Contact Hero — Google Map Embed</span>
+          </li>
+          <li>
+            <a href="#ch8">บทที่ 8: คำถามที่พบบ่อย (FAQ)</a>
+            <span class="sub-item">Content → FAQ</span>
+          </li>
+          <li>
+            <a href="#ch9">บทที่ 9: ระบบขอใบเสนอราคา (Quote Requests)</a>
+            <span class="sub-item">Sales → Quote Requests</span>
+          </li>
+          <li>
+            <a href="#ch10">บทที่ 10: การจัดการผู้ใช้งาน CMS (Users)</a>
+            <span class="sub-item">Admin → Users — เพิ่ม/ลบผู้ใช้, บทบาท Master/Editor</span>
+          </li>
+          <li>
+            <a href="#ch11">บทที่ 11: คลังรูปภาพ (Media)</a>
+            <span class="sub-item">Hero Medias • Gallery Medias • Service Medias • Partner Medias</span>
+          </li>
+          <li>
+            <a href="#ch12">บทที่ 12: คำสั่งซื้อและหลักฐานการชำระเงิน</a>
+            <span class="sub-item">Checkout → Orders • Payment Slips</span>
+          </li>
+          <li>
+            <a href="#ch13">บทที่ 13: การตั้งค่า (Settings)</a>
+            <span class="sub-item">Checkout → Payment Settings • Privacy Policy • Terms of Service</span>
+          </li>
+          <li><a href="#appendix">ภาคผนวก: ปัญหาที่พบบ่อยและวิธีแก้ไข</a></li>
+        </ol>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 1 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch1">
+        <h1>บทที่ 1: เริ่มต้นใช้งานระบบ CMS</h1>
+        <p>
+          ระบบ CMS (Content Management System) คือเครื่องมือที่ช่วยให้ทีมงาน SK Sport
+          สามารถแก้ไขข้อมูล รูปภาพ และเนื้อหาต่างๆ บนเว็บไซต์ได้ด้วยตนเอง
+          โดยไม่จำเป็นต้องมีความรู้ด้านการเขียนโปรแกรม
+        </p>
+
+        <h2 id="ch1-1">1.1 วิธีเข้าสู่ระบบ</h2>
+        <ol class="steps">
+          <li>เปิดเว็บเบราว์เซอร์ (เช่น Chrome, Firefox, Edge)</li>
+          <li>พิมพ์ URL: <strong>https://www.sksporttrading.com/admin</strong> แล้วกด Enter</li>
+          <li>กรอกอีเมลและรหัสผ่านที่ได้รับจากผู้ดูแลระบบ</li>
+          <li>กดปุ่ม <strong>"Login"</strong> เพื่อเข้าสู่ระบบ</li>
+        </ol>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวังเรื่องความปลอดภัย</div>
+          <ul>
+            <li>ห้ามแชร์อีเมลและรหัสผ่านกับบุคคลภายนอก</li>
+            <li>
+              กดปุ่ม <strong>"Log out"</strong> ทุกครั้งเมื่อเลิกใช้งาน
+              โดยเฉพาะเมื่อใช้คอมพิวเตอร์สาธารณะ
+            </li>
+            <li>หากลืมรหัสผ่านหรือสงสัยว่ารหัสผ่านรั่วไหล แจ้งผู้ดูแลระบบทันที</li>
+          </ul>
+        </div>
+
+        <h2 id="ch1-2">1.2 ภาพรวมเมนูหลัก</h2>
+        <p>หลังล็อกอินสำเร็จ จะเห็นเมนูด้านซ้ายมือ แบ่งออกเป็นหมวดดังนี้:</p>
+        <table class="field-table">
+          <tr>
+            <th>หมวดเมนู</th>
+            <th>รายการเมนูย่อย</th>
+            <th>ใช้สำหรับ</th>
+          </tr>
+          <tr>
+            <td><strong>Admin</strong></td>
+            <td>Users</td>
+            <td>จัดการบัญชีผู้ใช้งาน CMS — เพิ่ม/ลบผู้ดูแลระบบ (เฉพาะ Master เท่านั้น)</td>
+          </tr>
+          <tr>
+            <td><strong>Media</strong></td>
+            <td>Hero Medias, Gallery Medias, Service Medias, Partner Medias</td>
+            <td>คลังรูปภาพแยกตามประเภท — สำหรับอัปโหลดและจัดการไฟล์สื่อ</td>
+          </tr>
+          <tr>
+            <td><strong>Content</strong></td>
+            <td>Home, About, FAQ, Privacy Policy, Terms of Service, Services, Portfolio Articles, Products, Founders</td>
+            <td>จัดการเนื้อหาทุกหน้าของเว็บไซต์ — บทความ สินค้า บริการ ผลงาน ทีมงาน</td>
+          </tr>
+          <tr>
+            <td><strong>Checkout</strong></td>
+            <td>Payment Settings, Payment Slips, Orders</td>
+            <td>ตั้งค่าการชำระเงิน, ดูหลักฐานโอนเงิน, ดูและจัดการคำสั่งซื้อ</td>
+          </tr>
+          <tr>
+            <td><strong>Sales</strong></td>
+            <td>Quote Requests</td>
+            <td>ดูรายการขอใบเสนอราคาที่ลูกค้าส่งมา</td>
+          </tr>
+          <tr>
+            <td><strong>Page Heroes</strong></td>
+            <td>About Hero, Services Hero, Portfolio Hero, Products Hero, Contact Hero</td>
+            <td>จัดการแบนเนอร์หัวหน้า (Banner) ของแต่ละหน้า — หัวข้อ คำอธิบาย รูปพื้นหลัง</td>
+          </tr>
+        </table>
+
+        <div class="box box-info">
+          <div class="box-title">ℹ ระบบบทบาทผู้ใช้งาน (Role)</div>
+          <ul>
+            <li><strong>Master</strong> — เห็นและจัดการเมนูทั้งหมด รวมถึง Admin → Users สามารถเพิ่ม/ลบผู้ใช้งานได้</li>
+            <li><strong>Editor</strong> — เห็นเฉพาะบัญชีตัวเอง ไม่เห็นผู้ใช้คนอื่น แก้ไขเนื้อหาได้ทุกหน้า แต่เพิ่ม/ลบผู้ใช้ไม่ได้</li>
+          </ul>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 เคล็ดลับสำคัญ</div>
+          <ul>
+            <li>
+              กด <strong>"Save"</strong> หรือ <strong>"Publish"</strong> ทุกครั้งหลังแก้ไข
+              มิฉะนั้นข้อมูลจะสูญหาย
+            </li>
+            <li>การเปลี่ยนแปลงจะแสดงบนเว็บไซต์ทันทีหลังบันทึก</li>
+            <li>
+              หากเว็บยังไม่เปลี่ยน ให้กด <strong>Ctrl+Shift+R</strong> (Windows) หรือ
+              <strong>Cmd+Shift+R</strong> (Mac) เพื่อล้างแคช
+            </li>
+          </ul>
+        </div>
+
+        <h2 id="ch1-3">1.3 การอัปโหลดรูปภาพ</h2>
+        <p>
+          การอัปโหลดรูปภาพใน CMS สามารถทำได้ <strong>2 วิธี</strong> — ไม่จำเป็นต้องไปที่หน้า Media ก่อนเสมอไป:
+        </p>
+
+        <div class="box box-info">
+          <div class="box-title">ℹ วิธีที่ 1: อัปโหลดโดยตรงในหน้าที่กำลังแก้ไข (แนะนำ)</div>
+          <p>เมื่อแก้ไขสินค้า บริการ ผลงาน หรือหน้าใดก็ตาม สามารถอัปโหลดรูปได้ทันทีโดยไม่ต้องออกจากหน้านั้น:</p>
+          <ol class="steps">
+            <li>คลิกที่ช่องรูปภาพ หรือปุ่ม <strong>"Upload"</strong> / <strong>"Choose"</strong> ในฟอร์ม</li>
+            <li>เลือกรูปจากคอมพิวเตอร์ — ระบบจะอัปโหลดและเชื่อมรูปกับรายการนั้นโดยอัตโนมัติ</li>
+            <li>รอให้อัปโหลดสำเร็จ แล้วกด <strong>"Select"</strong></li>
+            <li>กด <strong>Save</strong> เพื่อบันทึก</li>
+          </ol>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 วิธีที่ 2: อัปโหลดผ่านคลัง Media ก่อน (ใช้เมื่อต้องการจัดการรูปเยอะๆ)</div>
+          <p>เหมาะสำหรับกรณีที่ต้องการอัปโหลดรูปหลายรูปพร้อมกัน หรือต้องการเลือกรูปที่อัปโหลดไว้แล้วนำมาใช้ซ้ำ:</p>
+          <ol class="steps">
+            <li>ไปที่เมนู <strong>Media → (เลือกประเภทคลัง)</strong> แล้วอัปโหลดรูปไว้ก่อน</li>
+            <li>กลับมาที่หน้าที่ต้องการ คลิกช่องรูปภาพ → กด <strong>"Choose existing"</strong></li>
+            <li>เลือกรูปที่อัปโหลดไว้ → กด <strong>"Select"</strong></li>
+          </ol>
+        </div>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ขนาดรูปภาพที่แนะนำ</div>
+          <ul>
+            <li>
+              <strong>รูป Hero / Banner:</strong> ไม่เกิน 2MB ความละเอียด 1920×1080 px (แนวนอน)
+            </li>
+            <li>
+              <strong>รูปการ์ดสมาชิกทีมงาน:</strong> ความละเอียด 600×800 px (แนวตั้ง สัดส่วน 3:4)
+            </li>
+            <li><strong>รูปสินค้า/บริการ:</strong> ไม่เกิน 1MB ความละเอียด 800×600 px</li>
+            <li><strong>นามสกุลที่รองรับ:</strong> .jpg, .jpeg, .png, .webp</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 2 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch2">
+        <h1>บทที่ 2: หน้า Home (หน้าหลักเว็บไซต์)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → Home</strong></p>
+
+        <h2>2.1 รูปภาพและสื่อบนหน้าหลัก</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>รูป/วิดีโอ Hero</td>
+            <td>รูปหรือวิดีโอบนแบนเนอร์หลัก เพิ่มได้หลายรูป ระบบสลับอัตโนมัติ</td>
+          </tr>
+          <tr>
+            <td>รูปแกลเลอรี</td>
+            <td>รูปภาพในส่วนแกลเลอรีของหน้าแรก เลือกได้หลายรูป</td>
+          </tr>
+          <tr>
+            <td>พาร์ตเนอร์ (โลโก้)</td>
+            <td>โลโก้บริษัทพาร์ตเนอร์ที่แสดงในส่วน Our Partners ลำดับตามที่เลือก</td>
+          </tr>
+        </table>
+
+        <h2>2.2 การปรับขนาดตัวอักษรหน้าหลัก</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อ Hero</td>
+            <td>หัวข้อหลักบนแบนเนอร์ ค่าได้ 32–96px (เริ่มต้น: 56px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดคำอธิบาย Hero</td>
+            <td>คำอธิบายใต้หัวข้อ ค่าได้ 14–32px (เริ่มต้น: 20px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อ Section</td>
+            <td>หัวข้อของแต่ละส่วน เช่น บริการ สินค้า ผลงาน ค่าได้ 20–56px (เริ่มต้น: 32px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อเนื้อหาเน้น</td>
+            <td>หัวย่อยในบล็อกเนื้อหา ค่าได้ 20–48px (เริ่มต้น: 28px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อบนการ์ด</td>
+            <td>ชื่อบนการ์ดบริการ/สินค้า/ผลงาน ค่าได้ 16–36px (เริ่มต้น: 20px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดเนื้อหาในการ์ด</td>
+            <td>คำอธิบายใต้ชื่อบนการ์ด ค่าได้ 12–22px (เริ่มต้น: 14px)</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 3 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch3">
+        <h1>บทที่ 3: หน้า About Us (เกี่ยวกับเรา)</h1>
+        <p>หน้า About Us ประกอบด้วยหลายส่วน ซึ่งจัดการแยกกันในเมนู CMS ดังนี้:</p>
+        <table class="field-table">
+          <tr>
+            <th>เมนู CMS</th>
+            <th>ใช้สำหรับ</th>
+          </tr>
+          <tr>
+            <td>Page Heroes → About Hero</td>
+            <td>แบนเนอร์หัวหน้า (รูปพื้นหลัง หัวข้อ คำอธิบาย)</td>
+          </tr>
+          <tr>
+            <td>Content → About</td>
+            <td>เนื้อหาหลัก: บริษัท สถิติ พันธกิจ วิสัยทัศน์ วิดีโอ ขนาดตัวอักษร</td>
+          </tr>
+          <tr>
+            <td>Content → Founders</td>
+            <td>ทีมงาน (Team Member) — รายการสมาชิกหลายคน ✨ ใหม่</td>
+          </tr>
+        </table>
+
+        <h2 id="ch3-1">3.1 แบนเนอร์หน้า About (About Hero)</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Page Heroes → About Hero</strong></p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อหลัก Hero</td>
+            <td>ข้อความขนาดใหญ่บนแบนเนอร์หน้า About</td>
+          </tr>
+          <tr>
+            <td>คำอธิบายใต้หัวข้อ Hero</td>
+            <td>ข้อความย่อยใต้หัวข้อ</td>
+          </tr>
+          <tr>
+            <td>รูปภาพ Hero</td>
+            <td>รูปพื้นหลังแบนเนอร์ เพิ่มได้หลายรูป</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อ Hero</td>
+            <td>32–96px (เริ่มต้น: 56px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดคำอธิบาย Hero</td>
+            <td>14–32px (เริ่มต้น: 20px)</td>
+          </tr>
+        </table>
+
+        <h2 id="ch3-2">3.2 ข้อมูลบริษัทและสถิติ</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → About</strong></p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อบริษัท</td>
+            <td>แสดงใต้หัว "About Us" เช่น "SK Sport Trading Co., Ltd."</td>
+          </tr>
+          <tr>
+            <td>ไฮไลต์ / สถิติ</td>
+            <td>กล่องตัวเลขสถิติ เพิ่มได้หลายรายการ แต่ละรายการมีช่อง "ค่า" และ "คำอธิบาย"</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 ตัวอย่างการกรอกสถิติ</div>
+          <ul>
+            <li><strong>ค่า:</strong> 20+ &nbsp;&nbsp; <strong>คำอธิบาย:</strong> ปีประสบการณ์</li>
+            <li><strong>ค่า:</strong> 500+ &nbsp; <strong>คำอธิบาย:</strong> โครงการที่ส่งมอบ</li>
+            <li>
+              <strong>ค่า:</strong> 50+ &nbsp;&nbsp; <strong>คำอธิบาย:</strong> แบรนด์พาร์ตเนอร์
+            </li>
+          </ul>
+        </div>
+
+        <h2 id="ch3-3">3.3 พันธกิจและวิสัยทัศน์</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → About</strong> (เลื่อนลงส่วนพันธกิจ)</p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อพันธกิจ</td>
+            <td>ชื่อหัวข้อ เช่น "พันธกิจของเรา"</td>
+          </tr>
+          <tr>
+            <td>รายละเอียดพันธกิจ</td>
+            <td>เนื้อหาอธิบายพันธกิจขององค์กร</td>
+          </tr>
+          <tr>
+            <td>หัวข้อวิสัยทัศน์</td>
+            <td>ชื่อหัวข้อ เช่น "วิสัยทัศน์"</td>
+          </tr>
+          <tr>
+            <td>รายละเอียดวิสัยทัศน์</td>
+            <td>เนื้อหาอธิบายวิสัยทัศน์ขององค์กร</td>
+          </tr>
+        </table>
+
+        <!-- ── NEW FEATURE ────────────────────────────────────────────── -->
+        <h2 id="ch3-4">3.4 ทีมงาน (Team Member) <span class="new-badge">✨ ใหม่</span></h2>
+        <p>
+          ระบบทีมงานถูกปรับปรุงใหม่ทั้งหมด ตอนนี้รองรับสมาชิกหลายคน แต่ละคนมีหน้ารายละเอียดของตัวเอง
+          และสามารถซ่อน/แสดงแยกได้
+        </p>
+
+        <div class="box box-info">
+          <div class="box-title">ℹ ข้อแตกต่างจากระบบเดิม</div>
+          <ul>
+            <li><strong>ระบบเดิม:</strong> แสดงสมาชิกได้เพียง 1 คน กำหนดในหน้า About Global</li>
+            <li>
+              <strong>ระบบใหม่:</strong> รองรับสมาชิกหลายคน จัดการผ่าน
+              <strong>Content → Founders</strong>
+            </li>
+            <li>สมาชิกแต่ละคนมีหน้ารายละเอียดส่วนตัวที่ <code>/about/founders/[ชื่อ-URL]</code></li>
+          </ul>
+        </div>
+
+        <h3>3.4.1 ตั้งชื่อหัวข้อส่วนทีมงาน</h3>
+        <p>วิธีเข้าแก้ไข: <strong>Content → About → ช่อง "หัวข้อส่วน Team Member"</strong></p>
+        <p>
+          ค่าเริ่มต้น: <strong>"Team Member"</strong> — สามารถเปลี่ยนเป็น "ทีมงานของเรา"
+          หรือชื่ออื่นได้ตามต้องการ
+        </p>
+
+        <h3>3.4.2 การเพิ่มสมาชิกทีมงานใหม่</h3>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → Founders → กดปุ่ม "Create New"</strong></p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อ (Name) ⭐</td>
+            <td>ชื่อเต็มของสมาชิก — <strong>จำเป็นต้องกรอก</strong></td>
+          </tr>
+          <tr>
+            <td>Slug</td>
+            <td>ที่อยู่ URL หน้ารายละเอียด ระบบสร้างอัตโนมัติจากชื่อ ไม่ต้องกรอกเอง</td>
+          </tr>
+          <tr>
+            <td>ตำแหน่ง (Role)</td>
+            <td>ตำแหน่งงาน เช่น "Managing Director", "Sales Manager"</td>
+          </tr>
+          <tr>
+            <td>คำอธิบายสั้น (Excerpt)</td>
+            <td>ข้อความสั้น 1–2 ประโยคที่แสดงบนการ์ดในหน้า About</td>
+          </tr>
+          <tr>
+            <td>คำอธิบายเต็ม</td>
+            <td>ประวัติหรือข้อมูลละเอียดที่แสดงบนหน้ารายละเอียดส่วนตัว</td>
+          </tr>
+          <tr>
+            <td>คำคม (Quote)</td>
+            <td>ข้อความพิเศษ (Blockquote) แสดงบนการ์ดและหน้ารายละเอียด</td>
+          </tr>
+          <tr>
+            <td>รูปสำหรับการ์ด</td>
+            <td>รูปที่แสดงบนการ์ดในหน้า About (แนะนำ: แนวตั้ง สัดส่วน 3:4)</td>
+          </tr>
+          <tr>
+            <td>แกลเลอรี</td>
+            <td>รูปหลายรูปสำหรับหน้ารายละเอียดส่วนตัวเท่านั้น</td>
+          </tr>
+          <tr>
+            <td>ลำดับการแสดง</td>
+            <td>ตัวเลขกำหนดลำดับ — <strong>เลขน้อยแสดงก่อน</strong> (0 = แรกสุด, 1 = ถัดไป)</td>
+          </tr>
+          <tr>
+            <td>แสดงบนเว็บ</td>
+            <td>ติ๊กถูก = แสดงบนเว็บ | ปลดติ๊ก = ซ่อนชั่วคราว โดยไม่ต้องลบข้อมูล</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 ขั้นตอนเพิ่มสมาชิกทีมงาน</div>
+          <ol class="steps">
+            <li>คลิก <strong>Content → Founders → "Create New"</strong></li>
+            <li>กรอกชื่อ (Name) — ช่องนี้จำเป็นต้องกรอก</li>
+            <li>กรอกตำแหน่ง คำอธิบายสั้น คำอธิบายเต็ม และคำคม (ตามต้องการ)</li>
+            <li>อัปโหลดรูปสำหรับการ์ด (และรูปแกลเลอรีหากมี)</li>
+            <li>ตั้งลำดับการแสดง (เลขน้อยแสดงก่อน)</li>
+            <li>ตรวจสอบว่าช่อง <strong>"แสดงบนเว็บ"</strong> ถูกติ๊กอยู่</li>
+            <li>กด <strong>Save</strong></li>
+          </ol>
+        </div>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวังเรื่อง Slug</div>
+          <ul>
+            <li>
+              <strong>Slug</strong> คือส่วนที่อยู่ใน URL เช่น หากชื่อ "Sasiwiral Kaenchanhom" → Slug
+              จะเป็น <code>sasiwiral-kaenchanhom</code>
+            </li>
+            <li>ระบบ <strong>สร้าง Slug อัตโนมัติ</strong>เมื่อบันทึกครั้งแรก — ไม่ต้องกรอกเอง</li>
+            <li>ห้ามแก้ไข Slug หลังจากที่มีการแชร์ลิงก์ออกไปแล้ว เพราะลิงก์เดิมจะพัง</li>
+            <li>Slug ใช้ได้เฉพาะตัวอักษรภาษาอังกฤษตัวพิมพ์เล็ก ตัวเลข และขีดกลาง (-)</li>
+          </ul>
+        </div>
+
+        <h3>3.4.3 การแก้ไขข้อมูลสมาชิก</h3>
+        <ol class="steps">
+          <li>คลิก <strong>Content → Founders</strong></li>
+          <li>คลิกชื่อสมาชิกในรายการ</li>
+          <li>แก้ไขข้อมูลที่ต้องการ</li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <h3>3.4.4 การซ่อน/แสดงสมาชิก (ไม่ต้องลบข้อมูล)</h3>
+        <p>เหมาะสำหรับกรณีที่ต้องการซ่อนสมาชิกชั่วคราว เช่น รอรูปถ่าย หรืออยู่ระหว่างลางาน</p>
+        <ol class="steps">
+          <li>เปิดข้อมูลสมาชิกที่ต้องการ</li>
+          <li>ปลดติ๊กที่ช่อง <strong>"แสดงบนเว็บ (Visible on site)"</strong></li>
+          <li>กด <strong>Save</strong> — สมาชิกจะหายไปจากเว็บแต่ข้อมูลยังอยู่ในระบบ</li>
+        </ol>
+
+        <h3>3.4.5 การเรียงลำดับสมาชิก</h3>
+        <p>ลำดับการแสดงบนเว็บกำหนดโดยช่อง <strong>"ลำดับการแสดง (Sort order)"</strong></p>
+        <ul>
+          <li>เลขน้อย = แสดงก่อน (0 หรือ 1 = อยู่บนสุด)</li>
+          <li>เลขมาก = แสดงทีหลัง</li>
+          <li>ตัวอย่าง: สมาชิก A ลำดับ 1, สมาชิก B ลำดับ 2 → A แสดงก่อน B</li>
+        </ul>
+
+        <!-- VIDEO SECTION -->
+        <h2 id="ch3-5">3.5 วิดีโอ YouTube</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → About</strong> (เลื่อนลงส่วนคลิป YouTube)</p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อ Section วิดีโอ</td>
+            <td>หัวข้อที่แสดงเหนือส่วนวิดีโอ ค่าเริ่มต้น: "Video"</td>
+          </tr>
+          <tr>
+            <td>ชื่อคลิป (Title)</td>
+            <td>ชื่อที่แสดงใต้วิดีโอแต่ละตัว (ไม่บังคับ)</td>
+          </tr>
+          <tr>
+            <td>ลิงก์ YouTube</td>
+            <td>URL วิดีโอ YouTube เช่น https://www.youtube.com/watch?v=xxxxx</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย iframe</td>
+            <td>ชื่อสำหรับระบบ ผู้ใช้งานทั่วไปไม่เห็น ค่าเริ่มต้น: "YouTube video"</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 วิธีเพิ่มวิดีโอใหม่</div>
+          <ol class="steps">
+            <li>คลิก <strong>"เพิ่มรายการ"</strong> ในส่วนคลิป YouTube</li>
+            <li>กรอกชื่อคลิป (ไม่บังคับ)</li>
+            <li>วาง URL วิดีโอ YouTube</li>
+            <li>กด <strong>Save</strong></li>
+          </ol>
+          <p style="margin-top: 8px">หากเพิ่มหลายวิดีโอ จะแสดงแบบ 2 คอลัมน์โดยอัตโนมัติ</p>
+        </div>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวังวิดีโอ</div>
+          <ul>
+            <li>
+              ระบบรองรับเฉพาะลิงก์ <strong>YouTube</strong> เท่านั้น ไม่รองรับ Vimeo หรือเว็บอื่น
+            </li>
+            <li>ห้ามวางโค้ด iframe ทั้งชุด — ให้วางแค่ <strong>URL</strong> เท่านั้น</li>
+            <li>
+              หากวิดีโอไม่แสดง ตรวจสอบว่า: (1) URL ถูกต้อง และ (2) วิดีโอไม่ได้ตั้งค่าเป็น
+              <strong>Private</strong>
+            </li>
+          </ul>
+        </div>
+
+        <h2 id="ch3-6">3.6 ส่วนลิงก์ไปยังหน้าอื่น</h2>
+        <p>
+          ส่วนเหล่านี้แสดงลิงก์ไปยังหน้า Portfolio, Services, Products สามารถแก้ข้อความได้ที่
+          Content → About:
+        </p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อส่วนโปรเจกต์เด่น</td>
+            <td>หัวข้อส่วนที่แสดงผลงานเด่น</td>
+          </tr>
+          <tr>
+            <td>คำอธิบายส่วนโปรเจกต์</td>
+            <td>ข้อความอธิบายใต้หัวข้อ</td>
+          </tr>
+          <tr>
+            <td>ข้อความปุ่ม CTA โปรเจกต์</td>
+            <td>ข้อความบนปุ่ม เช่น "ดูผลงานทั้งหมด"</td>
+          </tr>
+          <tr>
+            <td>หัวข้อ / คำอธิบาย Services</td>
+            <td>แก้ข้อความส่วน Services</td>
+          </tr>
+          <tr>
+            <td>หัวข้อ / คำอธิบาย Products</td>
+            <td>แก้ข้อความส่วน Products</td>
+          </tr>
+        </table>
+
+        <h2 id="ch3-7">3.7 การปรับขนาดตัวอักษรหน้า About</h2>
+        <p>ทุกช่องต่อไปนี้อยู่ใน <strong>Content → About:</strong></p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>ค่าที่รับได้ (เริ่มต้น)</th>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อแต่ละ Section</td>
+            <td>22–56px (เริ่มต้น: 32px) — "About Us", "Team Member" ฯลฯ</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อการ์ดไฮไลต์</td>
+            <td>16–36px (เริ่มต้น: 20px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดเนื้อหาการ์ดไฮไลต์</td>
+            <td>13–24px (เริ่มต้น: 15px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดตัวเลขสถิติ</td>
+            <td>20–48px (เริ่มต้น: 28px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดคำอธิบายสถิติ</td>
+            <td>12–22px (เริ่มต้น: 14px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อพันธกิจ/วิสัยทัศน์</td>
+            <td>20–48px (เริ่มต้น: 28px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดเนื้อหาพันธกิจ/วิสัยทัศน์</td>
+            <td>14–24px (เริ่มต้น: 16px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อ Section วิดีโอ</td>
+            <td>20–56px (เริ่มต้น: 32px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดชื่อบนการ์ด Founder</td>
+            <td>20–48px (เริ่มต้น: 28px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดคำอธิบายบนการ์ด Founder</td>
+            <td>14–24px (เริ่มต้น: 16px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดคำคมบนการ์ด Founder</td>
+            <td>14–28px (เริ่มต้น: 18px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อหน้ารายละเอียด Founder</td>
+            <td>28–72px (เริ่มต้น: 42px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดเนื้อหาหน้ารายละเอียด Founder</td>
+            <td>14–24px (เริ่มต้น: 16px)</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 4 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch4">
+        <h1>บทที่ 4: สินค้า (Products)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → Products</strong></p>
+
+        <h2>4.1 การเพิ่มสินค้าใหม่</h2>
+        <ol class="steps">
+          <li>คลิกปุ่ม <strong>"Create New"</strong></li>
+          <li>กรอกชื่อสินค้า (Title) — จำเป็นต้องกรอก</li>
+          <li>กรอกชื่อรอง (Subtitle) ถ้ามี</li>
+          <li>กรอกหมวดหมู่ (Category)</li>
+          <li>เลือกโหมดการขาย (Sales Mode)</li>
+          <li>กรอกคำอธิบายสินค้า (Description) — จำเป็นต้องกรอก</li>
+          <li>อัปโหลดรูปสินค้า (Image)</li>
+          <li>กรอก Slug เช่น <code>gymnastic-mat</code></li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อสินค้า (Title) ⭐</td>
+            <td>ชื่อสินค้าหลัก จำเป็นต้องกรอก</td>
+          </tr>
+          <tr>
+            <td>ชื่อรอง (Subtitle)</td>
+            <td>ข้อความสั้นๆ ใต้ชื่อสินค้า</td>
+          </tr>
+          <tr>
+            <td>หมวดหมู่</td>
+            <td>หมวดสินค้า เช่น อุปกรณ์กีฬา, อุปกรณ์ยิมนาสติก</td>
+          </tr>
+          <tr>
+            <td>โหมดการขาย</td>
+            <td>"Quote only" = ลูกค้าขอใบเสนอราคา | "Buy" = ซื้อได้เลย มีราคาแสดง</td>
+          </tr>
+          <tr>
+            <td>ราคา (Price)</td>
+            <td>กรอกเฉพาะโหมด Buy หน่วยเป็นบาท</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย ⭐</td>
+            <td>รายละเอียดสินค้า จำเป็นต้องกรอก</td>
+          </tr>
+          <tr>
+            <td>รูปสินค้า</td>
+            <td>รูปหลักสินค้า 1 รูป</td>
+          </tr>
+          <tr>
+            <td>Slug ⭐</td>
+            <td>URL ของหน้าสินค้า เช่น gymnastic-mat → /products/gymnastic-mat</td>
+          </tr>
+        </table>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวัง Slug สินค้า</div>
+          <ul>
+            <li>Slug ต้องไม่ซ้ำกับสินค้าอื่นในระบบ</li>
+            <li>ใช้ได้เฉพาะตัวอักษรอังกฤษตัวพิมพ์เล็ก ตัวเลข และขีดกลาง (-)</li>
+            <li>ห้ามแก้ไข Slug หลังจากเว็บไซต์เผยแพร่ใช้งานแล้ว</li>
+          </ul>
+        </div>
+
+        <h2>4.2 แบนเนอร์หน้า Products</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Page Heroes → Products Hero</strong></p>
+        <p>ตั้งค่าหัวข้อ คำอธิบาย และรูปพื้นหลังของแบนเนอร์หน้า Products ได้ที่นี่</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 5 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch5">
+        <h1>บทที่ 5: บริการ (Services)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → Services</strong></p>
+
+        <h2>5.1 ข้อมูลบริการ</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อบริการ (Title) ⭐</td>
+            <td>ชื่อหลักของบริการ จำเป็นต้องกรอก</td>
+          </tr>
+          <tr>
+            <td>ชื่อรอง (Subtitle)</td>
+            <td>คำอธิบายสั้น</td>
+          </tr>
+          <tr>
+            <td>รูปหัว (Hero)</td>
+            <td>รูปที่แสดงบนหน้าบริการ</td>
+          </tr>
+          <tr>
+            <td>Slug ⭐</td>
+            <td>URL บริการ ระบบสร้างอัตโนมัติจากชื่อ</td>
+          </tr>
+          <tr>
+            <td>Tags</td>
+            <td>คำแท็กสำหรับจัดหมวดหมู่</td>
+          </tr>
+        </table>
+
+        <h2>5.2 การเพิ่มเนื้อหาภายในบริการ (Sections)</h2>
+        <p>
+          แต่ละบริการสามารถมีหลาย Section คลิก <strong>"เพิ่มรายการ"</strong> ในส่วน Service
+          Sections:
+        </p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อ Section ⭐</td>
+            <td>หัวข้อของส่วนนี้ จำเป็นต้องกรอก</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย</td>
+            <td>เนื้อหาอธิบาย</td>
+          </tr>
+          <tr>
+            <td>Layout: Column</td>
+            <td>แสดงรูปหลายรูปแบบกริด เหมาะสำหรับ Gallery</td>
+          </tr>
+          <tr>
+            <td>Layout: Row</td>
+            <td>แสดงรูปด้านซ้ายหรือขวาคู่กับข้อความ</td>
+          </tr>
+          <tr>
+            <td>ตำแหน่งรูป</td>
+            <td>เฉพาะ Row: ซ้าย (Left) หรือ ขวา (Right)</td>
+          </tr>
+        </table>
+
+        <h2>5.3 แบนเนอร์หน้า Services</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Page Heroes → Services Hero</strong></p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 6 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch6">
+        <h1>บทที่ 6: ผลงาน (Portfolio)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → Portfolio Articles</strong></p>
+        <p>
+          แต่ละผลงานคือบทความที่แสดงบนหน้า Portfolio กดปุ่ม
+          <strong>"Create New"</strong> เพื่อเพิ่มผลงานใหม่
+        </p>
+
+        <h2>6.1 ช่องข้อมูลผลงาน</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>ชื่อผลงาน (Title) ⭐</td>
+            <td>ชื่อหลักของผลงาน แสดงบนการ์ดและหน้ารายละเอียด จำเป็นต้องกรอก</td>
+          </tr>
+          <tr>
+            <td>แสดงเป็นผลงานเด่น</td>
+            <td>ติ๊กเพื่อให้ผลงานนี้ขึ้นในหน้าแรกหรือส่วนผลงานเด่น</td>
+          </tr>
+          <tr>
+            <td>หัวข้อรายละเอียด</td>
+            <td>หัวข้อส่วนรายละเอียดบนหน้าผลงาน</td>
+          </tr>
+          <tr>
+            <td>รายละเอียดผลงาน</td>
+            <td>คำอธิบายผลงานโดยละเอียด</td>
+          </tr>
+          <tr>
+            <td>รูปภาพหลัก</td>
+            <td>รูปหลักที่แสดงบนการ์ดและหัวหน้าผลงาน (แนะนำ: 16:9 หรือ 4:3)</td>
+          </tr>
+          <tr>
+            <td>รูปแกลเลอรี</td>
+            <td>รูปเพิ่มเติมสำหรับแสดงในหน้ารายละเอียดผลงาน</td>
+          </tr>
+          <tr>
+            <td>แท็ก (Tag)</td>
+            <td>คำแท็กสำหรับจัดหมวดหมู่ผลงาน เช่น "สนามฟุตบอล", "โรงยิม"</td>
+          </tr>
+          <tr>
+            <td>Slug ⭐</td>
+            <td>URL ผลงาน เช่น football-field-abc → /portfolio/football-field-abc ระบบสร้างอัตโนมัติ</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 คำแนะนำ</div>
+          <ul>
+            <li>ชื่อผลงาน (Title) ควรกระชับ สื่อความหมาย เพื่อให้การ์ดดูสวยงาม</li>
+            <li>รูปภาพควรมีสัดส่วน 16:9 หรือ 4:3 เพื่อให้แสดงผลถูกต้องบนการ์ด</li>
+          </ul>
+        </div>
+
+        <h2>6.2 แบนเนอร์หน้า Portfolio</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Page Heroes → Portfolio Hero</strong></p>
+        <p>ตั้งค่าหัวข้อ คำอธิบาย และรูปพื้นหลังของแบนเนอร์หน้า Portfolio ได้ที่นี่</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 7 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch7">
+        <h1>บทที่ 7: ติดต่อเรา (Contact)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Page Heroes → Contact Hero</strong></p>
+
+        <h2>7.1 แบนเนอร์และข้อมูลติดต่อ</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อหลัก Hero</td>
+            <td>ข้อความหัวข้อบนแบนเนอร์หน้าติดต่อ</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย Hero</td>
+            <td>ข้อความย่อยใต้หัวข้อ</td>
+          </tr>
+          <tr>
+            <td>รูปภาพ Hero</td>
+            <td>รูปพื้นหลังแบนเนอร์</td>
+          </tr>
+          <tr>
+            <td>ลิงก์ Google Map Embed</td>
+            <td>URL สำหรับแสดงแผนที่ Google บนหน้าติดต่อ <strong>และ</strong>หน้าหลัก</td>
+          </tr>
+        </table>
+
+        <h2>7.2 วิธีตั้งค่า Google Map Embed</h2>
+        <ol class="steps">
+          <li>เปิด <strong>Google Maps</strong> (maps.google.com) ในเบราว์เซอร์</li>
+          <li>ค้นหาที่อยู่ของบริษัท</li>
+          <li>คลิก <strong>Share (แชร์) → แท็บ "Embed a map"</strong></li>
+          <li>คลิก <strong>"COPY HTML"</strong> เพื่อคัดลอกโค้ด</li>
+          <li>
+            จากโค้ดที่ได้ ให้ค้นหา <code>src="..."</code> แล้วคัดลอกเฉพาะ URL ภายในเครื่องหมาย " "
+          </li>
+          <li>นำ URL ที่ได้ไปวางในช่อง <strong>"ลิงก์ Google Map Embed"</strong> ใน CMS</li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ แผนที่ใช้ร่วมกัน 2 หน้า</div>
+          <ul>
+            <li>
+              ลิงก์ Google Map ที่ตั้งค่าที่นี่ จะแสดงทั้งบนหน้า <strong>Contact</strong> และหน้า
+              <strong>Home</strong> พร้อมกัน
+            </li>
+            <li>หากต้องการเปลี่ยนแผนที่ ตั้งค่าที่จุดนี้จุดเดียว ทั้ง 2 หน้าจะเปลี่ยนพร้อมกัน</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 8 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch8">
+        <h1>บทที่ 8: คำถามที่พบบ่อย (FAQ)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Content → FAQ</strong></p>
+
+        <h2>8.1 การตั้งค่าแบนเนอร์</h2>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>หัวข้อหน้า FAQ</td>
+            <td>ข้อความหัวข้อบนแบนเนอร์</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย/บทนำ</td>
+            <td>ข้อความอธิบายใต้หัวข้อ</td>
+          </tr>
+          <tr>
+            <td>คำอธิบาย CTA ด้านล่าง</td>
+            <td>ข้อความในกล่อง CTA ล่างสุด เช่น "หาคำตอบไม่เจอ? ติดต่อเราได้เลย"</td>
+          </tr>
+          <tr>
+            <td>ขนาดหัวข้อ Hero</td>
+            <td>32–96px (เริ่มต้น: 56px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดตัวอักษรคำถาม</td>
+            <td>14–32px (เริ่มต้น: 18px)</td>
+          </tr>
+          <tr>
+            <td>ขนาดตัวอักษรคำตอบ</td>
+            <td>14–24px (เริ่มต้น: 16px)</td>
+          </tr>
+        </table>
+
+        <h2>8.2 การเพิ่มคำถาม-คำตอบ</h2>
+        <p>ในส่วน <strong>"รายการคำถาม-คำตอบ"</strong> คลิก <strong>"เพิ่มรายการ"</strong>:</p>
+        <ol class="steps">
+          <li>กรอกคำถาม (Question) — จำเป็นต้องกรอก</li>
+          <li>กรอกคำตอบ (Answer) — จำเป็นต้องกรอก</li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <div class="box box-note">
+          <div class="box-title">💡 การเรียงลำดับคำถาม</div>
+          <ul>
+            <li>คำถามแสดงตามลำดับที่เพิ่มเข้ามา</li>
+            <li>หากต้องการเปลี่ยนลำดับ ลากรายการขึ้น/ลงในรายการ แล้วกด Save</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 9 -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch9">
+        <h1>บทที่ 9: ระบบขอใบเสนอราคา (Quote Request)</h1>
+        <p>
+          ระบบนี้ช่วยให้ลูกค้าส่งรายการสินค้าที่ต้องการขอราคาได้ โดยไม่ต้องผ่านการชำระเงินจริง
+          ใช้ได้เฉพาะสินค้าที่ตั้งโหมดเป็น <strong>"Quote only"</strong>
+        </p>
+
+        <h2>9.1 การดูรายการขอใบเสนอราคา</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Sales → Quote Requests</strong></p>
+        <ol class="steps">
+          <li>คลิก <strong>Sales → Quote Requests</strong> ในเมนูด้านซ้าย</li>
+          <li>จะเห็นรายการคำขอทั้งหมดที่ลูกค้าส่งเข้ามา</li>
+          <li>คลิกรายการที่ต้องการดูรายละเอียด</li>
+        </ol>
+
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>สถานะ</td>
+            <td>ใหม่ / ติดต่อแล้ว / ปิดแล้ว — อัปเดตเมื่อดำเนินการแล้ว</td>
+          </tr>
+          <tr>
+            <td>ชื่อลูกค้า</td>
+            <td>ชื่อที่ลูกค้ากรอก</td>
+          </tr>
+          <tr>
+            <td>อีเมล</td>
+            <td>อีเมลลูกค้าสำหรับติดต่อกลับ</td>
+          </tr>
+          <tr>
+            <td>เบอร์โทร</td>
+            <td>เบอร์ติดต่อลูกค้า</td>
+          </tr>
+          <tr>
+            <td>รายการสินค้า</td>
+            <td>สินค้าและจำนวนที่ขอใบเสนอราคา</td>
+          </tr>
+          <tr>
+            <td>หมายเหตุลูกค้า</td>
+            <td>ข้อความพิเศษจากลูกค้า</td>
+          </tr>
+          <tr>
+            <td>หมายเหตุผู้ดูแล</td>
+            <td>โน้ตภายในสำหรับทีมงาน ลูกค้าไม่เห็น</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 การแจ้งเตือนอีเมล</div>
+          <ul>
+            <li>เมื่อลูกค้าส่งคำขอ ระบบส่งอีเมลแจ้งเตือนให้ทีมงานโดยอัตโนมัติ</li>
+            <li>
+              ตั้งค่าอีเมลรับแจ้งเตือนได้ที่
+              <strong>Checkout → Payment Settings → อีเมลรับแจ้งเตือนออเดอร์</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 10: ADMIN USERS -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch10">
+        <h1>บทที่ 10: การจัดการผู้ใช้งาน CMS (Admin → Users)</h1>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Admin → Users</strong></p>
+        <p>
+          หน้านี้ใช้สำหรับจัดการบัญชีผู้ดูแลระบบ CMS ทั้งหมด
+          เฉพาะผู้ใช้ที่มีบทบาท <strong>Master</strong> เท่านั้นที่สามารถเข้าถึงหน้านี้ได้
+        </p>
+
+        <div class="box box-info">
+          <div class="box-title">ℹ ระบบบทบาท (Role)</div>
+          <ul>
+            <li>
+              <strong>Master (ผู้ดูแลหลัก)</strong> — เข้าถึงและแก้ไขได้ทุกส่วน
+              สามารถเพิ่ม/ลบผู้ใช้งานได้ เห็นรายชื่อผู้ใช้ทั้งหมด
+            </li>
+            <li>
+              <strong>Editor (ผู้แก้ไขเนื้อหา)</strong> — แก้ไขเนื้อหาเว็บได้ทุกส่วน
+              แต่เห็นเฉพาะบัญชีตัวเอง ไม่สามารถเพิ่ม/ลบผู้ใช้คนอื่นได้
+            </li>
+          </ul>
+        </div>
+
+        <h2>10.1 การเพิ่มผู้ใช้งานใหม่</h2>
+        <ol class="steps">
+          <li>คลิก <strong>Admin → Users → "Create New"</strong></li>
+          <li>กรอกอีเมล (Email) — จำเป็นต้องกรอก</li>
+          <li>กรอกรหัสผ่าน (Password)</li>
+          <li>เลือกบทบาท (บทบาท) — <strong>Master</strong> หรือ <strong>Editor</strong></li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>Email ⭐</td>
+            <td>อีเมลสำหรับล็อกอิน จำเป็นต้องกรอก ต้องไม่ซ้ำกับผู้ใช้คนอื่น</td>
+          </tr>
+          <tr>
+            <td>Password ⭐</td>
+            <td>รหัสผ่านสำหรับล็อกอิน ควรตั้งรหัสที่คาดเดายาก</td>
+          </tr>
+          <tr>
+            <td>บทบาท (Role)</td>
+            <td>Master = ผู้ดูแลหลัก | Editor = ผู้แก้ไขเนื้อหา</td>
+          </tr>
+        </table>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวังเรื่องบทบาท Master</div>
+          <ul>
+            <li>การเปลี่ยนบัญชีใดให้เป็น <strong>Master</strong> หรือเปลี่ยนจาก Master กลับ
+              จะต้องให้ <strong>Developer แก้ไขโดยตรงในโค้ด</strong> เท่านั้น ไม่สามารถเปลี่ยนผ่าน CMS ได้</li>
+            <li>บัญชี Editor ไม่สามารถเปลี่ยนบทบาทตัวเองได้</li>
+          </ul>
+        </div>
+
+        <h2>10.2 การแก้ไขข้อมูลผู้ใช้งาน</h2>
+        <ol class="steps">
+          <li>คลิก <strong>Admin → Users</strong></li>
+          <li>คลิกชื่อผู้ใช้ที่ต้องการแก้ไข</li>
+          <li>แก้ไขอีเมลหรือรหัสผ่านตามต้องการ</li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <h2>10.3 การลบผู้ใช้งาน</h2>
+        <ol class="steps">
+          <li>คลิก <strong>Admin → Users</strong></li>
+          <li>คลิกชื่อผู้ใช้ที่ต้องการลบ</li>
+          <li>คลิกปุ่ม <strong>"Delete"</strong> (มักอยู่มุมล่างหรือบนของฟอร์ม)</li>
+          <li>ยืนยันการลบ</li>
+        </ol>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ การลบผู้ใช้งานไม่สามารถยกเลิกได้</div>
+          <p>เมื่อลบบัญชีแล้ว บัญชีนั้นจะหายไปถาวร หากต้องการระงับการใช้งานชั่วคราว
+            แนะนำให้เปลี่ยนรหัสผ่านแทนการลบ</p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 11: MEDIA -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch11">
+        <h1>บทที่ 11: คลังรูปภาพ (Media)</h1>
+        <p>
+          หมวด <strong>Media</strong> ในเมนูด้านซ้ายประกอบด้วย 4 คลังรูปภาพ แต่ละคลังใช้สำหรับเก็บรูปภาพต่างประเภท:
+        </p>
+
+        <table class="field-table">
+          <tr>
+            <th>คลัง Media</th>
+            <th>ใช้สำหรับ</th>
+          </tr>
+          <tr>
+            <td><strong>Hero Medias</strong></td>
+            <td>รูปภาพหรือวิดีโอที่ใช้เป็นแบนเนอร์ (Hero) บนหน้าต่างๆ ของเว็บไซต์</td>
+          </tr>
+          <tr>
+            <td><strong>Gallery Medias</strong></td>
+            <td>รูปภาพในส่วน Gallery บนหน้า Home</td>
+          </tr>
+          <tr>
+            <td><strong>Service Medias</strong></td>
+            <td>รูปภาพที่ใช้ในหน้าบริการ (Services) ทุกรูป</td>
+          </tr>
+          <tr>
+            <td><strong>Partner Medias</strong></td>
+            <td>โลโก้บริษัทพาร์ตเนอร์ที่แสดงในส่วน Our Partners บนหน้า Home</td>
+          </tr>
+        </table>
+
+        <h2>11.1 วิธีอัปโหลดรูปภาพเข้าคลัง Media</h2>
+        <ol class="steps">
+          <li>เลือกคลัง Media ที่ต้องการ เช่น <strong>Media → Hero Medias</strong></li>
+          <li>คลิกปุ่ม <strong>"Create New"</strong></li>
+          <li>คลิกพื้นที่อัปโหลด หรือลากไฟล์รูปมาวาง</li>
+          <li>รอให้อัปโหลดสำเร็จ</li>
+          <li>กด <strong>Save</strong></li>
+        </ol>
+
+        <h2>11.2 Hero Medias — รูปแบนเนอร์</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Media → Hero Medias</strong></p>
+        <p>
+          รูปที่อยู่ในคลังนี้ใช้ได้กับ:
+        </p>
+        <ul>
+          <li>แบนเนอร์หน้า Home (Content → Home → รูป/วิดีโอ Hero)</li>
+          <li>แบนเนอร์แต่ละหน้าใน Page Heroes</li>
+        </ul>
+        <div class="box box-warn">
+          <div class="box-title">⚠ ขนาดแนะนำสำหรับรูป Hero</div>
+          <ul>
+            <li>ความละเอียด: <strong>1920×1080 px</strong> (แนวนอน Full HD)</li>
+            <li>ขนาดไฟล์: ไม่เกิน <strong>2 MB</strong></li>
+            <li>นามสกุล: .jpg, .jpeg, .png, .webp</li>
+          </ul>
+        </div>
+
+        <h2>11.3 Gallery Medias — รูปแกลเลอรีหน้าแรก</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Media → Gallery Medias</strong></p>
+        <p>รูปในคลังนี้ใช้สำหรับส่วนแกลเลอรีบนหน้า Home (Content → Home → รูปแกลเลอรี)</p>
+        <div class="box box-note">
+          <div class="box-title">💡 คำแนะนำ</div>
+          <p>รูปแกลเลอรีแสดงหลายรูปพร้อมกัน แนะนำให้ใช้รูปที่มีสัดส่วนใกล้เคียงกัน เพื่อให้แถวแกลเลอรีดูสม่ำเสมอ</p>
+        </div>
+
+        <h2>11.4 Service Medias — รูปภาพบริการ</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Media → Service Medias</strong></p>
+        <p>รูปในคลังนี้ใช้สำหรับ Sections ต่างๆ ภายในแต่ละรายการบริการ (Content → Services → Sections)</p>
+        <div class="box box-warn">
+          <div class="box-title">⚠ ขนาดแนะนำสำหรับรูปบริการ</div>
+          <ul>
+            <li>ความละเอียด: <strong>800×600 px</strong> ขึ้นไป</li>
+            <li>ขนาดไฟล์: ไม่เกิน <strong>1 MB</strong></li>
+          </ul>
+        </div>
+
+        <h2>11.5 Partner Medias — โลโก้พาร์ตเนอร์</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Media → Partner Medias</strong></p>
+        <p>โลโก้ที่อัปโหลดในคลังนี้จะนำไปเลือกใช้ใน Content → Home → ส่วนพาร์ตเนอร์</p>
+        <div class="box box-note">
+          <div class="box-title">💡 คำแนะนำโลโก้พาร์ตเนอร์</div>
+          <ul>
+            <li>ใช้ไฟล์ <strong>.png</strong> ที่มีพื้นหลังโปร่งใส (Transparent background) เพื่อผลที่ดีที่สุด</li>
+            <li>ขนาดโลโก้ไม่เกิน 500×300 px</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 12: ORDERS & PAYMENT SLIPS -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch12">
+        <h1>บทที่ 12: คำสั่งซื้อและหลักฐานการชำระเงิน (Checkout)</h1>
+
+        <h2>12.1 คำสั่งซื้อ (Orders)</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Checkout → Orders</strong></p>
+        <p>
+          รายการ Orders จะเกิดขึ้นเมื่อลูกค้าซื้อสินค้าแบบ <strong>Buy</strong> และชำระเงิน
+          ระบบจะส่งอีเมลยืนยันให้ลูกค้าและส่งอีเมลแจ้งเตือนให้ทีมงานโดยอัตโนมัติ
+        </p>
+
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>สถานะออเดอร์</td>
+            <td>รอตรวจสอบ / ยืนยันแล้ว / ยกเลิก — อัปเดตตามขั้นตอนการดำเนินงาน</td>
+          </tr>
+          <tr>
+            <td>วิธีการชำระเงิน</td>
+            <td>โอนเงินผ่านธนาคาร</td>
+          </tr>
+          <tr>
+            <td>ชื่อลูกค้า</td>
+            <td>ชื่อที่ลูกค้ากรอกในขั้นตอนสั่งซื้อ</td>
+          </tr>
+          <tr>
+            <td>อีเมล</td>
+            <td>อีเมลลูกค้าสำหรับส่งยืนยัน</td>
+          </tr>
+          <tr>
+            <td>เบอร์โทร</td>
+            <td>เบอร์ติดต่อลูกค้า</td>
+          </tr>
+          <tr>
+            <td>ที่อยู่จัดส่ง</td>
+            <td>ที่อยู่ที่ลูกค้าระบุ</td>
+          </tr>
+          <tr>
+            <td>หมายเหตุจากลูกค้า</td>
+            <td>ข้อความพิเศษจากลูกค้า</td>
+          </tr>
+          <tr>
+            <td>ยอดรวม (Subtotal)</td>
+            <td>ยอดรวมทั้งหมดของออเดอร์</td>
+          </tr>
+          <tr>
+            <td>รายการสินค้า</td>
+            <td>ชื่อสินค้า จำนวน ราคาต่อชิ้น และราคารวมแต่ละรายการ</td>
+          </tr>
+          <tr>
+            <td>หลักฐานการโอนเงิน</td>
+            <td>ลิงก์ไปยังไฟล์สลิปที่ลูกค้าอัปโหลด — คลิกดูภาพหรือเปิด PDF ได้</td>
+          </tr>
+          <tr>
+            <td>หมายเหตุผู้ดูแล</td>
+            <td>โน้ตภายในสำหรับทีมงาน ลูกค้าไม่เห็น</td>
+          </tr>
+        </table>
+
+        <div class="box box-note">
+          <div class="box-title">💡 ขั้นตอนการจัดการ Orders</div>
+          <ol class="steps">
+            <li>รับอีเมลแจ้งเตือนออเดอร์ใหม่</li>
+            <li>คลิก <strong>Checkout → Orders</strong> เพื่อดูรายการ</li>
+            <li>คลิกออเดอร์ที่ต้องการตรวจสอบ</li>
+            <li>ตรวจสอบหลักฐานการโอนเงิน (สลิป) ในช่อง <strong>"หลักฐานการโอนเงิน"</strong></li>
+            <li>อัปเดตสถานะเป็น <strong>"ยืนยันแล้ว"</strong> เมื่อยืนยันการชำระเงินแล้ว</li>
+            <li>กด <strong>Save</strong></li>
+          </ol>
+        </div>
+
+        <h2>12.2 หลักฐานการโอนเงิน (Payment Slips)</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Checkout → Payment Slips</strong></p>
+        <p>
+          คลังนี้เก็บไฟล์สลิปการโอนเงินที่ลูกค้าอัปโหลดในขั้นตอนชำระเงิน
+          ระบบเชื่อมอัตโนมัติกับออเดอร์ที่เกี่ยวข้อง — ปกติไม่ต้องจัดการโดยตรงที่นี่
+        </p>
+        <div class="box box-note">
+          <div class="box-title">💡 เมื่อไรควรดู Payment Slips โดยตรง?</div>
+          <ul>
+            <li>เมื่อต้องการดาวน์โหลดหรือพิมพ์สลิปทีละหลายรายการ</li>
+            <li>เมื่อต้องการค้นหาสลิปที่ไม่มีออเดอร์แนบ</li>
+          </ul>
+          <p>กรณีปกติ สามารถดูสลิปได้จากในออเดอร์โดยตรง โดยคลิกที่ช่อง <strong>"หลักฐานการโอนเงิน"</strong></p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- CHAPTER 13: SETTINGS -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="ch13">
+        <h1>บทที่ 13: การตั้งค่า (Settings)</h1>
+
+        <h2>13.1 ตั้งค่าการชำระเงิน (Payment Settings)</h2>
+        <p>วิธีเข้าแก้ไข: เมนูซ้าย → <strong>Checkout → Payment Settings</strong></p>
+        <table class="field-table">
+          <tr>
+            <th>ช่องข้อมูล</th>
+            <th>คำอธิบาย</th>
+          </tr>
+          <tr>
+            <td>เปิดใช้ Bank Transfer</td>
+            <td>เปิด/ปิดการแสดงข้อมูลธนาคารบนหน้าชำระเงิน</td>
+          </tr>
+          <tr>
+            <td>อีเมลรับแจ้งเตือน</td>
+            <td>อีเมลรับแจ้งเมื่อมีคำสั่งซื้อหรือขอใบเสนอราคาใหม่</td>
+          </tr>
+          <tr>
+            <td>ชื่อธนาคาร</td>
+            <td>ชื่อธนาคาร เช่น ธนาคารกสิกรไทย</td>
+          </tr>
+          <tr>
+            <td>ชื่อบัญชี</td>
+            <td>ชื่อเจ้าของบัญชี</td>
+          </tr>
+          <tr>
+            <td>เลขบัญชี</td>
+            <td>หมายเลขบัญชีธนาคาร</td>
+          </tr>
+          <tr>
+            <td>สาขา</td>
+            <td>สาขาธนาคาร</td>
+          </tr>
+          <tr>
+            <td>คำแนะนำการชำระเงิน</td>
+            <td>ข้อความแนะนำวิธีโอนเงินให้ลูกค้า</td>
+          </tr>
+          <tr>
+            <td>QR Code</td>
+            <td>รูป QR Code สำหรับพร้อมเพย์หรือการโอน (ไม่บังคับ)</td>
+          </tr>
+        </table>
+
+        <div class="box box-warn">
+          <div class="box-title">⚠ ข้อควรระวังข้อมูลธนาคาร</div>
+          <ul>
+            <li>ตรวจสอบเลขบัญชีให้ถูกต้องก่อนบันทึก เพราะข้อมูลนี้แสดงต่อลูกค้าโดยตรง</li>
+            <li>หากต้องการเปลี่ยนบัญชีธนาคาร แจ้งทีม IT ก่อนแก้ไข</li>
+          </ul>
+        </div>
+
+        <h2>13.2 ความเป็นส่วนตัวและข้อกำหนด</h2>
+        <p>แก้ไขหน้า Privacy Policy และ Terms of Service ได้ที่:</p>
+        <ul>
+          <li><strong>Content → Privacy Policy</strong></li>
+          <li><strong>Content → Terms of Service</strong></li>
+        </ul>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!-- APPENDIX -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <div class="chapter" id="appendix">
+        <h1>ภาคผนวก: ปัญหาที่พบบ่อยและวิธีแก้ไข</h1>
+
+        <h2>แก้ไขข้อมูลแล้วทำไมไม่เปลี่ยนบนเว็บ?</h2>
+        <p>
+          ตรวจสอบว่ากด <strong>"Save"</strong> หรือ <strong>"Publish"</strong> หลังแก้ไขแล้วหรือยัง
+          หากกดแล้วยังไม่เปลี่ยน ให้กด <strong>Ctrl+Shift+R</strong> (Windows) หรือ
+          <strong>Cmd+Shift+R</strong> (Mac) เพื่อล้างแคชเบราว์เซอร์ หากยังไม่เปลี่ยนแปลง แจ้งทีม IT
+        </p>
+
+        <h2>ลบข้อมูลไปแล้ว อยากได้คืน ทำได้ไหม?</h2>
+        <p>
+          โดยทั่วไปการลบข้อมูลไม่สามารถยกเลิกได้ แนะนำให้ <strong>ซ่อนรายการ</strong>ด้วยการปลดติ๊ก
+          <strong>"แสดงบนเว็บ"</strong> แทนการลบ เพื่อป้องกันการสูญหายของข้อมูล
+        </p>
+
+        <h2>เพิ่มสมาชิกทีมงานแล้วทำไมไม่แสดงบนเว็บ?</h2>
+        <p>ตรวจสอบ 2 จุด:</p>
+        <ol>
+          <li>ช่อง <strong>"แสดงบนเว็บ (Visible on site)"</strong> ต้องติ๊กอยู่</li>
+          <li>ช่อง <strong>"ชื่อ (Name)"</strong> ต้องกรอก เพราะเป็นช่องที่จำเป็น</li>
+        </ol>
+
+        <h2>เพิ่มวิดีโอแล้วไม่แสดง?</h2>
+        <p>ตรวจสอบ 3 จุด:</p>
+        <ol>
+          <li>
+            URL ต้องเป็นลิงก์ YouTube จริงๆ เช่น <code>https://www.youtube.com/watch?v=xxxxx</code>
+          </li>
+          <li>ห้ามวางโค้ด iframe — ให้วางแค่ URL</li>
+          <li>วิดีโอใน YouTube ต้องตั้งค่าเป็น <strong>Public</strong> ไม่ใช่ Private</li>
+        </ol>
+
+        <h2>ขนาดรูปที่เหมาะสมคือเท่าไร?</h2>
+        <ul>
+          <li><strong>รูป Hero / Banner:</strong> ไม่เกิน 2MB ความละเอียด 1920×1080 px (แนวนอน)</li>
+          <li>
+            <strong>รูปการ์ดสมาชิกทีมงาน:</strong> ความละเอียด 600×800 px (แนวตั้ง สัดส่วน 3:4)
+          </li>
+          <li><strong>รูปสินค้า/บริการ:</strong> ไม่เกิน 1MB ความละเอียด 800×600 px</li>
+          <li><strong>นามสกุลที่รองรับ:</strong> .jpg, .jpeg, .png, .webp</li>
+        </ul>
+
+        <h2>ติดต่อขอความช่วยเหลือได้ที่ไหน?</h2>
+        <p>ติดต่อทีม Developer ได้ผ่านช่องทางดังนี้:</p>
+        <ul>
+          <li>📱 <strong>Line กลุ่ม</strong> — กลุ่มที่เคยติดต่อกันอยู่แล้ว (แนะนำเป็นช่องทางหลัก)</li>
+          <li>📞 <strong>โทรศัพท์</strong> — 061-024-4223 หรือ 061-024-5495</li>
+        </ul>
+        <p>เมื่อติดต่อ กรุณาแนบข้อมูลดังนี้เพื่อให้แก้ไขได้รวดเร็ว:</p>
+        <ul>
+          <li>คำอธิบายปัญหาโดยละเอียด</li>
+          <li>ภาพ Screenshot แสดงปัญหา</li>
+          <li>ขั้นตอนที่ทำก่อนเกิดปัญหา</li>
+        </ul>
+
+        <div class="box box-info" style="margin-top: 40px">
+          <div class="box-title">📄 เกี่ยวกับเอกสารนี้</div>
+          <p style="margin: 0">เวอร์ชัน 3.0 | SK Sport Trading | พฤษภาคม 2568</p>
+          <p style="margin: 4px 0 0">
+            อัปเดต: ครอบคลุมทุกเมนู — Admin/Users, Media (4 คลัง), Orders, Payment Slips, Sales/Quote Requests,
+            แก้ไข URL ล็อกอิน, ปรับปรุงคำอธิบายการอัปโหลดรูปภาพ
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- end page-wrap -->
+  </body>
+</html>

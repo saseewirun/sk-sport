@@ -402,8 +402,7 @@ export const Orders: CollectionConfig = {
     {
       name: 'slipPreview',
       type: 'ui',
-      label:
-        'ภาพตัวอย่างหลักฐานโอนเงิน — แสดงรูปเมื่อเป็นไฟล์ภาพ, PDF และไฟล์อื่นจะเปิดในแท็บใหม่',
+      label: 'ภาพตัวอย่างหลักฐานโอนเงิน — แสดงรูปเมื่อเป็นไฟล์ภาพ, PDF และไฟล์อื่นจะเปิดในแท็บใหม่',
       admin: {
         components: {
           Field: {

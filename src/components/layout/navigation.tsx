@@ -81,7 +81,11 @@ export const Navbar = () => {
               </Link>
             )}
 
-            <Link href="/cart" className="relative p-2 text-primary-content" aria-label="Shopping cart">
+            <Link
+              href="/cart"
+              className="relative p-2 text-primary-content"
+              aria-label="Shopping cart"
+            >
               <ShoppingCartSimpleIcon size={32} />
               {mounted && totalItems > 0 && (
                 <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-secondary body-sm text-secondary-content font-semibold leading-none">
@@ -129,7 +133,11 @@ export const Navbar = () => {
                 </span>
               </Link>
             )}
-            <Link href="/cart" className="relative p-2 text-primary-content" aria-label="Shopping cart">
+            <Link
+              href="/cart"
+              className="relative p-2 text-primary-content"
+              aria-label="Shopping cart"
+            >
               <ShoppingCartSimpleIcon size={32} />
               {mounted && totalItems > 0 && (
                 <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-secondary body-sm text-secondary-content font-semibold leading-none">
@@ -137,7 +145,12 @@ export const Navbar = () => {
                 </span>
               )}
             </Link>
-            <button onClick={toggleMenu} className="p-2 text-primary-content" type="button" aria-label="Open menu">
+            <button
+              onClick={toggleMenu}
+              className="p-2 text-primary-content"
+              type="button"
+              aria-label="Open menu"
+            >
               <ListIcon size={32} />
             </button>
           </div>
@@ -159,7 +172,12 @@ export const Navbar = () => {
         )}
       >
         <div className="flex h-28 items-center justify-between gap-2 p-5">
-          <button type="button" onClick={closeMenu} className="text-primary-content" aria-label="Close menu">
+          <button
+            type="button"
+            onClick={closeMenu}
+            className="text-primary-content"
+            aria-label="Close menu"
+          >
             <XIcon size={32} />
           </button>
 

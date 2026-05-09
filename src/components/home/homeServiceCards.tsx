@@ -52,10 +52,7 @@ export function HomeLargeServiceCard({
               >
                 {title}
               </p>
-              <p
-                className="text-primary-content"
-                style={{ fontSize: `${bodyFontSizePx}px` }}
-              >
+              <p className="text-primary-content" style={{ fontSize: `${bodyFontSizePx}px` }}>
                 {description}
               </p>
             </div>
@@ -78,10 +75,7 @@ export function HomeLargeServiceCard({
               >
                 {title}
               </p>
-              <p
-                className="text-primary-content"
-                style={{ fontSize: `${bodyFontSizePx}px` }}
-              >
+              <p className="text-primary-content" style={{ fontSize: `${bodyFontSizePx}px` }}>
                 {description}
               </p>
             </div>

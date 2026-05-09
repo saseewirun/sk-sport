@@ -41,9 +41,7 @@ export const Detail = ({
         <h2
           className="mb-3 text-gradient"
           style={
-            contentTitleFontSizePx != null
-              ? { fontSize: `${contentTitleFontSizePx}px` }
-              : undefined
+            contentTitleFontSizePx != null ? { fontSize: `${contentTitleFontSizePx}px` } : undefined
           }
         >
           {detailTitle}

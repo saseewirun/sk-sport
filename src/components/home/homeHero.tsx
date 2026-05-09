@@ -50,10 +50,7 @@ export function HomeHero({ media, titleFontSizePx, subtitleFontSizePx }: HomeHer
             <span className="block text-primary-content">{t('Hero.title_part3')}</span>
           </h1>
 
-          <p
-            className="text-primary-content"
-            style={{ fontSize: `${subtitleFontSizePx}px` }}
-          >
+          <p className="text-primary-content" style={{ fontSize: `${subtitleFontSizePx}px` }}>
             {t('Hero.description')}
           </p>
         </div>

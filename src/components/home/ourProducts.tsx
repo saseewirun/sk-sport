@@ -57,10 +57,7 @@ export const OurProducts = ({
   return (
     <div className="w-full flex flex-col">
       <div className="w-full h-40 bg-header-bg px-4 flex justify-center items-center">
-        <h2
-          className="text-header"
-          style={{ fontSize: `${sectionTitleFontSizePx}px` }}
-        >
+        <h2 className="text-header" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
           {t('title')}
         </h2>
       </div>
@@ -113,11 +110,11 @@ export const OurProducts = ({
             )}
             <div className="absolute inset-0 bg-gradient-card-left" />
             <div
-                className="absolute bottom-4 left-4 text-primary-content font-medium leading-tight"
-                style={{ fontSize: `${cardTitleFontSizePx}px` }}
-              >
-                {mobileCard.title}
-              </div>
+              className="absolute bottom-4 left-4 text-primary-content font-medium leading-tight"
+              style={{ fontSize: `${cardTitleFontSizePx}px` }}
+            >
+              {mobileCard.title}
+            </div>
           </Link>
         </div>
 

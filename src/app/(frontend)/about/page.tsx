@@ -12,12 +12,7 @@ function clampInt(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)))
 }
 
-function pxOr(
-  v: number | null | undefined,
-  min: number,
-  max: number,
-  fallback: number,
-): number {
+function pxOr(v: number | null | undefined, min: number, max: number, fallback: number): number {
   if (v == null || !Number.isFinite(v)) return fallback
   return clampInt(v, min, max)
 }

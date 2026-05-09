@@ -6,13 +6,7 @@ import { MinusIcon, PlusIcon, TrashIcon, FileText } from '@phosphor-icons/react'
 import { useQuoteCart } from '@/context/quoteCartContext'
 
 export default function QuoteCartPage() {
-  const {
-    items,
-    totalQuoteItems,
-    updateQuantity,
-    removeItem,
-    clearQuoteCart,
-  } = useQuoteCart()
+  const { items, totalQuoteItems, updateQuantity, removeItem, clearQuoteCart } = useQuoteCart()
 
   const [customerName, setCustomerName] = useState('')
   const [email, setEmail] = useState('')
@@ -98,8 +92,7 @@ export default function QuoteCartPage() {
           <div className="relative z-10 container mx-auto flex max-w-2xl flex-col gap-4 px-6 text-center">
             <h1 className="text-primary-content">Quote request sent</h1>
             <p className="body-sm text-primary-content/90">
-              Thank you. Your reference ID:{' '}
-              <span className="font-mono text-sm">{successId}</span>
+              Thank you. Your reference ID: <span className="font-mono text-sm">{successId}</span>
             </p>
             <p className="body-sm text-primary-content/80">
               We will get back to you as soon as possible.

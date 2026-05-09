@@ -71,9 +71,7 @@ export default function AboutVideoSection({
 
         <div
           className={
-            isSingle
-              ? 'mx-auto w-full max-w-3xl'
-              : 'grid grid-cols-1 gap-6 md:grid-cols-2'
+            isSingle ? 'mx-auto w-full max-w-3xl' : 'grid grid-cols-1 gap-6 md:grid-cols-2'
           }
         >
           {validVideos.map((v, i) => (

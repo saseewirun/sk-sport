@@ -129,10 +129,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   {product.title}
                 </h1>
                 {product.subtitle && (
-                  <p
-                    className="font-medium text-subtle"
-                    style={{ fontSize: `${subtitlePx}px` }}
-                  >
+                  <p className="font-medium text-subtle" style={{ fontSize: `${subtitlePx}px` }}>
                     {product.subtitle}
                   </p>
                 )}

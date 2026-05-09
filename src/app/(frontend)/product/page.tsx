@@ -87,10 +87,7 @@ export default async function ProductPage() {
             <p className="body-sm text-secondary font-semibold uppercase tracking-widest mb-2">
               {eyebrow}
             </p>
-            <h1
-              className="text-primary-content"
-              style={{ fontSize: `${titleFontPx}px` }}
-            >
+            <h1 className="text-primary-content" style={{ fontSize: `${titleFontPx}px` }}>
               {heroTitle}
             </h1>
             <p
