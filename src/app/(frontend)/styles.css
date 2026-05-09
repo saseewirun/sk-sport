@@ -505,7 +505,20 @@
 }
 
 .detail-cert-grid-wrap {
-  w
+  width: min(100%, 21rem);
+  max-width: 25rem;
+}
+
+@media (min-width: 768px) {
+  .detail-cert-grid-wrap {
+    width: min(100%, 25rem);
+  }
+}
+
+.drop-shadow-service-arrow {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.45));
+}
+
 /* Hero text stroke for readability on bright images */
 .hero-text-stroke {
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.75);
