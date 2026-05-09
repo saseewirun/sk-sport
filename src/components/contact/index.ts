@@ -1,2 +1,2 @@
 export * from './contactForm'
-export { ContactPageHero } from './ContactPageHero'
+export { ContactPageHero } from './contactPageHero'
