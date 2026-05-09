@@ -1,10 +1,18 @@
-import Image from 'next/image'
+'use client'
+
+import { HeroCarousel } from '@/components/carousel/HeroCarousel'
 import { cn } from '@/utils/cn'
+
+interface HeroImageItem {
+  src: string
+  alt: string
+  id: string
+}
 
 interface AboutHeroProps {
   heroTitle?: string | null
   heroSubtitle?: string | null
-  heroImageSrc?: string
+  heroImages?: HeroImageItem[]
   titleFontSizePx?: number
   subtitleFontSizePx?: number
 }
@@ -12,24 +20,15 @@ interface AboutHeroProps {
 export default function AboutHero({
   heroTitle,
   heroSubtitle,
-  heroImageSrc,
+  heroImages = [],
   titleFontSizePx,
   subtitleFontSizePx,
 }: AboutHeroProps) {
   return (
-    <section className="about-hero-gradient relative w-full overflow-hidden">
-      {heroImageSrc && (
-        <Image
-          src={heroImageSrc}
-          alt={heroTitle ?? ''}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      )}
+    <section className="about-hero-gradient relative w-full overflow-hidden hero-wrapper-height">
+      {heroImages.length > 0 && <HeroCarousel images={heroImages} interval={5000} />}
       <div className="about-hero-radial-overlay pointer-events-none absolute inset-0" />
-      <div className="relative z-10 container mx-auto flex flex-col items-center justify-center px-6 py-16 text-center md:py-40">
+      <div className="relative z-10 container mx-auto flex h-full flex-col items-center justify-center px-6 text-center">
         {heroTitle && (
           <h1
             className={cn(

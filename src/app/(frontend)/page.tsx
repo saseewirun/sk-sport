@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { getHomeGlobal } from '@/data'
 import { getContactHeroGlobal } from '@/data/contactHero'
 import { getPortfolioArticles } from '@/data/portfolio'

@@ -57,13 +57,14 @@ function videoSectionTitlePx(a: AboutType) {
   return pxOr(a.videoSectionTitleFontSize, 20, 56, 32)
 }
 
-function resolveHeroMediaUrl(
+function resolveHeroMediaItems(
   heroMedia: (string | HeroMedia)[] | null | undefined,
-): string | undefined {
-  if (!heroMedia?.length) return undefined
-  const first = heroMedia[0]
-  if (!first || typeof first === 'string') return undefined
-  return (first as HeroMedia).url ?? undefined
+): { src: string; alt: string; id: string }[] {
+  if (!heroMedia?.length) return []
+  return heroMedia
+    .filter((item): item is HeroMedia => typeof item === 'object' && item !== null)
+    .map((item) => ({ src: item.url ?? '', alt: item.alt ?? '', id: item.id }))
+    .filter((item) => item.src !== '')
 }
 
 export default async function AboutPage() {
@@ -73,14 +74,14 @@ export default async function AboutPage() {
     getVisibleFounders(),
   ])
 
-  const heroImageSrc = resolveHeroMediaUrl(aboutHero.heroMedia)
+  const heroImages = resolveHeroMediaItems(aboutHero.heroMedia)
 
   return (
     <main className="flex w-full flex-col items-center">
       <AboutHero
         heroTitle={aboutHero.heroTitle ?? about.heroTitle}
         heroSubtitle={aboutHero.heroSubtitle ?? about.heroSubtitle}
-        heroImageSrc={heroImageSrc}
+        heroImages={heroImages}
         titleFontSizePx={heroTitlePx(aboutHero)}
         subtitleFontSizePx={heroSubPx(aboutHero)}
       />
