@@ -10,13 +10,14 @@ function resolveImageUrl(sectionImage: PortfolioArticle['sectionImage']): string
   return (sectionImage as GalleryMedia).url ?? undefined
 }
 
-function resolveHeroMediaUrl(
+function resolveHeroMediaItems(
   heroMedia: (string | HeroMedia)[] | null | undefined,
-): string | undefined {
-  if (!heroMedia?.length) return undefined
-  const first = heroMedia[0]
-  if (!first || typeof first === 'string') return undefined
-  return (first as HeroMedia).url ?? undefined
+): { src: string; alt: string; id: string }[] {
+  if (!heroMedia?.length) return []
+  return (heroMedia as HeroMedia[])
+    .filter((item): item is HeroMedia => typeof item !== 'string' && !!item)
+    .map((item) => ({ src: item.url ?? '', alt: item.alt ?? '', id: item.id }))
+    .filter((item) => item.src)
 }
 
 function mapArticleToCardData(article: PortfolioArticle): ArticleData {
@@ -88,7 +89,8 @@ export default async function Portfolio() {
   const heroSubtitle =
     portfolioHero.heroSubtitle ??
     'Venues, facilities, and training projects delivered with precision and care.'
-  const heroImageSrc = resolveHeroMediaUrl(portfolioHero.heroMedia) ?? '/services-hero.png'
+  const heroImages = resolveHeroMediaItems(portfolioHero.heroMedia)
+  const heroImageSrc = heroImages.length === 0 ? '/services-hero.png' : undefined
 
   const titlePx = heroTitleFontPx(portfolioHero.heroTitleFontSize)
   const subPx = heroSubtitleFontPx(portfolioHero.heroSubtitleFontSize)
@@ -100,6 +102,7 @@ export default async function Portfolio() {
     <main className="flex w-full flex-col">
       <PortfolioHero
         variant="listing"
+        heroImages={heroImages.length > 0 ? heroImages : undefined}
         imageSrc={heroImageSrc}
         title={heroTitle}
         subtitle={heroSubtitle}

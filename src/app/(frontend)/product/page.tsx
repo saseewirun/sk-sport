@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import Image from 'next/image'
 import { getAllProducts } from '@/data/product'
 import { getProductsHeroGlobal } from '@/data/productsHero'
 import { ProductClient } from '@/components/product/productClient'
+import { ProductHero } from '@/components/hero/productHero'
 import type { GalleryMedia, HeroMedia, Product } from '@/payload-types'
 
 function resolveImageUrl(image: Product['image']): string {
@@ -10,13 +10,14 @@ function resolveImageUrl(image: Product['image']): string {
   return (image as GalleryMedia).url ?? ''
 }
 
-function resolveHeroMediaUrl(
+function resolveHeroMediaItems(
   heroMedia: (string | HeroMedia)[] | null | undefined,
-): string | undefined {
-  if (!heroMedia?.length) return undefined
-  const first = heroMedia[0]
-  if (!first || typeof first === 'string') return undefined
-  return (first as HeroMedia).url ?? undefined
+): { src: string; alt: string; id: string }[] {
+  if (!heroMedia?.length) return []
+  return (heroMedia as HeroMedia[])
+    .filter((item): item is HeroMedia => typeof item !== 'string' && !!item)
+    .map((item) => ({ src: item.url ?? '', alt: item.alt ?? '', id: item.id }))
+    .filter((item) => item.src)
 }
 
 const DEFAULT_EYEBROW = 'Equipment & Gear'
@@ -49,7 +50,7 @@ export default async function ProductPage() {
   const heroSubtitle =
     productsHero.heroSubtitle ??
     'Professional sports equipment and facility gear, specified and installed by our team for venues of every scale.'
-  const heroImageUrl = resolveHeroMediaUrl(productsHero.heroMedia)
+  const heroImages = resolveHeroMediaItems(productsHero.heroMedia)
   const eyebrow =
     typeof productsHero.eyebrow === 'string' && productsHero.eyebrow.trim() !== ''
       ? productsHero.eyebrow.trim()
@@ -71,34 +72,14 @@ export default async function ProductPage() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <section className="section-bg-to-right relative overflow-hidden w-full py-16 md:py-24">
-        {heroImageUrl && (
-          <Image
-            src={heroImageUrl}
-            alt={heroTitle}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        )}
-        <div className="relative z-10 container mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="body-sm text-secondary font-semibold uppercase tracking-widest mb-2">
-              {eyebrow}
-            </p>
-            <h1 className="text-primary-content" style={{ fontSize: `${titleFontPx}px` }}>
-              {heroTitle}
-            </h1>
-            <p
-              className="body-lg text-primary-content/80 mt-3 max-w-lg"
-              style={{ fontSize: `${subtitleFontPx}px` }}
-            >
-              {heroSubtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        heroImages={heroImages.length > 0 ? heroImages : undefined}
+        eyebrow={eyebrow}
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        titleFontSizePx={titleFontPx}
+        subtitleFontSizePx={subtitleFontPx}
+      />
 
       <Suspense fallback={null}>
         <ProductClient

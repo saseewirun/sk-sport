@@ -2,13 +2,21 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { HeroCarousel } from '@/components/carousel/HeroCarousel'
 import { CategoryBadge } from '@/components/common'
 import { cn } from '@/utils/cn'
+
+interface HeroImageItem {
+  src: string
+  alt: string
+  id: string
+}
 
 export interface PortfolioHeroProps {
   /** Listing page hero: shorter on small screens, same detail behavior when omitted */
   variant?: 'detail' | 'listing'
   imageSrc?: string
+  heroImages?: HeroImageItem[]
   category?: string
   title: string
   subtitle?: string
@@ -22,6 +30,7 @@ export interface PortfolioHeroProps {
 export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
   variant = 'detail',
   imageSrc,
+  heroImages,
   category,
   title,
   subtitle,
@@ -30,24 +39,26 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
   subtitleFontSizePx,
 }) => {
   const isListing = variant === 'listing'
+  const hasCarousel = heroImages && heroImages.length > 0
 
   return (
     <div
       className={cn(
         'relative flex w-full flex-col justify-end overflow-hidden',
-        isListing ? 'py-16 md:py-40' : 'h-100 md:h-150',
+        isListing ? 'hero-wrapper-height' : 'h-100 md:h-150',
       )}
     >
-      {imageSrc && <Image src={imageSrc} alt={title} fill priority className="object-cover" />}
+      {isListing ? (
+        hasCarousel ? (
+          <HeroCarousel images={heroImages} interval={5000} />
+        ) : imageSrc ? (
+          <Image src={imageSrc} alt={title} fill priority className="object-cover" />
+        ) : null
+      ) : (
+        imageSrc && <Image src={imageSrc} alt={title} fill priority className="object-cover" />
+      )}
 
-      <div
-        className={cn(
-          'absolute inset-0',
-          isListing
-            ? 'bg-gradient-to-t from-base-content/90 via-base-content/55 to-base-content/25'
-            : 'bg-gradient-card-left',
-        )}
-      />
+      {!isListing && <div className="absolute inset-0 bg-gradient-card-left" />}
 
       <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 pb-5 md:pb-8 flex flex-col items-start">
         {category && <CategoryBadge text={category} className="mb-2 md:mb-6" />}

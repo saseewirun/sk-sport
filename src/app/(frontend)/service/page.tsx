@@ -10,13 +10,14 @@ function resolveHeroImageUrl(hero: Service['hero']): string {
   return (hero as ServiceMedia).url ?? ''
 }
 
-function resolveHeroMediaUrl(
+function resolveHeroMediaItems(
   heroMedia: (string | HeroMedia)[] | null | undefined,
-): string | undefined {
-  if (!heroMedia?.length) return undefined
-  const first = heroMedia[0]
-  if (!first || typeof first === 'string') return undefined
-  return (first as HeroMedia).url ?? undefined
+): { src: string; alt: string; id: string }[] {
+  if (!heroMedia?.length) return []
+  return (heroMedia as HeroMedia[])
+    .filter((item): item is HeroMedia => typeof item !== 'string' && !!item)
+    .map((item) => ({ src: item.url ?? '', alt: item.alt ?? '', id: item.id }))
+    .filter((item) => item.src)
 }
 
 const HERO_TITLE_MIN = 32
@@ -63,7 +64,8 @@ export default async function ServicePage() {
     getServicesHeroGlobal(),
   ])
 
-  const heroImageSrc = resolveHeroMediaUrl(servicesHero.heroMedia) ?? '/services-hero.png'
+  const heroImages = resolveHeroMediaItems(servicesHero.heroMedia)
+  const heroImageSrc = heroImages.length === 0 ? '/services-hero.png' : undefined
   const heroTitleLine1 = servicesHero.heroTitle ?? t('titleLine1')
   const heroSubtitle = servicesHero.heroSubtitle ?? (
     <>
@@ -81,6 +83,7 @@ export default async function ServicePage() {
   return (
     <main className="flex w-full flex-col items-center">
       <ServiceHero
+        heroImages={heroImages.length > 0 ? heroImages : undefined}
         imageSrc={heroImageSrc}
         titleLine1={heroTitleLine1}
         titleLine2={t('titleLine2')}

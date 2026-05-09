@@ -2,16 +2,24 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { HeroCarousel } from '@/components/carousel/HeroCarousel'
 import { Button } from '@/components/button'
 import { NavKey, NAV_PATHS } from '@/const/navigation'
 import { useRouter } from 'next/navigation'
+
+interface HeroImageItem {
+  src: string
+  alt: string
+  id: string
+}
 
 export interface ServiceHeroProps {
   titleLine1: string
   titleLine2?: string
   subtitle?: React.ReactNode
-  imageSrc: string
+  imageSrc?: string
   imageAlt?: string
+  heroImages?: HeroImageItem[]
   ctaLabel?: string
   ctaHref?: string
   showCta?: boolean
@@ -28,6 +36,7 @@ export const ServiceHero: React.FC<ServiceHeroProps> = ({
   subtitle,
   imageSrc,
   imageAlt = 'Hero background',
+  heroImages,
   ctaLabel = 'Contact Us',
   ctaHref = NAV_PATHS[NavKey.CONTACT_US],
   showCta = true,
@@ -36,15 +45,18 @@ export const ServiceHero: React.FC<ServiceHeroProps> = ({
   subtitleFontSizePx,
 }) => {
   const router = useRouter()
+  const hasCarousel = heroImages && heroImages.length > 0
 
   return (
-    <section className="relative flex w-full py-16 md:py-40 overflow-hidden bg-hero text-primary-content">
-      <Image src={imageSrc} alt={imageAlt} fill className="object-cover" priority />
-
-      <div className="absolute inset-0 z-10 md:bg-transparent bg-overlay-gradient hero-mobile-overlay" />
+    <section className="relative flex w-full overflow-hidden bg-hero text-primary-content hero-wrapper-height">
+      {hasCarousel ? (
+        <HeroCarousel images={heroImages} interval={5000} />
+      ) : imageSrc ? (
+        <Image src={imageSrc} alt={imageAlt} fill className="object-cover" priority />
+      ) : null}
 
       <div
-        className={`relative z-20 flex flex-1 flex-col w-full px-4 md:px-6 lg:px-24 ${
+        className={`relative z-10 flex flex-1 flex-col w-full h-full px-4 md:px-6 lg:px-24 ${
           contentPosition === 'bottom'
             ? 'justify-end pb-12 md:pb-16'
             : 'justify-center py-6 md:py-0'

@@ -84,7 +84,6 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
             />
           </div>
         </div>
-        <div className="absolute inset-0 bg-overlay-gradient pointer-events-none" />
       </div>
 
       <div className="absolute md:bottom-8 bottom-4 left-1/2 flex -translate-x-1/2 gap-3 z-20">
