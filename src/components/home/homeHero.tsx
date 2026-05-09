@@ -39,7 +39,9 @@ export function HomeHero({ media, titleFontSizePx, subtitleFontSizePx }: HomeHer
     <section className="relative w-full overflow-hidden bg-hero text-primary-content hero-wrapper-height h-full max-h-308">
       <HeroCarousel images={carouselImages} interval={5000} />
 
-      <div className="relative z-10 flex w-full h-full pointer-events-none md:h-full md:w-full hero-content-max-w flex-col justify-center px-6 py-12 lg:px-24 lg:py-24 gap-9">
+      <div className="absolute inset-0 z-10 bg-overlay-gradient pointer-events-none" />
+
+      <div className="relative z-20 flex w-full h-full pointer-events-none md:h-full md:w-full hero-content-max-w flex-col justify-center px-6 py-12 lg:px-24 lg:py-24 gap-9">
         <div className="max-w-xl flex flex-col pointer-events-auto gap-6">
           <h1
             className="font-heading font-semibold leading-[120%] tracking-wider text-primary-content md:leading-[100%] md:tracking-wider"
