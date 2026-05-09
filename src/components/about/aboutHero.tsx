@@ -25,7 +25,7 @@ export default function AboutHero({
   subtitleFontSizePx,
 }: AboutHeroProps) {
   return (
-    <section className="about-hero-gradient relative w-full overflow-hidden hero-wrapper-height">
+    <section className="about-hero-gradient relative w-full overflow-hidden about-hero-height">
       {heroImages.length > 0 && <HeroCarousel images={heroImages} interval={5000} />}
       <div className="about-hero-radial-overlay pointer-events-none absolute inset-0" />
       <div className="relative z-10 container mx-auto flex h-full flex-col items-center justify-center px-6 text-center">

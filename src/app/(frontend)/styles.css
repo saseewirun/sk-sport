@@ -210,6 +210,15 @@
   }
 }
 
+.about-hero-height {
+  height: 28rem;
+}
+@media (min-width: 768px) {
+  .about-hero-height {
+    height: calc(100vh - 5rem);
+  }
+}
+
 .hero-content-max-w {
   width: 100%;
 }
