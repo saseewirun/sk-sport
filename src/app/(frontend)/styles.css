@@ -215,7 +215,12 @@
 }
 @media (min-width: 768px) {
   .about-hero-height {
-    height: calc(100vh - 5rem);
+    height: 37.5rem; /* 600px */
+  }
+}
+@media (min-width: 1280px) {
+  .about-hero-height {
+    height: 43.75rem; /* 700px */
   }
 }
 
