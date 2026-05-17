@@ -8,7 +8,8 @@ function slugify(name: string): string {
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
-  return s || 'founder'
+  // fallback for non-Latin names (e.g. Thai): use timestamp to guarantee uniqueness
+  return s || `member-${Date.now()}`
 }
 
 export const Founders: CollectionConfig = {
