@@ -85,9 +85,7 @@ export const PortfolioHero: React.FC<PortfolioHeroProps> = ({
           <p
             className={cn(
               'max-w-2xl',
-              isListing
-                ? 'text-primary-content/90 hero-text-stroke'
-                : 'text-primary-content/90',
+              isListing ? 'text-primary-content/90 hero-text-stroke' : 'text-primary-content/90',
               subtitleFontSizePx != null
                 ? isListing
                   ? 'leading-snug md:leading-relaxed'

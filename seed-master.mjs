@@ -22,7 +22,10 @@ function loadEnv() {
     const idx = trimmed.indexOf('=')
     if (idx === -1) continue
     const key = trimmed.slice(0, idx).trim()
-    const val = trimmed.slice(idx + 1).trim().replace(/^["']|["']$/g, '')
+    const val = trimmed
+      .slice(idx + 1)
+      .trim()
+      .replace(/^["']|["']$/g, '')
     if (!process.env[key]) process.env[key] = val
   }
 }
@@ -30,7 +33,10 @@ function loadEnv() {
 function ask(question) {
   return new Promise((resolve) => {
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-    rl.question(question, (answer) => { rl.close(); resolve(answer.trim()) })
+    rl.question(question, (answer) => {
+      rl.close()
+      resolve(answer.trim())
+    })
   })
 }
 
@@ -38,7 +44,10 @@ async function main() {
   loadEnv()
 
   const dbUri = process.env.DATABASE_URI
-  if (!dbUri) { console.error('❌  ไม่พบ DATABASE_URI ใน .env'); process.exit(1) }
+  if (!dbUri) {
+    console.error('❌  ไม่พบ DATABASE_URI ใน .env')
+    process.exit(1)
+  }
 
   const client = new pg.Client({ connectionString: dbUri })
   await client.connect()
@@ -53,12 +62,13 @@ async function main() {
 
   // Step 2: ดึงรายชื่อ users
   const { rows: users } = await client.query(
-    `SELECT id, email, role FROM payload.users ORDER BY "created_at" ASC`
+    `SELECT id, email, role FROM payload.users ORDER BY "created_at" ASC`,
   )
 
   if (users.length === 0) {
     console.log('⚠️  ไม่พบ user กรุณาสร้าง admin ก่อน')
-    await client.end(); process.exit(0)
+    await client.end()
+    process.exit(0)
   }
 
   console.log('\n📋  รายชื่อ user ที่มีอยู่:')
@@ -68,17 +78,26 @@ async function main() {
 
   const answer = await ask('\nset role = master ให้ users ทั้งหมดนี้? (y/n): ')
   if (answer.toLowerCase() !== 'y') {
-    console.log('❌  ยกเลิก'); await client.end(); process.exit(0)
+    console.log('❌  ยกเลิก')
+    await client.end()
+    process.exit(0)
   }
 
-  await client.query(`UPDATE payload.users SET role = 'master' WHERE role IS NULL OR role = '' OR role = 'editor'`)
+  await client.query(
+    `UPDATE payload.users SET role = 'master' WHERE role IS NULL OR role = '' OR role = 'editor'`,
+  )
 
-  const { rows: updated } = await client.query(`SELECT email, role FROM payload.users ORDER BY "created_at" ASC`)
+  const { rows: updated } = await client.query(
+    `SELECT email, role FROM payload.users ORDER BY "created_at" ASC`,
+  )
   console.log('\n✅  อัปเดตสำเร็จ:')
-  updated.forEach(u => console.log(`  •  ${u.email}  →  ${u.role}`))
+  updated.forEach((u) => console.log(`  •  ${u.email}  →  ${u.role}`))
   console.log('\n🎉  เสร็จ! รัน node seed-master.mjs สำเร็จแล้ว')
 
   await client.end()
 }
 
-main().catch(err => { console.error('❌  Error:', err.message); process.exit(1) })
+main().catch((err) => {
+  console.error('❌  Error:', err.message)
+  process.exit(1)
+})

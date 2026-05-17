@@ -182,7 +182,12 @@
 }
 
 .bg-overlay-gradient {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 12%, transparent 22%);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.4) 12%,
+    transparent 22%
+  );
 }
 
 .hero-title-gradient {

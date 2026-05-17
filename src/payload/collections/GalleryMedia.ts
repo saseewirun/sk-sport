@@ -1,21 +1,28 @@
 import type { CollectionConfig } from 'payload'
+import { sanitizeFilename } from '@/utils/sanitizeFilename'
 
 export const GalleryMedia: CollectionConfig = {
   slug: 'gallery-media',
   admin: {
     group: 'Media',
-    description: 'รูปภาพสำหรับ Portfolio และสินค้า — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)',
+    description:
+      'รูปภาพสำหรับ Portfolio และสินค้า — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)',
   },
   access: {
     read: () => true,
   },
+  hooks: {
+    beforeOperation: [
+      async ({ args, operation }) => {
+        if ((operation === 'create' || operation === 'update') && args.req?.file) {
+          args.req.file.name = sanitizeFilename(args.req.file.name)
+        }
+        return args
+      },
+    ],
+  },
   upload: {
-    resizeOptions: {
-      width: 1200,
-      height: 900,
-      fit: 'inside',
-      withoutEnlargement: true,
-    },
+    resizeOptions: { width: 1200, height: 900, fit: 'inside', withoutEnlargement: true },
     formatOptions: {
       format: 'webp',
       options: {

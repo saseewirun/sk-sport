@@ -59,239 +59,247 @@ export type SupportedTimezones =
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
   | 'Pacific/Auckland'
-  | 'Pacific/Fiji'
+  | 'Pacific/Fiji';
 
 export interface Config {
   auth: {
-    users: UserAuthOperations
-  }
-  blocks: {}
+    users: UserAuthOperations;
+  };
+  blocks: {};
   collections: {
-    users: User
-    'hero-media': HeroMedia
-    'gallery-media': GalleryMedia
-    'service-media': ServiceMedia
-    services: Service
-    'email-tests': EmailTest
-    contact: Contact
-    'portfolio-articles': PortfolioArticle
-    products: Product
-    'partner-media': PartnerMedia
-    founders: Founder
-    'payment-slips': PaymentSlip
-    orders: Order
-    'quote-requests': QuoteRequest
-    'payload-kv': PayloadKv
-    'payload-locked-documents': PayloadLockedDocument
-    'payload-preferences': PayloadPreference
-    'payload-migrations': PayloadMigration
-  }
-  collectionsJoins: {}
+    users: User;
+    'hero-media': HeroMedia;
+    'gallery-media': GalleryMedia;
+    'service-media': ServiceMedia;
+    services: Service;
+    'email-tests': EmailTest;
+    contact: Contact;
+    'portfolio-articles': PortfolioArticle;
+    products: Product;
+    'partner-media': PartnerMedia;
+    founders: Founder;
+    'payment-slips': PaymentSlip;
+    orders: Order;
+    'quote-requests': QuoteRequest;
+    'payload-kv': PayloadKv;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>
-    'hero-media': HeroMediaSelect<false> | HeroMediaSelect<true>
-    'gallery-media': GalleryMediaSelect<false> | GalleryMediaSelect<true>
-    'service-media': ServiceMediaSelect<false> | ServiceMediaSelect<true>
-    services: ServicesSelect<false> | ServicesSelect<true>
-    'email-tests': EmailTestsSelect<false> | EmailTestsSelect<true>
-    contact: ContactSelect<false> | ContactSelect<true>
-    'portfolio-articles': PortfolioArticlesSelect<false> | PortfolioArticlesSelect<true>
-    products: ProductsSelect<false> | ProductsSelect<true>
-    'partner-media': PartnerMediaSelect<false> | PartnerMediaSelect<true>
-    founders: FoundersSelect<false> | FoundersSelect<true>
-    'payment-slips': PaymentSlipsSelect<false> | PaymentSlipsSelect<true>
-    orders: OrdersSelect<false> | OrdersSelect<true>
-    'quote-requests': QuoteRequestsSelect<false> | QuoteRequestsSelect<true>
-    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>
-  }
+    users: UsersSelect<false> | UsersSelect<true>;
+    'hero-media': HeroMediaSelect<false> | HeroMediaSelect<true>;
+    'gallery-media': GalleryMediaSelect<false> | GalleryMediaSelect<true>;
+    'service-media': ServiceMediaSelect<false> | ServiceMediaSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    'email-tests': EmailTestsSelect<false> | EmailTestsSelect<true>;
+    contact: ContactSelect<false> | ContactSelect<true>;
+    'portfolio-articles': PortfolioArticlesSelect<false> | PortfolioArticlesSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    'partner-media': PartnerMediaSelect<false> | PartnerMediaSelect<true>;
+    founders: FoundersSelect<false> | FoundersSelect<true>;
+    'payment-slips': PaymentSlipsSelect<false> | PaymentSlipsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
+    'quote-requests': QuoteRequestsSelect<false> | QuoteRequestsSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
-    defaultIDType: string
-  }
-  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'th') | ('en' | 'th')[]
+    defaultIDType: string;
+  };
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'th') | ('en' | 'th')[];
   globals: {
-    home: Home
-    about: About
-    faq: Faq
-    'privacy-policy': PrivacyPolicy
-    'terms-of-service': TermsOfService
-    'about-hero': AboutHero
-    'services-hero': ServicesHero
-    'portfolio-hero': PortfolioHero
-    'products-hero': ProductsHero
-    'contact-hero': ContactHero
-    'payment-settings': PaymentSetting
-  }
+    home: Home;
+    about: About;
+    faq: Faq;
+    'privacy-policy': PrivacyPolicy;
+    'terms-of-service': TermsOfService;
+    'about-hero': AboutHero;
+    'services-hero': ServicesHero;
+    'portfolio-hero': PortfolioHero;
+    'products-hero': ProductsHero;
+    'contact-hero': ContactHero;
+    'payment-settings': PaymentSetting;
+  };
   globalsSelect: {
-    home: HomeSelect<false> | HomeSelect<true>
-    about: AboutSelect<false> | AboutSelect<true>
-    faq: FaqSelect<false> | FaqSelect<true>
-    'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>
-    'terms-of-service': TermsOfServiceSelect<false> | TermsOfServiceSelect<true>
-    'about-hero': AboutHeroSelect<false> | AboutHeroSelect<true>
-    'services-hero': ServicesHeroSelect<false> | ServicesHeroSelect<true>
-    'portfolio-hero': PortfolioHeroSelect<false> | PortfolioHeroSelect<true>
-    'products-hero': ProductsHeroSelect<false> | ProductsHeroSelect<true>
-    'contact-hero': ContactHeroSelect<false> | ContactHeroSelect<true>
-    'payment-settings': PaymentSettingsSelect<false> | PaymentSettingsSelect<true>
-  }
-  locale: 'en' | 'th'
-  user: User
+    home: HomeSelect<false> | HomeSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
+    faq: FaqSelect<false> | FaqSelect<true>;
+    'privacy-policy': PrivacyPolicySelect<false> | PrivacyPolicySelect<true>;
+    'terms-of-service': TermsOfServiceSelect<false> | TermsOfServiceSelect<true>;
+    'about-hero': AboutHeroSelect<false> | AboutHeroSelect<true>;
+    'services-hero': ServicesHeroSelect<false> | ServicesHeroSelect<true>;
+    'portfolio-hero': PortfolioHeroSelect<false> | PortfolioHeroSelect<true>;
+    'products-hero': ProductsHeroSelect<false> | ProductsHeroSelect<true>;
+    'contact-hero': ContactHeroSelect<false> | ContactHeroSelect<true>;
+    'payment-settings': PaymentSettingsSelect<false> | PaymentSettingsSelect<true>;
+  };
+  locale: 'en' | 'th';
+  user: User;
   jobs: {
-    tasks: unknown
-    workflows: unknown
-  }
+    tasks: unknown;
+    workflows: unknown;
+  };
 }
 export interface UserAuthOperations {
   forgotPassword: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   login: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   registerFirstUser: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   unlock: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: string
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string | null
-  resetPasswordExpiration?: string | null
-  salt?: string | null
-  hash?: string | null
-  loginAttempts?: number | null
-  lockUntil?: string | null
+  id: string;
+  /**
+   * เฉพาะ Master เท่านั้นที่แก้ไขบทบาทได้ — หากต้องการเปลี่ยนบัญชี Master ต้องให้ Dev แก้โดยตรงในโค้ดเท่านั้น
+   */
+  role?: ('master' | 'editor') | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
   sessions?:
     | {
-        id: string
-        createdAt?: string | null
-        expiresAt: string
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
       }[]
-    | null
-  password?: string | null
-  collection: 'users'
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
+ * รูปภาพสำหรับ Hero Banner ทุกหน้า — แนะนำขนาด 1920×1080 px, ไม่เกิน 500 KB (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero-media".
  */
 export interface HeroMedia {
-  id: string
+  id: string;
   /**
    * อธิบายว่าภาพนี้คืออะไร สำหรับคนใช้ screen reader และ SEO
    */
-  alt: string
-  prefix?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  alt: string;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
+ * รูปภาพสำหรับ Portfolio และสินค้า — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-media".
  */
 export interface GalleryMedia {
-  id: string
+  id: string;
   /**
    * อธิบายว่าภาพนี้คืออะไร สำหรับคนใช้ screen reader และ SEO
    */
-  alt: string
-  prefix?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  alt: string;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
+ * รูปภาพสำหรับหน้า Services — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "service-media".
  */
 export interface ServiceMedia {
-  id: string
+  id: string;
   /**
    * อธิบายว่าภาพนี้คืออะไร สำหรับคนใช้ screen reader และ SEO
    */
-  alt: string
-  prefix?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  alt: string;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
-  id: string
-  title: string
-  subtitle?: string | null
-  hero?: (string | null) | ServiceMedia
-  slug: string
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  hero?: (string | null) | ServiceMedia;
+  slug: string;
   sections?:
     | {
-        sectionTitle: string
-        description?: string | null
-        variant: 'column' | 'row'
+        sectionTitle: string;
+        description?: string | null;
+        variant: 'column' | 'row';
         images?:
           | {
-              image: string | ServiceMedia
-              id?: string | null
+              image: string | ServiceMedia;
+              id?: string | null;
             }[]
-          | null
-        image?: (string | null) | ServiceMedia
-        alignment?: ('left' | 'right') | null
-        id?: string | null
+          | null;
+        image?: (string | null) | ServiceMedia;
+        alignment?: ('left' | 'right') | null;
+        id?: string | null;
       }[]
-    | null
+    | null;
   tags?:
     | {
-        tag?: string | null
-        id?: string | null
+        tag?: string | null;
+        id?: string | null;
       }[]
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Use this collection to test sending emails.
@@ -300,1387 +308,1391 @@ export interface Service {
  * via the `definition` "email-tests".
  */
 export interface EmailTest {
-  id: string
-  emailType: 'purchase-success' | 'thank-you'
+  id: string;
+  emailType: 'purchase-success' | 'thank-you';
   /**
    * The email address to send the test email to.
    */
-  recipientEmail: string
+  recipientEmail: string;
   /**
    * A mock customer name to insert into the email template.
    */
-  customerName: string
-  updatedAt: string
-  createdAt: string
+  customerName: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact".
  */
 export interface Contact {
-  id: string
-  name: string
-  email: string
-  phoneNumber?: string | null
-  detail?: string | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber?: string | null;
+  detail?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "portfolio-articles".
  */
 export interface PortfolioArticle {
-  id: string
-  title: string
-  subtitle?: string | null
-  highlight?: boolean | null
-  sectionTitle?: string | null
-  sectionDetail: string
-  sectionImage?: (string | null) | GalleryMedia
-  gallery?: (string | GalleryMedia)[] | null
-  tag?: string | null
-  slug: string
-  updatedAt: string
-  createdAt: string
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  highlight?: boolean | null;
+  sectionTitle?: string | null;
+  sectionDetail: string;
+  sectionImage?: (string | null) | GalleryMedia;
+  gallery?: (string | GalleryMedia)[] | null;
+  tag?: string | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products".
  */
 export interface Product {
-  id: string
-  title: string
-  subtitle?: string | null
-  category?: string | null
-  mode: 'quote' | 'buy'
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  category?: string | null;
+  mode: 'quote' | 'buy';
   /**
-   * Use when mode is Buy (e.g. price in THB).
+   * ใส่เฉพาะเมื่อรูปแบบการขายเป็น "ซื้อได้เลย"
    */
-  price?: number | null
-  description: string
-  image?: (string | null) | GalleryMedia
-  slug: string
-  updatedAt: string
-  createdAt: string
+  price?: number | null;
+  description: string;
+  image?: (string | null) | GalleryMedia;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
+ * โลโก้พาร์ทเนอร์ — แนะนำขนาด 400×200 px พื้นหลังโปร่งใส (PNG) หรือสีขาว (ระบบบีบอัดให้อัตโนมัติ)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "partner-media".
  */
 export interface PartnerMedia {
-  id: string
+  id: string;
   /**
    * Shown in admin and used as logo alt text.
    */
-  name: string
-  prefix?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  name: string;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "founders".
  */
 export interface Founder {
-  id: string
-  name: string
+  id: string;
+  name: string;
   /**
-   * URL segment for the detail page. Left empty, it is generated from the name on save.
+   * ที่อยู่ URL ของหน้ารายละเอียด เช่น /about/founders/john-doe — ระบบสร้างอัตโนมัติจากชื่อเมื่อบันทึกครั้งแรก ห้ามแก้ไขหลังเผยแพร่แล้ว
    */
-  slug: string
-  role?: string | null
-  excerpt?: string | null
-  description?: string | null
-  quote?: string | null
+  slug: string;
+  role?: string | null;
+  excerpt?: string | null;
+  description?: string | null;
+  quote?: string | null;
   aboutImage?:
     | ({
-        relationTo: 'hero-media'
-        value: string | HeroMedia
+        relationTo: 'hero-media';
+        value: string | HeroMedia;
       } | null)
     | ({
-        relationTo: 'gallery-media'
-        value: string | GalleryMedia
-      } | null)
+        relationTo: 'gallery-media';
+        value: string | GalleryMedia;
+      } | null);
   gallery?:
     | (
         | {
-            relationTo: 'hero-media'
-            value: string | HeroMedia
+            relationTo: 'hero-media';
+            value: string | HeroMedia;
           }
         | {
-            relationTo: 'gallery-media'
-            value: string | GalleryMedia
+            relationTo: 'gallery-media';
+            value: string | GalleryMedia;
           }
       )[]
-    | null
+    | null;
   /**
-   * Lower numbers appear first on the About page.
+   * เลขน้อยแสดงก่อน เช่น 0 = แรกสุด, 1 = ถัดไป — ใช้กำหนดลำดับบนหน้า About
    */
-  sortOrder?: number | null
-  isVisible?: boolean | null
-  updatedAt: string
-  createdAt: string
+  sortOrder?: number | null;
+  isVisible?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payment-slips".
  */
 export interface PaymentSlip {
-  id: string
-  alt: string
-  prefix?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  id: string;
+  alt: string;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
-  id: string
-  status?: ('awaiting_verification' | 'confirmed' | 'cancelled') | null
-  paymentMethod?: 'bank_transfer' | null
-  customerName: string
-  email: string
-  phone?: string | null
-  address?: string | null
-  customerNote?: string | null
-  currency?: string | null
-  subtotal: number
+  id: string;
+  status?: ('awaiting_verification' | 'confirmed' | 'cancelled') | null;
+  paymentMethod?: 'bank_transfer' | null;
+  customerName: string;
+  email: string;
+  phone?: string | null;
+  address?: string | null;
+  customerNote?: string | null;
+  currency?: string | null;
+  subtotal: number;
   lineItems: {
-    productId?: string | null
-    slug?: string | null
-    title: string
-    quantity: number
-    unitPrice: number
-    lineTotal: number
-    id?: string | null
-  }[]
+    productId?: string | null;
+    slug?: string | null;
+    title: string;
+    quantity: number;
+    unitPrice: number;
+    lineTotal: number;
+    id?: string | null;
+  }[];
   /**
-   * Linked upload from the Payment slips collection. A preview (image) or file link (PDF) appears in the field below when a slip is selected.
+   * เชื่อมกับไฟล์ใน Payment slips — เมื่อเลือกแล้วจะแสดงภาพตัวอย่าง (รูปภาพ) หรือลิงก์เปิดไฟล์ (PDF) ด้านล่าง
    */
-  slip?: (string | null) | PaymentSlip
-  adminNotes?: string | null
-  updatedAt: string
-  createdAt: string
+  slip?: (string | null) | PaymentSlip;
+  adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "quote-requests".
  */
 export interface QuoteRequest {
-  id: string
-  status?: ('new' | 'contacted' | 'closed') | null
-  customerName: string
-  email: string
-  phone?: string | null
-  companyName?: string | null
-  message?: string | null
+  id: string;
+  status?: ('new' | 'contacted' | 'closed') | null;
+  customerName: string;
+  email: string;
+  phone?: string | null;
+  companyName?: string | null;
+  message?: string | null;
   lineItems: {
-    productId: string
-    slug: string
-    title: string
-    category?: string | null
-    quantity: number
-    id?: string | null
-  }[]
-  adminNotes?: string | null
-  updatedAt: string
-  createdAt: string
+    productId: string;
+    slug: string;
+    title: string;
+    category?: string | null;
+    quantity: number;
+    id?: string | null;
+  }[];
+  adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string
-  key: string
+  id: string;
+  key: string;
   data:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string
+  id: string;
   document?:
     | ({
-        relationTo: 'users'
-        value: string | User
+        relationTo: 'users';
+        value: string | User;
       } | null)
     | ({
-        relationTo: 'hero-media'
-        value: string | HeroMedia
+        relationTo: 'hero-media';
+        value: string | HeroMedia;
       } | null)
     | ({
-        relationTo: 'gallery-media'
-        value: string | GalleryMedia
+        relationTo: 'gallery-media';
+        value: string | GalleryMedia;
       } | null)
     | ({
-        relationTo: 'service-media'
-        value: string | ServiceMedia
+        relationTo: 'service-media';
+        value: string | ServiceMedia;
       } | null)
     | ({
-        relationTo: 'services'
-        value: string | Service
+        relationTo: 'services';
+        value: string | Service;
       } | null)
     | ({
-        relationTo: 'email-tests'
-        value: string | EmailTest
+        relationTo: 'email-tests';
+        value: string | EmailTest;
       } | null)
     | ({
-        relationTo: 'contact'
-        value: string | Contact
+        relationTo: 'contact';
+        value: string | Contact;
       } | null)
     | ({
-        relationTo: 'portfolio-articles'
-        value: string | PortfolioArticle
+        relationTo: 'portfolio-articles';
+        value: string | PortfolioArticle;
       } | null)
     | ({
-        relationTo: 'products'
-        value: string | Product
+        relationTo: 'products';
+        value: string | Product;
       } | null)
     | ({
-        relationTo: 'partner-media'
-        value: string | PartnerMedia
+        relationTo: 'partner-media';
+        value: string | PartnerMedia;
       } | null)
     | ({
-        relationTo: 'founders'
-        value: string | Founder
+        relationTo: 'founders';
+        value: string | Founder;
       } | null)
     | ({
-        relationTo: 'payment-slips'
-        value: string | PaymentSlip
+        relationTo: 'payment-slips';
+        value: string | PaymentSlip;
       } | null)
     | ({
-        relationTo: 'orders'
-        value: string | Order
+        relationTo: 'orders';
+        value: string | Order;
       } | null)
     | ({
-        relationTo: 'quote-requests'
-        value: string | QuoteRequest
-      } | null)
-  globalSlug?: string | null
+        relationTo: 'quote-requests';
+        value: string | QuoteRequest;
+      } | null);
+  globalSlug?: string | null;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  updatedAt: string
-  createdAt: string
+    relationTo: 'users';
+    value: string | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string
+  id: string;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  key?: string | null
+    relationTo: 'users';
+    value: string | User;
+  };
+  key?: string | null;
   value?:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string
-  name?: string | null
-  batch?: number | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T
-  createdAt?: T
-  email?: T
-  resetPasswordToken?: T
-  resetPasswordExpiration?: T
-  salt?: T
-  hash?: T
-  loginAttempts?: T
-  lockUntil?: T
+  role?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
   sessions?:
     | T
     | {
-        id?: T
-        createdAt?: T
-        expiresAt?: T
-      }
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero-media_select".
  */
 export interface HeroMediaSelect<T extends boolean = true> {
-  alt?: T
-  prefix?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  alt?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-media_select".
  */
 export interface GalleryMediaSelect<T extends boolean = true> {
-  alt?: T
-  prefix?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  alt?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "service-media_select".
  */
 export interface ServiceMediaSelect<T extends boolean = true> {
-  alt?: T
-  prefix?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  alt?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
-  title?: T
-  subtitle?: T
-  hero?: T
-  slug?: T
+  title?: T;
+  subtitle?: T;
+  hero?: T;
+  slug?: T;
   sections?:
     | T
     | {
-        sectionTitle?: T
-        description?: T
-        variant?: T
+        sectionTitle?: T;
+        description?: T;
+        variant?: T;
         images?:
           | T
           | {
-              image?: T
-              id?: T
-            }
-        image?: T
-        alignment?: T
-        id?: T
-      }
+              image?: T;
+              id?: T;
+            };
+        image?: T;
+        alignment?: T;
+        id?: T;
+      };
   tags?:
     | T
     | {
-        tag?: T
-        id?: T
-      }
-  updatedAt?: T
-  createdAt?: T
+        tag?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "email-tests_select".
  */
 export interface EmailTestsSelect<T extends boolean = true> {
-  emailType?: T
-  recipientEmail?: T
-  customerName?: T
-  updatedAt?: T
-  createdAt?: T
+  emailType?: T;
+  recipientEmail?: T;
+  customerName?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact_select".
  */
 export interface ContactSelect<T extends boolean = true> {
-  name?: T
-  email?: T
-  phoneNumber?: T
-  detail?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  detail?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "portfolio-articles_select".
  */
 export interface PortfolioArticlesSelect<T extends boolean = true> {
-  title?: T
-  subtitle?: T
-  highlight?: T
-  sectionTitle?: T
-  sectionDetail?: T
-  sectionImage?: T
-  gallery?: T
-  tag?: T
-  slug?: T
-  updatedAt?: T
-  createdAt?: T
+  title?: T;
+  subtitle?: T;
+  highlight?: T;
+  sectionTitle?: T;
+  sectionDetail?: T;
+  sectionImage?: T;
+  gallery?: T;
+  tag?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products_select".
  */
 export interface ProductsSelect<T extends boolean = true> {
-  title?: T
-  subtitle?: T
-  category?: T
-  mode?: T
-  price?: T
-  description?: T
-  image?: T
-  slug?: T
-  updatedAt?: T
-  createdAt?: T
+  title?: T;
+  subtitle?: T;
+  category?: T;
+  mode?: T;
+  price?: T;
+  description?: T;
+  image?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "partner-media_select".
  */
 export interface PartnerMediaSelect<T extends boolean = true> {
-  name?: T
-  prefix?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  name?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "founders_select".
  */
 export interface FoundersSelect<T extends boolean = true> {
-  name?: T
-  slug?: T
-  role?: T
-  excerpt?: T
-  description?: T
-  quote?: T
-  aboutImage?: T
-  gallery?: T
-  sortOrder?: T
-  isVisible?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  slug?: T;
+  role?: T;
+  excerpt?: T;
+  description?: T;
+  quote?: T;
+  aboutImage?: T;
+  gallery?: T;
+  sortOrder?: T;
+  isVisible?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payment-slips_select".
  */
 export interface PaymentSlipsSelect<T extends boolean = true> {
-  alt?: T
-  prefix?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  alt?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders_select".
  */
 export interface OrdersSelect<T extends boolean = true> {
-  status?: T
-  paymentMethod?: T
-  customerName?: T
-  email?: T
-  phone?: T
-  address?: T
-  customerNote?: T
-  currency?: T
-  subtotal?: T
+  status?: T;
+  paymentMethod?: T;
+  customerName?: T;
+  email?: T;
+  phone?: T;
+  address?: T;
+  customerNote?: T;
+  currency?: T;
+  subtotal?: T;
   lineItems?:
     | T
     | {
-        productId?: T
-        slug?: T
-        title?: T
-        quantity?: T
-        unitPrice?: T
-        lineTotal?: T
-        id?: T
-      }
-  slip?: T
-  adminNotes?: T
-  updatedAt?: T
-  createdAt?: T
+        productId?: T;
+        slug?: T;
+        title?: T;
+        quantity?: T;
+        unitPrice?: T;
+        lineTotal?: T;
+        id?: T;
+      };
+  slip?: T;
+  adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "quote-requests_select".
  */
 export interface QuoteRequestsSelect<T extends boolean = true> {
-  status?: T
-  customerName?: T
-  email?: T
-  phone?: T
-  companyName?: T
-  message?: T
+  status?: T;
+  customerName?: T;
+  email?: T;
+  phone?: T;
+  companyName?: T;
+  message?: T;
   lineItems?:
     | T
     | {
-        productId?: T
-        slug?: T
-        title?: T
-        category?: T
-        quantity?: T
-        id?: T
-      }
-  adminNotes?: T
-  updatedAt?: T
-  createdAt?: T
+        productId?: T;
+        slug?: T;
+        title?: T;
+        category?: T;
+        quantity?: T;
+        id?: T;
+      };
+  adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
-  key?: T
-  data?: T
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T
-  globalSlug?: T
-  user?: T
-  updatedAt?: T
-  createdAt?: T
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T
-  key?: T
-  value?: T
-  updatedAt?: T
-  createdAt?: T
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T
-  batch?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home".
  */
 export interface Home {
-  id: string
-  heroMedia?: (string | HeroMedia)[] | null
-  galleryMedia?: (string | GalleryMedia)[] | null
+  id: string;
+  heroMedia?: (string | HeroMedia)[] | null;
+  galleryMedia?: (string | GalleryMedia)[] | null;
   /**
    * ลำดับบนเว็บตามลำดับที่เลือก
    */
-  partners?: (string | PartnerMedia)[] | null
+  partners?: (string | PartnerMedia)[] | null;
   /**
    * หัวข้อหลักบนแบนเนอร์ (หลายบรรทัด) ไม่รวมปุ่ม
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * คำอธิบายใต้หัวข้อ บนแบนเนอร์
    */
-  heroSubtitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null;
   /**
    * หัวรายส่วนเช่น บริการ สินค้า ผลงาน แกลเลอรี ฯลฯ
    */
-  sectionTitleFontSize?: number | null
+  sectionTitleFontSize?: number | null;
   /**
    * หัวย่อยบล็อกเนื้อหา / รายละเอียด (เช่น About, รายละเอียดเด่น)
    */
-  highlightTitleFontSize?: number | null
+  highlightTitleFontSize?: number | null;
   /**
    * เนื้อหายาวในบล็อกเน้น / ย่อยนำ ไม่รวมป้ายเล็ก
    */
-  highlightBodyFontSize?: number | null
+  highlightBodyFontSize?: number | null;
   /**
    * ชื่อบนการ์ดบริการ / สินค้า / ผลงาน ฯลฯ (ไม่รวมไอคอน/ปุ่ม)
    */
-  cardTitleFontSize?: number | null
+  cardTitleFontSize?: number | null;
   /**
    * คำอธิบาย/ย่อใต้หัวบนการ์ดใหญ่
    */
-  cardBodyFontSize?: number | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  cardBodyFontSize?: number | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
-  historySectionTitle?: string | null
-  companyName?: string | null
-  historyDescription?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
+  historySectionTitle?: string | null;
+  companyName?: string | null;
+  historyDescription?: string | null;
   historyHighlights?:
     | {
-        value?: string | null
-        label?: string | null
-        id?: string | null
+        value?: string | null;
+        label?: string | null;
+        id?: string | null;
       }[]
-    | null
-  missionTitle?: string | null
-  missionDescription?: string | null
-  visionTitle?: string | null
-  visionDescription?: string | null
+    | null;
+  missionTitle?: string | null;
+  missionDescription?: string | null;
+  visionTitle?: string | null;
+  visionDescription?: string | null;
   /**
    * หัวข้อที่แสดงเหนือการ์ดสมาชิกทีม ค่าเริ่มต้น: "Team Member"
    */
-  founderSectionTitle?: string | null
-  founderImage?: (string | null) | HeroMedia
-  founderName?: string | null
-  founderRole?: string | null
-  founderDescription?: string | null
-  founderQuote?: string | null
-  featuredProjectsSectionTitle?: string | null
-  featuredProjectsSectionSubtitle?: string | null
-  featuredProjectsCtaText?: string | null
-  servicesSectionTitle?: string | null
-  servicesSectionSubtitle?: string | null
-  servicesCtaText?: string | null
-  productsSectionTitle?: string | null
-  productsSectionSubtitle?: string | null
-  productsCtaText?: string | null
+  founderSectionTitle?: string | null;
+  founderImage?: (string | null) | HeroMedia;
+  founderName?: string | null;
+  founderRole?: string | null;
+  founderDescription?: string | null;
+  founderQuote?: string | null;
+  featuredProjectsSectionTitle?: string | null;
+  featuredProjectsSectionSubtitle?: string | null;
+  featuredProjectsCtaText?: string | null;
+  servicesSectionTitle?: string | null;
+  servicesSectionSubtitle?: string | null;
+  servicesCtaText?: string | null;
+  productsSectionTitle?: string | null;
+  productsSectionSubtitle?: string | null;
+  productsCtaText?: string | null;
   /**
    * เช่น หัว “About Us” หรือหัวส่วน Founder บนหน้า About
    */
-  sectionTitleFontSize?: number | null
+  sectionTitleFontSize?: number | null;
   /**
    * หัวข้อบนการ์ดตัวเติม 4 ใบใต้ส่วน About
    */
-  highlightCardTitleFontSize?: number | null
+  highlightCardTitleFontSize?: number | null;
   /**
    * เนื้อหาหลักบนการ์ดตัวเติม 4 ใบ
    */
-  highlightCardBodyFontSize?: number | null
+  highlightCardBodyFontSize?: number | null;
   /**
    * ตัวเลขบนกล่อง “ไฮไลต์ / สถิติ” จาก CMS
    */
-  statNumberFontSize?: number | null
+  statNumberFontSize?: number | null;
   /**
    * คำอธิบายใต้ตัวเลขในกล่องสถิติ
    */
-  statLabelFontSize?: number | null
+  statLabelFontSize?: number | null;
   /**
    * หัวพันธกิจและหัววิสัยทัศน์ บล็อกสองฝั่ง
    */
-  missionVisionTitleFontSize?: number | null
+  missionVisionTitleFontSize?: number | null;
   /**
    * เนื้อหาใต้หัวพันธกิจและวิสัยทัศน์
    */
-  missionVisionBodyFontSize?: number | null
-  videoSectionTitle?: string | null
+  missionVisionBodyFontSize?: number | null;
+  videoSectionTitle?: string | null;
   /**
    * ขนาดตัวอักษรของหัวข้อ Section วิดีโอบนหน้า About
    */
-  videoSectionTitleFontSize?: number | null
+  videoSectionTitleFontSize?: number | null;
   youtubeVideos?:
     | {
-        title?: string | null
+        title?: string | null;
         /**
          * วางลิงก์ YouTube เช่น https://www.youtube.com/watch?v=... หรือ https://youtu.be/...
          */
-        youtubeUrl?: string | null
-        embedTitle?: string | null
-        id?: string | null
+        youtubeUrl?: string | null;
+        embedTitle?: string | null;
+        id?: string | null;
       }[]
-    | null
+    | null;
   /**
    * ชื่อบนการ์ด Founder หน้า About (ไม่รวมป้ายตำแหน่ง/ปุ่ม Read more)
    */
-  founderCardTitleFontSize?: number | null
+  founderCardTitleFontSize?: number | null;
   /**
    * ย่อ/คำอธิบายบนการ์ด Founder หน้า About
    */
-  founderCardBodyFontSize?: number | null
+  founderCardBodyFontSize?: number | null;
   /**
    * ข้อความคำคม (blockquote) บนการ์ด Founder หน้า About
    */
-  founderQuoteFontSize?: number | null
+  founderQuoteFontSize?: number | null;
   /**
    * ชื่อบนหน้า /about/founders/[slug] (ไม่รวมป้าย role หรือปุ่ม)
    */
-  founderDetailTitleFontSize?: number | null
+  founderDetailTitleFontSize?: number | null;
   /**
    * เนื้อหาหลัก (คำอธิบาย) บนหน้า founder — ไม่รวมคำคมใน blockquote หรือลิงก์กลับ
    */
-  founderDetailBodyFontSize?: number | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  founderDetailBodyFontSize?: number | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faq".
  */
 export interface Faq {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
    * ตัวอักษรหัวข้อบนส่วนแบนเนอร์ (ตัวใหญ่บนสุด)
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * บรรทัดแนะนำใต้หัวข้อ Hero
    */
-  heroSubtitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null;
   /**
    * หัวข้อแต่ละข้อคำถามในรายการ
    */
-  questionFontSize?: number | null
+  questionFontSize?: number | null;
   /**
    * เนื้อหาคำตอบใต้คำถาม
    */
-  answerFontSize?: number | null
+  answerFontSize?: number | null;
   /**
    * หัวข้อในกล่อง CTA ล่างสุด (เช่น “หาคำตอบไม่เจอ?”)
    */
-  bottomCtaTitleFontSize?: number | null
+  bottomCtaTitleFontSize?: number | null;
   /**
    * บรรทัดอธิบายใต้หัวข้อ CTA ไม่รวมปุ่มติดต่อ
    */
-  bottomCtaBodyFontSize?: number | null
+  bottomCtaBodyFontSize?: number | null;
   /**
    * เนื้อหาใต้หัว CTA; ถ้าเว้นว่างจะแสดงข้อความสำรองอัตโนมัติ
    */
-  bottomCtaBody?: string | null
+  bottomCtaBody?: string | null;
   faqItems?:
     | {
-        question: string
-        answer: string
-        id?: string | null
+        question: string;
+        answer: string;
+        id?: string | null;
       }[]
-    | null
-  updatedAt?: string | null
-  createdAt?: string | null
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "privacy-policy".
  */
 export interface PrivacyPolicy {
-  id: string
-  heroTitle?: string | null
+  id: string;
+  heroTitle?: string | null;
   /**
    * e.g. January 2025
    */
-  lastUpdated?: string | null
+  lastUpdated?: string | null;
   content?: {
     root: {
-      type: string
+      type: string;
       children: {
-        type: any
-        version: number
-        [k: string]: unknown
-      }[]
-      direction: ('ltr' | 'rtl') | null
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
-      indent: number
-      version: number
-    }
-    [k: string]: unknown
-  } | null
-  updatedAt?: string | null
-  createdAt?: string | null
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "terms-of-service".
  */
 export interface TermsOfService {
-  id: string
-  heroTitle?: string | null
+  id: string;
+  heroTitle?: string | null;
   /**
    * e.g. January 2025
    */
-  lastUpdated?: string | null
+  lastUpdated?: string | null;
   content?: {
     root: {
-      type: string
+      type: string;
       children: {
-        type: any
-        version: number
-        [k: string]: unknown
-      }[]
-      direction: ('ltr' | 'rtl') | null
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
-      indent: number
-      version: number
-    }
-    [k: string]: unknown
-  } | null
-  updatedAt?: string | null
-  createdAt?: string | null
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-hero".
  */
 export interface AboutHero {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อหลัก บนส่วน Hero หน้า About
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของคำอธิบาย ใต้หัวข้อบน Hero หน้า About
    */
-  heroSubtitleFontSize?: number | null
-  heroMedia?: (string | HeroMedia)[] | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  heroSubtitleFontSize?: number | null;
+  heroMedia?: (string | HeroMedia)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services-hero".
  */
 export interface ServicesHero {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อหลัก (บรรทัดแรกและบรรทัดสอง) บนส่วน Hero หน้าแสดงรายการบริการ
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของคำอธิบายใต้หัวข้อบนส่วน Hero หน้าแสดงรายการบริการ
    */
-  heroSubtitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของชื่อบริการบนแต่ละการ์ด ในหน้าแสดงรายการบริการ
    */
-  serviceCardTitleFontSize?: number | null
+  serviceCardTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของคำอธิบายย่อบนแต่ละการ์ด ในหน้าแสดงรายการบริการ
    */
-  serviceCardBodyFontSize?: number | null
+  serviceCardBodyFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อหลักบนส่วน Hero ด้านบน หน้ารายละเอียดแต่ละบริการ
    */
-  detailHeroTitleFontSize?: number | null
+  detailHeroTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อแต่ละย่อ ในเนื้อหาหลักบนหน้ารายละเอียดบริการ
    */
-  detailContentTitleFontSize?: number | null
+  detailContentTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของเนื้อหา / รายละเอียดใต้หัวข้อแต่ละย่อ บนหน้ารายละเอียดบริการ
    */
-  detailContentBodyFontSize?: number | null
+  detailContentBodyFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อด้านบนรายการ “บทความที่เกี่ยวข้อง” บนหน้ารายละเอียดบริการ
    */
-  relatedHeadingFontSize?: number | null
+  relatedHeadingFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของชื่อบทความแต่ละรายการ ไม่รวมลิงก์ “Read more / อ่านเพิ่ม”
    */
-  relatedItemTitleFontSize?: number | null
-  heroMedia?: (string | HeroMedia)[] | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  relatedItemTitleFontSize?: number | null;
+  heroMedia?: (string | HeroMedia)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "portfolio-hero".
  */
 export interface PortfolioHero {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อหลักบนส่วน Hero หน้าแสดงรายการ Portfolio
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของคำอธิบายใต้หัวข้อ บนส่วน Hero หน้าแสดงรายการ Portfolio
    */
-  heroSubtitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อ “HIGHLIGHTS” บนหน้าแสดงรายการ Portfolio
    */
-  highlightsTitleFontSize?: number | null
+  highlightsTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อ “OUR FACILITIES” บนหน้าแสดงรายการ Portfolio
    */
-  sectionTitleFontSize?: number | null
+  sectionTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของชื่อบนผลงาน ในแต่ละการ์ดบนการ์ด หน้าแสดงรายการ และหัวข้อบนผลงาน “เพิ่มเติม” หน้ารายละเอียด
    */
-  cardTitleFontSize?: number | null
+  cardTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อหลัก บนส่วน Hero หน้ารายละเอียดผลงาน
    */
-  detailHeroTitleFontSize?: number | null
+  detailHeroTitleFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของเนื้อหา / รายละเอียดหลัก ในส่วนเนื้อหา บนหน้ารายละเอียดผลงาน
    */
-  detailBodyFontSize?: number | null
+  detailBodyFontSize?: number | null;
   /**
    * ใช้กำหนดขนาดตัวอักษรของหัวข้อ “More Projects / ผลงานเพิ่มเติม” บนหน้ารายละเอียดผลงาน
    */
-  moreProjectsTitleFontSize?: number | null
-  heroMedia?: (string | HeroMedia)[] | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  moreProjectsTitleFontSize?: number | null;
+  heroMedia?: (string | HeroMedia)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products-hero".
  */
 export interface ProductsHero {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
-   * Short label above the title (e.g. category). If empty, the public site uses the default “Equipment & Gear”.
+   * ข้อความขนาดเล็กที่แสดงเหนือหัวข้อหลัก เช่น ชื่อหมวดหมู่ หากเว้นว่างจะใช้ค่าเริ่มต้น “Equipment & Gear”
    */
-  eyebrow?: string | null
-  titleFontSize?: number | null
-  subtitleFontSize?: number | null
+  eyebrow?: string | null;
+  titleFontSize?: number | null;
+  subtitleFontSize?: number | null;
   /**
-   * e.g. “BASKETBALL EQUIPMENT” row titles on the product listing.
+   * หัวข้อแถวหมวดหมู่ เช่น “BASKETBALL EQUIPMENT” ในหน้ารายการสินค้า
    */
-  categoryTitleFontSize?: number | null
+  categoryTitleFontSize?: number | null;
   /**
-   * Product name on each card in the listing grid and list.
+   * ชื่อสินค้าบนการ์ดในกริดและรายการสินค้า
    */
-  productCardTitleFontSize?: number | null
+  productCardTitleFontSize?: number | null;
   /**
-   * Controls product price text size in product cards/list.
+   * ขนาดตัวเลขราคาบนการ์ดและรายการสินค้า
    */
-  productPriceFontSize?: number | null
+  productPriceFontSize?: number | null;
   /**
-   * Main product name on the product detail page.
+   * ชื่อหลักของสินค้าบนหน้ารายละเอียด
    */
-  detailTitleFontSize?: number | null
+  detailTitleFontSize?: number | null;
   /**
-   * Product subtitle on the product detail page.
+   * ชื่อรองของสินค้าบนหน้ารายละเอียด
    */
-  detailSubtitleFontSize?: number | null
+  detailSubtitleFontSize?: number | null;
   /**
-   * Section heading for the product description block.
+   * หัวข้อส่วนคำอธิบายสินค้าบนหน้ารายละเอียด
    */
-  detailSectionTitleFontSize?: number | null
+  detailSectionTitleFontSize?: number | null;
   /**
-   * Product description / body copy on the product detail page.
+   * ข้อความคำอธิบายสินค้าบนหน้ารายละเอียด
    */
-  detailBodyFontSize?: number | null
+  detailBodyFontSize?: number | null;
   /**
-   * Heading above related products on the product detail page.
+   * หัวข้อเหนือรายการสินค้าที่เกี่ยวข้องบนหน้ารายละเอียด
    */
-  relatedTitleFontSize?: number | null
-  heroMedia?: (string | HeroMedia)[] | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  relatedTitleFontSize?: number | null;
+  heroMedia?: (string | HeroMedia)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-hero".
  */
 export interface ContactHero {
-  id: string
-  heroTitle?: string | null
-  heroSubtitle?: string | null
+  id: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
   /**
    * ขนาดตัวอักษรของหัวข้อหลักบนแบนเนอร์หน้า Contact
    */
-  heroTitleFontSize?: number | null
+  heroTitleFontSize?: number | null;
   /**
    * ขนาดตัวอักษรของคำอธิบายใต้หัวข้อ บนแบนเนอร์
    */
-  heroSubtitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null;
   /**
    * หัวข้อรายส่วนเช่น “Get in touch” และ “Send us message” (คอลัมน์หลัก)
    */
-  contactSectionTitleFontSize?: number | null
+  contactSectionTitleFontSize?: number | null;
   /**
    * หัวข้อย่อยเช่น ที่อยู่, อีเมล, ติดตามโซเชียล, เวลาเปิดทำการ
    */
-  contactInfoTitleFontSize?: number | null
+  contactInfoTitleFontSize?: number | null;
   /**
    * เนื้อหาหลัก, รายละเอียดติดต่อ, ย่อนำ (ไม่รวมปุ่ม)
    */
-  contactInfoBodyFontSize?: number | null
+  contactInfoBodyFontSize?: number | null;
   /**
    * ป้าย Name, Email, ฯลฯ ไม่รวมข้อความ error
    */
-  formLabelFontSize?: number | null
+  formLabelFontSize?: number | null;
   /**
    * ช่อง input และ textarea (ไม่รวม error หรือปุ่ม)
    */
-  formInputFontSize?: number | null
+  formInputFontSize?: number | null;
   /**
    * วางลิงก์ iframe/embed ของ Google Map ที่ต้องการแสดงบนเว็บไซต์ (ได้จาก Google Maps → Share → Embed a map → copy src="...")
    */
-  googleMapEmbedUrl?: string | null
-  heroMedia?: (string | HeroMedia)[] | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  googleMapEmbedUrl?: string | null;
+  heroMedia?: (string | HeroMedia)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payment-settings".
  */
 export interface PaymentSetting {
-  id: string
-  isEnabled?: boolean | null
+  id: string;
+  isEnabled?: boolean | null;
   /**
-   * Email address that receives new order notifications. If empty, system falls back to ORDER_NOTIFY_EMAIL or default business email.
+   * อีเมลที่จะได้รับการแจ้งเตือนเมื่อมีออเดอร์ใหม่ หากเว้นว่างระบบจะใช้ค่า ORDER_NOTIFY_EMAIL หรืออีเมลสำรองของธุรกิจ
    */
-  orderNotificationEmail?: string | null
-  bankName?: string | null
-  accountName?: string | null
-  accountNumber?: string | null
-  branch?: string | null
-  paymentInstructions?: string | null
-  qrCodeImage?: (string | null) | GalleryMedia
-  updatedAt?: string | null
-  createdAt?: string | null
+  orderNotificationEmail?: string | null;
+  bankName?: string | null;
+  accountName?: string | null;
+  accountNumber?: string | null;
+  branch?: string | null;
+  paymentInstructions?: string | null;
+  qrCodeImage?: (string | null) | GalleryMedia;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
-  heroMedia?: T
-  galleryMedia?: T
-  partners?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  sectionTitleFontSize?: T
-  highlightTitleFontSize?: T
-  highlightBodyFontSize?: T
-  cardTitleFontSize?: T
-  cardBodyFontSize?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroMedia?: T;
+  galleryMedia?: T;
+  partners?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  sectionTitleFontSize?: T;
+  highlightTitleFontSize?: T;
+  highlightBodyFontSize?: T;
+  cardTitleFontSize?: T;
+  cardBodyFontSize?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  historySectionTitle?: T
-  companyName?: T
-  historyDescription?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  historySectionTitle?: T;
+  companyName?: T;
+  historyDescription?: T;
   historyHighlights?:
     | T
     | {
-        value?: T
-        label?: T
-        id?: T
-      }
-  missionTitle?: T
-  missionDescription?: T
-  visionTitle?: T
-  visionDescription?: T
-  founderSectionTitle?: T
-  founderImage?: T
-  founderName?: T
-  founderRole?: T
-  founderDescription?: T
-  founderQuote?: T
-  featuredProjectsSectionTitle?: T
-  featuredProjectsSectionSubtitle?: T
-  featuredProjectsCtaText?: T
-  servicesSectionTitle?: T
-  servicesSectionSubtitle?: T
-  servicesCtaText?: T
-  productsSectionTitle?: T
-  productsSectionSubtitle?: T
-  productsCtaText?: T
-  sectionTitleFontSize?: T
-  highlightCardTitleFontSize?: T
-  highlightCardBodyFontSize?: T
-  statNumberFontSize?: T
-  statLabelFontSize?: T
-  missionVisionTitleFontSize?: T
-  missionVisionBodyFontSize?: T
-  videoSectionTitle?: T
-  videoSectionTitleFontSize?: T
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  missionTitle?: T;
+  missionDescription?: T;
+  visionTitle?: T;
+  visionDescription?: T;
+  founderSectionTitle?: T;
+  founderImage?: T;
+  founderName?: T;
+  founderRole?: T;
+  founderDescription?: T;
+  founderQuote?: T;
+  featuredProjectsSectionTitle?: T;
+  featuredProjectsSectionSubtitle?: T;
+  featuredProjectsCtaText?: T;
+  servicesSectionTitle?: T;
+  servicesSectionSubtitle?: T;
+  servicesCtaText?: T;
+  productsSectionTitle?: T;
+  productsSectionSubtitle?: T;
+  productsCtaText?: T;
+  sectionTitleFontSize?: T;
+  highlightCardTitleFontSize?: T;
+  highlightCardBodyFontSize?: T;
+  statNumberFontSize?: T;
+  statLabelFontSize?: T;
+  missionVisionTitleFontSize?: T;
+  missionVisionBodyFontSize?: T;
+  videoSectionTitle?: T;
+  videoSectionTitleFontSize?: T;
   youtubeVideos?:
     | T
     | {
-        title?: T
-        youtubeUrl?: T
-        embedTitle?: T
-        id?: T
-      }
-  founderCardTitleFontSize?: T
-  founderCardBodyFontSize?: T
-  founderQuoteFontSize?: T
-  founderDetailTitleFontSize?: T
-  founderDetailBodyFontSize?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+        title?: T;
+        youtubeUrl?: T;
+        embedTitle?: T;
+        id?: T;
+      };
+  founderCardTitleFontSize?: T;
+  founderCardBodyFontSize?: T;
+  founderQuoteFontSize?: T;
+  founderDetailTitleFontSize?: T;
+  founderDetailBodyFontSize?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faq_select".
  */
 export interface FaqSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  questionFontSize?: T
-  answerFontSize?: T
-  bottomCtaTitleFontSize?: T
-  bottomCtaBodyFontSize?: T
-  bottomCtaBody?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  questionFontSize?: T;
+  answerFontSize?: T;
+  bottomCtaTitleFontSize?: T;
+  bottomCtaBodyFontSize?: T;
+  bottomCtaBody?: T;
   faqItems?:
     | T
     | {
-        question?: T
-        answer?: T
-        id?: T
-      }
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "privacy-policy_select".
  */
 export interface PrivacyPolicySelect<T extends boolean = true> {
-  heroTitle?: T
-  lastUpdated?: T
-  content?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  lastUpdated?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "terms-of-service_select".
  */
 export interface TermsOfServiceSelect<T extends boolean = true> {
-  heroTitle?: T
-  lastUpdated?: T
-  content?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  lastUpdated?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-hero_select".
  */
 export interface AboutHeroSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  heroMedia?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  heroMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services-hero_select".
  */
 export interface ServicesHeroSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  serviceCardTitleFontSize?: T
-  serviceCardBodyFontSize?: T
-  detailHeroTitleFontSize?: T
-  detailContentTitleFontSize?: T
-  detailContentBodyFontSize?: T
-  relatedHeadingFontSize?: T
-  relatedItemTitleFontSize?: T
-  heroMedia?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  serviceCardTitleFontSize?: T;
+  serviceCardBodyFontSize?: T;
+  detailHeroTitleFontSize?: T;
+  detailContentTitleFontSize?: T;
+  detailContentBodyFontSize?: T;
+  relatedHeadingFontSize?: T;
+  relatedItemTitleFontSize?: T;
+  heroMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "portfolio-hero_select".
  */
 export interface PortfolioHeroSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  highlightsTitleFontSize?: T
-  sectionTitleFontSize?: T
-  cardTitleFontSize?: T
-  detailHeroTitleFontSize?: T
-  detailBodyFontSize?: T
-  moreProjectsTitleFontSize?: T
-  heroMedia?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  highlightsTitleFontSize?: T;
+  sectionTitleFontSize?: T;
+  cardTitleFontSize?: T;
+  detailHeroTitleFontSize?: T;
+  detailBodyFontSize?: T;
+  moreProjectsTitleFontSize?: T;
+  heroMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products-hero_select".
  */
 export interface ProductsHeroSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  eyebrow?: T
-  titleFontSize?: T
-  subtitleFontSize?: T
-  categoryTitleFontSize?: T
-  productCardTitleFontSize?: T
-  productPriceFontSize?: T
-  detailTitleFontSize?: T
-  detailSubtitleFontSize?: T
-  detailSectionTitleFontSize?: T
-  detailBodyFontSize?: T
-  relatedTitleFontSize?: T
-  heroMedia?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  eyebrow?: T;
+  titleFontSize?: T;
+  subtitleFontSize?: T;
+  categoryTitleFontSize?: T;
+  productCardTitleFontSize?: T;
+  productPriceFontSize?: T;
+  detailTitleFontSize?: T;
+  detailSubtitleFontSize?: T;
+  detailSectionTitleFontSize?: T;
+  detailBodyFontSize?: T;
+  relatedTitleFontSize?: T;
+  heroMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-hero_select".
  */
 export interface ContactHeroSelect<T extends boolean = true> {
-  heroTitle?: T
-  heroSubtitle?: T
-  heroTitleFontSize?: T
-  heroSubtitleFontSize?: T
-  contactSectionTitleFontSize?: T
-  contactInfoTitleFontSize?: T
-  contactInfoBodyFontSize?: T
-  formLabelFontSize?: T
-  formInputFontSize?: T
-  googleMapEmbedUrl?: T
-  heroMedia?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroTitleFontSize?: T;
+  heroSubtitleFontSize?: T;
+  contactSectionTitleFontSize?: T;
+  contactInfoTitleFontSize?: T;
+  contactInfoBodyFontSize?: T;
+  formLabelFontSize?: T;
+  formInputFontSize?: T;
+  googleMapEmbedUrl?: T;
+  heroMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payment-settings_select".
  */
 export interface PaymentSettingsSelect<T extends boolean = true> {
-  isEnabled?: T
-  orderNotificationEmail?: T
-  bankName?: T
-  accountName?: T
-  accountNumber?: T
-  branch?: T
-  paymentInstructions?: T
-  qrCodeImage?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  isEnabled?: T;
+  orderNotificationEmail?: T;
+  bankName?: T;
+  accountName?: T;
+  accountNumber?: T;
+  branch?: T;
+  paymentInstructions?: T;
+  qrCodeImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown
+  [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

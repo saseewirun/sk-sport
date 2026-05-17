@@ -72,10 +72,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
               />
             </div>
           ))}
-          <div
-            key="clone-first"
-            className="relative w-full h-full snap-start flex-none"
-          >
+          <div key="clone-first" className="relative w-full h-full snap-start flex-none">
             <Image
               src={images[0].src}
               alt={images[0].alt || 'Hero Background Clone'}
