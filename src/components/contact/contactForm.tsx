@@ -270,7 +270,7 @@ export const ContactForm = (props: ContactFormTypography) => {
               onButtonClick={() => setIsSuccess(false)}
             />
           ) : (
-            <form onSubmit={handleSubmit} className="flex h-full flex-col space-y-6">
+            <form onSubmit={handleSubmit} className="flex h-full flex-col space-y-6" suppressHydrationWarning>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="flex flex-col">
                   <label
