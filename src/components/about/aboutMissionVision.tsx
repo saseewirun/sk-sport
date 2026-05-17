@@ -40,7 +40,7 @@ export default function AboutMissionVision({
               <div className="mt-1.5 h-px w-6 bg-primary/35" />
               {missionDescription && (
                 <p
-                  className="mt-2 leading-relaxed text-base-content/58"
+                  className="mt-2 leading-relaxed text-base-content/58 whitespace-pre-line"
                   style={{ fontSize: `${missionVisionBodyFontSizePx}px` }}
                 >
                   {missionDescription}
@@ -70,7 +70,7 @@ export default function AboutMissionVision({
               <div className="mt-1.5 h-px w-6 bg-secondary/35" />
               {visionDescription && (
                 <p
-                  className="mt-2 leading-relaxed text-base-content/58"
+                  className="mt-2 leading-relaxed text-base-content/58 whitespace-pre-line"
                   style={{ fontSize: `${missionVisionBodyFontSizePx}px` }}
                 >
                   {visionDescription}
