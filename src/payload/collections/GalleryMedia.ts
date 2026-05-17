@@ -4,11 +4,25 @@ export const GalleryMedia: CollectionConfig = {
   slug: 'gallery-media',
   admin: {
     group: 'Media',
+    description: 'รูปภาพสำหรับ Portfolio และสินค้า — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)',
   },
   access: {
     read: () => true,
   },
-  upload: true,
+  upload: {
+    resizeOptions: {
+      width: 1200,
+      height: 900,
+      fit: 'inside',
+      withoutEnlargement: true,
+    },
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 82,
+      },
+    },
+  },
   fields: [
     {
       name: 'alt',

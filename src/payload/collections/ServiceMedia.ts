@@ -4,11 +4,25 @@ export const ServiceMedia: CollectionConfig = {
   slug: 'service-media',
   admin: {
     group: 'Media',
+    description: 'รูปภาพสำหรับหน้า Services — แนะนำขนาด 1200×900 px (ระบบบีบอัดและปรับขนาดให้อัตโนมัติ)',
   },
   access: {
     read: () => true,
   },
-  upload: true,
+  upload: {
+    resizeOptions: {
+      width: 1200,
+      height: 900,
+      fit: 'inside',
+      withoutEnlargement: true,
+    },
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 82,
+      },
+    },
+  },
   fields: [
     {
       name: 'alt',

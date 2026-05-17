@@ -54,14 +54,14 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
       <div className="absolute inset-0 z-0">
         <div
           ref={carouselRef}
-          className="carousel w-full h-full snap-x snap-mandatory hide-scrollbar"
+          className="flex w-full h-full overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {images.map((img, index) => (
             <div
               key={`${typeof img.src === 'string' ? img.src : img.src.src}-${index}`}
               id={`slide${index + 1}`}
-              className="carousel-item relative w-full h-full snap-start shrink-0"
+              className="relative w-full h-full snap-start flex-none"
             >
               <Image
                 src={img.src}
@@ -74,7 +74,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
           ))}
           <div
             key="clone-first"
-            className="carousel-item relative w-full h-full snap-start shrink-0"
+            className="relative w-full h-full snap-start flex-none"
           >
             <Image
               src={images[0].src}
