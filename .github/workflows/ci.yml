@@ -45,7 +45,7 @@ jobs:
         run: npm test --if-present
         env:
           DATABASE_URI: postgresql://postgres:password@localhost:5432/sksport
-          PAYLOAD_SECRET: 06c6cd235f8d03149115408d
+          PAYLOAD_SECRET: ci-test-secret-not-for-production
           S3_BUCKET: test-bucket
           S3_ACCESS_KEY_ID: test-key
           S3_SECRET_ACCESS_KEY: test-secret
