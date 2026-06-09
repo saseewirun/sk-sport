@@ -10,6 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    # CI-only placeholder env (NOT real secrets). Set at job level so every step
+    # — including the Build step (`next build`, which initializes Payload) —
+    # receives them. DATABASE_URI points at the ephemeral postgres service below.
+    env:
+      DATABASE_URI: postgresql://postgres:password@localhost:5432/sksport
+      PAYLOAD_SECRET: ci-test-secret-not-for-production
+      S3_BUCKET: test-bucket
+      S3_ACCESS_KEY_ID: test-key
+      S3_SECRET_ACCESS_KEY: test-secret
+      S3_REGION: us-east-1
+      S3_ENDPOINT: http://localhost:4566
+      RESEND_API_KEY: re_ci_placeholder_not_real
+      EMAIL_FROM: ci@example.com
+      EMAIL_FROM_NAME: SK Sport CI
+      NEXT_PUBLIC_SERVER_URL: http://localhost:3000
     services:
       postgres:
         image: postgres:15
@@ -43,14 +58,6 @@ jobs:
 
       - name: Test
         run: npm test --if-present
-        env:
-          DATABASE_URI: postgresql://postgres:password@localhost:5432/sksport
-          PAYLOAD_SECRET: ci-test-secret-not-for-production
-          S3_BUCKET: test-bucket
-          S3_ACCESS_KEY_ID: test-key
-          S3_SECRET_ACCESS_KEY: test-secret
-          S3_REGION: us-east-1
-          S3_ENDPOINT: http://localhost:4566
 
       - name: Build
         run: npm run build --if-present
