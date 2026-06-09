@@ -2,6 +2,9 @@ import { getTermsOfServiceGlobal } from '@/data/termsOfService'
 import { CmsRichText } from '@/components/common/cmsRichText'
 import type { SerializedEditorState } from 'lexical'
 
+// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
+export const revalidate = 3600
+
 const DEFAULT_HERO_TITLE = 'Terms & Conditions'
 
 export default async function TermsPage() {

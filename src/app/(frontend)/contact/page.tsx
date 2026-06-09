@@ -3,6 +3,9 @@ import { getContactHeroGlobal } from '@/data/contactHero'
 import { CONTACT } from '@/const/contact'
 import type { ContactHero as ContactHeroType, Home } from '@/payload-types'
 
+// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
+export const revalidate = 3600
+
 const FALLBACK_MEDIA = [
   { id: '1', url: '/Contact Section BG Desktop.png', alt: 'Contact Background' },
 ] as unknown as Home['heroMedia']

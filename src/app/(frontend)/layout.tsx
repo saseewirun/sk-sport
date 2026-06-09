@@ -6,7 +6,8 @@ import { prompt, sarabun } from '@/lib/fonts'
 import '@/style/typography.css'
 import './styles.css'
 import { NextIntlClientProvider } from 'next-intl'
-import { getLocale, getMessages } from 'next-intl/server'
+import { getMessages, setRequestLocale } from 'next-intl/server'
+import { defaultLocale } from '@/i18n/config'
 import { CartProvider } from '@/context/cartContext'
 import { QuoteCartProvider } from '@/context/quoteCartContext'
 import { getFaqGlobal } from '@/data/faq'
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const locale = await getLocale()
+  const locale = defaultLocale
+  // Enable static rendering for next-intl (Thai-only) — avoids opting routes
+  // into dynamic rendering via the shared layout.
+  setRequestLocale(locale)
   const messages = await getMessages()
   const isLocalEnv = process.env.NODE_ENV === 'development'
 

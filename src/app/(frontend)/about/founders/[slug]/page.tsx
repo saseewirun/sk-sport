@@ -1,11 +1,22 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getFounderBySlug } from '@/data/founders'
+import { getFounderBySlug, getVisibleFounders } from '@/data/founders'
 import { getAboutGlobal } from '@/data/about'
 import { FounderDetailImages } from '@/components/about/founderDetailImages'
 import { resolveFounderDetailImages } from '@/components/about/founderMedia'
 
 type PageProps = { params: Promise<{ slug: string }> }
+
+// Static-first: prerender known founders at build, refresh via ISR, and render
+// any newly-added slug on demand (dynamicParams defaults to true).
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const founders = await getVisibleFounders()
+  return founders
+    .filter((f): f is typeof f & { slug: string } => Boolean(f.slug))
+    .map((f) => ({ slug: f.slug }))
+}
 
 function clampInt(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)))

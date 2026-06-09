@@ -1,13 +1,22 @@
 // DB Migration Script: Old Supabase → New Supabase
-// Run: node migrate-db.mjs
+//
+// Credentials are read from the environment — NEVER hardcode them here.
+// Put them in a git-ignored `migrate.env` (see .env.example) and run:
+//   node --env-file=migrate.env migrate-db.mjs
 
 import pg from 'pg'
 const { Client } = pg
 
-const OLD_DB =
-  'postgresql://postgres.paupqfrkgubdjeuviaww:LeAkz55aGBx8u7XF@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres'
-const NEW_DB =
-  'postgresql://postgres.fgmfxguonnqmfcoadrrj:PookPonPond28!@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres'
+const OLD_DB = process.env.OLD_DATABASE_URI
+const NEW_DB = process.env.NEW_DATABASE_URI
+
+if (!OLD_DB || !NEW_DB) {
+  console.error(
+    'Missing OLD_DATABASE_URI and/or NEW_DATABASE_URI.\n' +
+      'Set them in migrate.env and run: node --env-file=migrate.env migrate-db.mjs',
+  )
+  process.exit(1)
+}
 
 // Insert order: parents before children (respects FK constraints)
 const TABLE_ORDER = [

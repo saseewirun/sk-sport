@@ -1,4 +1,6 @@
-export const dynamic = 'force-dynamic'
+// Static-first: prerender at build and refresh via ISR (time-based) plus
+// on-demand revalidation triggered by Payload content changes.
+export const revalidate = 3600
 
 import { getHomeGlobal } from '@/data'
 import { getContactHeroGlobal } from '@/data/contactHero'

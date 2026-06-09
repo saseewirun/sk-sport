@@ -32,6 +32,11 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# real secret env files — NEVER commit these (use .env.example as the template)
+vercel.env.local
+migrate.env
+.env.production
+
 # vercel
 .vercel
 
