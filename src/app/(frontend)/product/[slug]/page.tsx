@@ -6,6 +6,18 @@ import type { Product, GalleryMedia } from '@/payload-types'
 import AddToCartButton from '@/components/product/addToCartButton'
 import AddToQuoteButton from '@/components/product/addToQuoteButton'
 import { CTAFooter } from '@/components/layout'
+import { getAllProducts } from '@/data/product'
+
+// Static-first: prerender known products at build, refresh via ISR, and render
+// any newly-added slug on demand (dynamicParams defaults to true).
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const products = await getAllProducts()
+  return products
+    .filter((p): p is typeof p & { slug: string } => Boolean(p.slug))
+    .map((p) => ({ slug: p.slug }))
+}
 
 const DETAIL_TITLE_MIN = 32
 const DETAIL_TITLE_MAX = 96

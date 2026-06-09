@@ -8,6 +8,9 @@ import AboutFounder from '@/components/about/aboutFounder'
 import AboutVideoSection from '@/components/about/aboutVideoSection'
 import type { About as AboutType, AboutHero as AboutHeroType, HeroMedia } from '@/payload-types'
 
+// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
+export const revalidate = 3600
+
 function clampInt(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)))
 }

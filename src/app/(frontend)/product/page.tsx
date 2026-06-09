@@ -5,6 +5,9 @@ import { ProductClient } from '@/components/product/productClient'
 import { ProductHero } from '@/components/hero/productHero'
 import type { GalleryMedia, HeroMedia, Product } from '@/payload-types'
 
+// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
+export const revalidate = 3600
+
 function resolveImageUrl(image: Product['image']): string {
   if (!image || typeof image === 'string') return ''
   return (image as GalleryMedia).url ?? ''
