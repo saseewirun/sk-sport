@@ -13,6 +13,17 @@ import { getPortfolioArticles } from '@/data/portfolio'
 import { getServicesHeroGlobal } from '@/data/servicesHero'
 import type { Service, ServiceMedia, GalleryMedia } from '@/payload-types'
 
+// Static-first: prerender known services at build, refresh via ISR, and render
+// any newly-added slug on demand (dynamicParams defaults to true).
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const services = await getAllServices()
+  return services
+    .filter((s): s is typeof s & { slug: string } => Boolean(s.slug))
+    .map((s) => ({ slug: s.slug }))
+}
+
 const INTEGRATED_SPORTS_INSTALLATION_SLUG = 'integrated-sports-installation'
 const SPORTS_VISION_TRAINING_SLUG = 'sports-vision-training'
 

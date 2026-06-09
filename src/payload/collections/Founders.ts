@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAfterChange, revalidateAfterDelete } from '@/payload/hooks/revalidate'
 
 function slugify(name: string): string {
   const s = name
@@ -103,5 +104,7 @@ export const Founders: CollectionConfig = {
         return data
       },
     ],
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
 }

@@ -7,6 +7,17 @@ import { getPortfolioArticleBySlug, getPortfolioArticles } from '@/data/portfoli
 import { getPortfolioHeroGlobal } from '@/data/portfolioHero'
 import type { GalleryMedia } from '@/payload-types'
 
+// Static-first: prerender known articles at build, refresh via ISR, and render
+// any newly-added slug on demand (dynamicParams defaults to true).
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const articles = await getPortfolioArticles()
+  return articles
+    .filter((a): a is typeof a & { slug: string } => Boolean(a.slug))
+    .map((a) => ({ slug: a.slug }))
+}
+
 function resolveMediaUrl(media: string | GalleryMedia | null | undefined): string {
   if (!media || typeof media === 'string') return ''
   return media.url ?? ''

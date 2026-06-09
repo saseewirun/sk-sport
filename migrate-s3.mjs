@@ -180,7 +180,7 @@ async function migrate() {
     console.log(
       `\n⚠️  ${renamed} file(s) were renamed to remove non-ASCII characters.\n` +
         '   Mapping written to s3-key-remap.json. Update the matching media rows\n' +
-        "   (filename / url columns) in the database so the CMS points at the new keys.",
+        '   (filename / url columns) in the database so the CMS points at the new keys.',
     )
   }
 }
