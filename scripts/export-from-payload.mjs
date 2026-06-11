@@ -22,10 +22,10 @@
  */
 
 import { mkdir, writeFile } from 'fs/promises'
-import { createWriteStream, existsSync } from 'fs'
-import { pipeline } from 'stream/promises'
+import { existsSync } from 'fs'
 import path from 'path'
 import { getPayload } from 'payload'
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import config from '@payload-config'
 
 const ROOT = process.cwd()
@@ -54,17 +54,55 @@ async function writeJson(file, data) {
   await writeFile(file, JSON.stringify(data, null, 2) + '\n', 'utf8')
 }
 
-/** Download a single URL to dest (skips if already present). Best-effort. */
-async function downloadTo(url, dest) {
-  if (!url) return { skipped: 'no-url' }
+/** S3 client from the same env the app uses — most reliable way to pull files. */
+const s3 =
+  process.env.S3_ENDPOINT && process.env.S3_ACCESS_KEY_ID
+    ? new S3Client({
+        region: process.env.S3_REGION || 'us-east-1',
+        endpoint: process.env.S3_ENDPOINT,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        forcePathStyle: true,
+      })
+    : null
+const BUCKET = process.env.S3_BUCKET || 'payload-media'
+
+/**
+ * Download one media file to dest (skips if already present).
+ * Strategy: straight from S3 by key `<prefix>/<filename>` (works no matter how
+ * Payload formats doc.url); falls back to HTTP fetch when the url is absolute.
+ */
+async function downloadMedia({ prefix, filename, url }, dest) {
   if (existsSync(dest)) return { skipped: 'exists' }
   await ensureDir(path.dirname(dest))
-  const res = await fetch(url)
-  if (!res.ok || !res.body) {
-    return { error: `HTTP ${res.status}` }
+
+  if (s3 && filename) {
+    try {
+      const res = await s3.send(
+        new GetObjectCommand({ Bucket: BUCKET, Key: `${prefix}/${filename}` }),
+      )
+      const bytes = await res.Body.transformToByteArray()
+      await writeFile(dest, Buffer.from(bytes))
+      return { ok: true }
+    } catch (s3err) {
+      // fall through to HTTP fetch below
+      if (!url || !/^https?:\/\//.test(url)) {
+        return { error: `S3: ${s3err.message}` }
+      }
+    }
   }
-  await pipeline(res.body, createWriteStream(dest))
-  return { ok: true }
+
+  if (url && /^https?:\/\//.test(url)) {
+    const res = await fetch(url)
+    if (!res.ok) return { error: `HTTP ${res.status}` }
+    const buf = Buffer.from(await res.arrayBuffer())
+    await writeFile(dest, buf)
+    return { ok: true }
+  }
+
+  return { error: 'no S3 access and url is not absolute' }
 }
 
 async function main() {
@@ -126,14 +164,17 @@ async function main() {
     const docs = collectionDocs[slug]
     if (!docs?.length) continue
     for (const doc of docs) {
-      const filename = doc.filename || (doc.url ? path.basename(new URL(doc.url).pathname) : null)
-      if (!doc.url || !filename) {
+      const filename = doc.filename
+      if (!filename) {
         manifest.media.skipped++
         continue
       }
       const dest = path.join(UPLOADS_DIR, slug, filename)
       try {
-        const r = await downloadTo(doc.url, dest)
+        const r = await downloadMedia(
+          { prefix: doc.prefix || slug, filename, url: doc.url },
+          dest,
+        )
         if (r.ok) {
           manifest.media.downloaded++
           log(`  ✓ ${slug}/${filename}`)
