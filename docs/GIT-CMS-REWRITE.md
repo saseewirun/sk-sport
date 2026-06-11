@@ -27,19 +27,20 @@ Database / Supabase             → ❌ ตัดทิ้งถาวร (ไ�
 
 ## ⚠️ เงื่อนไขลูกค้า ↔ วิธีรับประกัน
 
-| เงื่อนไข | วิธีทำให้สำเร็จ |
-|---|---|
-| 1. ทุกหน้าต้องอยู่ครบ | ใช้ component/หน้าตา UI เดิมทั้งหมด เปลี่ยนแค่ "แหล่งข้อมูล" จาก Payload → ไฟล์ |
-| 2. Admin แก้รูป/ข้อความ/ขนาดฟอนต์ได้ | custom admin map ทุก field เดิม (รวม `*FontSize`) → เขียนกลับเป็นไฟล์ผ่าน GitHub API |
-| 3. ประวัติออเดอร์ไม่ต้องใช้ DB | serverless function (Cloudflare) รับฟอร์ม → commit `orders/<id>.json` + สลิปเข้า repo + ส่งอีเมล |
-| 4. ข้อมูลเดิมห้ามหาย | **`scripts/export-from-payload.mjs`** ดึงทุกอย่างออกจาก Supabase เป็นไฟล์ก่อน (ทำแล้ว ↓) |
-| 5. UI เหมือนเดิม | ไม่แตะ component หน้าตา/CSS/Tailwind — แก้เฉพาะ data layer |
+| เงื่อนไข                             | วิธีทำให้สำเร็จ                                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| 1. ทุกหน้าต้องอยู่ครบ                | ใช้ component/หน้าตา UI เดิมทั้งหมด เปลี่ยนแค่ "แหล่งข้อมูล" จาก Payload → ไฟล์                  |
+| 2. Admin แก้รูป/ข้อความ/ขนาดฟอนต์ได้ | custom admin map ทุก field เดิม (รวม `*FontSize`) → เขียนกลับเป็นไฟล์ผ่าน GitHub API             |
+| 3. ประวัติออเดอร์ไม่ต้องใช้ DB       | serverless function (Cloudflare) รับฟอร์ม → commit `orders/<id>.json` + สลิปเข้า repo + ส่งอีเมล |
+| 4. ข้อมูลเดิมห้ามหาย                 | **`scripts/export-from-payload.mjs`** ดึงทุกอย่างออกจาก Supabase เป็นไฟล์ก่อน (ทำแล้ว ↓)         |
+| 5. UI เหมือนเดิม                     | ไม่แตะ component หน้าตา/CSS/Tailwind — แก้เฉพาะ data layer                                       |
 
 ---
 
 ## ✅ ทำเสร็จแล้ว (commit บน branch นี้)
 
 ### 0. File-based content layer — **ทำงานแล้ว build ผ่านโดยไม่มี DB** ✓
+
 - `src/lib/contentStore.ts` — ตัวอ่าน `content/*.json` + แปลง media URL เป็น `/uploads/...` อัตโนมัติ
 - `src/data/*` ทั้ง 16 functions ถูก re-implement ให้อ่านไฟล์แทน Payload **โดย signature เดิมเป๊ะ**
   → ทุกหน้า UI ไม่ถูกแตะแม้แต่บรรทัดเดียว (เงื่อนไข "UI เหมือนเดิม")
@@ -51,17 +52,21 @@ Database / Supabase             → ❌ ตัดทิ้งถาวร (ไ�
   จะถอดออกในขั้นตอนท้ายหลัง custom admin เสร็จ
 
 ### 1. `scripts/export-from-payload.mjs` — ตัวกันข้อมูลหาย (เสาหลัก)
+
 อ่านอย่างเดียว (ไม่แตะ Supabase) → ดึงออกมาเป็นไฟล์:
+
 - ทุก **global** → `content/globals/<slug>.json`
 - ทุก **collection** → `content/collections/<slug>.json` (เอกสารเต็ม)
 - ทุก **media** → ดาวน์โหลดลง `public/uploads/<prefix>/<filename>`
 - manifest สรุปจำนวน → `content/_export-manifest.json`
 
 **วิธีรัน (ฝั่งที่มีค่า Supabase จริง):**
+
 ```bash
 cp .env.example .env          # ใส่ DATABASE_URI / PAYLOAD_SECRET / S3_* จริง
 npx payload run scripts/export-from-payload.mjs
 ```
+
 > รันซ้ำได้ ปลอดภัย — ไม่ลบ ไม่เขียนอะไรกลับเข้า DB/S3
 
 ---
@@ -75,7 +80,7 @@ npx payload run scripts/export-from-payload.mjs
 2. **File-based content layer** — เขียน `src/content/` แทน `src/data/*` (เดิมเรียก getPayload)
    ให้อ่านจากไฟล์ JSON ที่ export มา; เก็บ type จาก `payload-types.ts` ไว้ใช้ต่อได้
 3. **ปรับหน้า public** ทุกหน้า ให้เรียก loader ใหม่แทน Payload (UI เดิม ไม่แตะ)
-   + `output: 'export'` ใน next.config + `generateStaticParams` ทุก `[slug]`
+   - `output: 'export'` ใน next.config + `generateStaticParams` ทุก `[slug]`
 4. **Custom admin** ที่ `/admin` (เขียนเอง):
    - หน้า login (GitHub OAuth / fine-grained PAT)
    - ฟอร์มแก้ทุก collection/global ตาม schema เดิม (รวมช่องขนาดฟอนต์)
@@ -84,12 +89,13 @@ npx payload run scripts/export-from-payload.mjs
    - `POST /api/checkout` & `/api/quote` → เขียน `orders/YYYY/<id>.json` + สลิป + ส่งอีเมล (Resend)
    - หน้า admin ดูประวัติออเดอร์ (อ่านไฟล์ `orders/`)
 6. **Cloudflare Pages setup** — build command, R2 (ถ้าใช้), env, custom domain
-   + ส่ง ticket แก้ DNS apex→Cloudflare (รวมกับงาน remote ครั้งเดียว)
+   - ส่ง ticket แก้ DNS apex→Cloudflare (รวมกับงาน remote ครั้งเดียว)
 7. ทดสอบครบ (public, admin แก้/บันทึก, ออเดอร์) → ค่อยปิด Supabase
 
 ---
 
 ## ลำดับที่ปลอดภัย (กันข้อมูลหาย เป็นข้อ 0 เสมอ)
+
 1. **export ข้อมูลจริง + commit** `content/` + `public/uploads/` ← จุดที่ข้อมูลถูก "ล็อก" ไว้ในมือเรา
 2. ค่อยทำ content layer → หน้า public → admin → orders
 3. Supabase **ห้ามแตะ/ปิด** จนกว่าจะ verify เว็บใหม่ครบ
@@ -97,6 +103,7 @@ npx payload run scripts/export-from-payload.mjs
 ---
 
 ## ความจริงเรื่องเวลา
+
 งานนี้เป็น rewrite หลาย session ไม่ใช่ครึ่งวัน ส่วนที่ "ทำได้โดยไม่ต้องรอข้อมูล" คือ
 export script (เสร็จแล้ว) + แผนนี้ ส่วนที่เหลือต้องเริ่มเมื่อมีไฟล์ export จริง เพื่อไม่ให้
 เดา schema ผิดแล้วกระทบเงื่อนไข "UI เหมือนเดิม / ข้อมูลครบ"

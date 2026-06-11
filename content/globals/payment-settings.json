@@ -1,13 +1,14 @@
 {
-  "id": "sample-0027",
+  "id": "92767221-9697-45e8-8870-7818b9fb55ca",
   "isEnabled": true,
-  "orderNotificationEmail": null,
-  "bankName": "ธนาคารตัวอย่าง",
-  "accountName": "SK Sport Trading (ตัวอย่าง)",
-  "accountNumber": "000-0-00000-0",
-  "branch": null,
-  "paymentInstructions": "โอนแล้วแนบสลิปในขั้นตอนถัดไป (ข้อความตัวอย่าง)",
+  "orderNotificationEmail": "sprouting42@gmail.com",
+  "bankName": "SCB",
+  "accountName": "SK Sport",
+  "accountNumber": "1234567890",
+  "branch": "Thanyaburi",
+  "paymentInstructions": null,
   "qrCodeImage": null,
-  "updatedAt": "2026-06-01T00:00:00.000Z",
-  "createdAt": "2026-05-01T00:00:00.000Z"
+  "updatedAt": "2026-04-25T11:24:18.540Z",
+  "createdAt": "2026-04-25T10:29:19.853Z",
+  "globalType": "payment-settings"
 }

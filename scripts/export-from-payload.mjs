@@ -115,7 +115,26 @@ async function main() {
   }
 
   log('Connecting to Payload (read-only export)…')
-  const payload = await getPayload({ config })
+  process.on('exit', (code) => {
+    // last-resort visibility when something calls process.exit() silently
+    console.error(`[export] process exiting with code ${code}`)
+  })
+  process.on('unhandledRejection', (r) => {
+    console.error('UNHANDLED REJECTION:', r)
+    process.exit(1)
+  })
+  process.on('uncaughtException', (e) => {
+    console.error('UNCAUGHT EXCEPTION:', e)
+    process.exit(1)
+  })
+  let payload
+  try {
+    payload = await getPayload({ config })
+    log('✓ Payload initialized')
+  } catch (err) {
+    console.error('getPayload FAILED:', err)
+    process.exit(1)
+  }
 
   const cfg = await config
   const collectionSlugs = cfg.collections.map((c) => c.slug)
@@ -147,7 +166,12 @@ async function main() {
   const collectionDocs = {}
   for (const slug of collectionSlugs) {
     try {
-      const { docs } = await payload.find({ collection: slug, depth: 1, limit: 0, pagination: false })
+      const { docs } = await payload.find({
+        collection: slug,
+        depth: 1,
+        limit: 0,
+        pagination: false,
+      })
       collectionDocs[slug] = docs
       await writeJson(path.join(CONTENT_DIR, 'collections', `${slug}.json`), docs)
       manifest.collections[slug] = docs.length
@@ -171,10 +195,7 @@ async function main() {
       }
       const dest = path.join(UPLOADS_DIR, slug, filename)
       try {
-        const r = await downloadMedia(
-          { prefix: doc.prefix || slug, filename, url: doc.url },
-          dest,
-        )
+        const r = await downloadMedia({ prefix: doc.prefix || slug, filename, url: doc.url }, dest)
         if (r.ok) {
           manifest.media.downloaded++
           log(`  ✓ ${slug}/${filename}`)
