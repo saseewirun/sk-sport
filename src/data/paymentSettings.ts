@@ -1,6 +1,5 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import type { GalleryMedia, PaymentSetting } from '@/payload-types'
+import { loadGlobal } from '@/lib/contentStore'
 
 /** Serializable display props for bank transfer UI (e.g. checkout client). */
 export type CheckoutPaymentSettings = {
@@ -13,7 +12,7 @@ export type CheckoutPaymentSettings = {
   qrCodeUrl: string | null
 }
 
-/** Safe baseline when the global is missing, DB is unavailable, or `findGlobal` throws. */
+/** Safe baseline when the global is missing or the content file is absent. */
 const DEFAULT_PAYMENT_SETTINGS: PaymentSetting = {
   id: '',
   isEnabled: true,
@@ -29,16 +28,12 @@ const DEFAULT_PAYMENT_SETTINGS: PaymentSetting = {
 }
 
 /**
- * Public payment (bank) settings from Payload. Uses `depth: 1` for `qrCodeImage` population.
+ * Public payment (bank) settings from the content store.
  * Never throws: merges with a safe default; on error returns a disabled fallback.
  */
 export async function getPaymentSettingsGlobal(): Promise<PaymentSetting> {
   try {
-    const payload = await getPayload({ config })
-    const data = await payload.findGlobal({
-      slug: 'payment-settings',
-      depth: 1,
-    })
+    const data = loadGlobal<PaymentSetting>('payment-settings')
     return {
       ...DEFAULT_PAYMENT_SETTINGS,
       ...data,

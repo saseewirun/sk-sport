@@ -1,0 +1,26 @@
+{
+  "id": "sample-0022",
+  "heroTitle": "Frequently Asked Questions",
+  "heroSubtitle": "คำถามที่พบบ่อย (ตัวอย่าง)",
+  "heroTitleFontSize": null,
+  "heroSubtitleFontSize": null,
+  "questionFontSize": null,
+  "answerFontSize": null,
+  "bottomCtaTitleFontSize": null,
+  "bottomCtaBodyFontSize": null,
+  "bottomCtaBody": null,
+  "faqItems": [
+    {
+      "question": "นี่คือข้อมูลตัวอย่างใช่ไหม?",
+      "answer": "ใช่ — ข้อมูลจริงจะถูกแทนที่เมื่อรัน export จากฐานข้อมูลลูกค้า",
+      "id": "sample-0023"
+    },
+    {
+      "question": "รับติดตั้งอุปกรณ์กีฬาประเภทใดบ้าง?",
+      "answer": "ตัวอย่างคำตอบ: ฟิตเนส ยิมนาสติก สนามกีฬาในร่ม และอื่นๆ",
+      "id": "sample-0024"
+    }
+  ],
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

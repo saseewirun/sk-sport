@@ -37,7 +37,18 @@ Database / Supabase             → ❌ ตัดทิ้งถาวร (ไ�
 
 ---
 
-## ✅ ทำเสร็จแล้วใน session นี้ (commit บน branch นี้)
+## ✅ ทำเสร็จแล้ว (commit บน branch นี้)
+
+### 0. File-based content layer — **ทำงานแล้ว build ผ่านโดยไม่มี DB** ✓
+- `src/lib/contentStore.ts` — ตัวอ่าน `content/*.json` + แปลง media URL เป็น `/uploads/...` อัตโนมัติ
+- `src/data/*` ทั้ง 16 functions ถูก re-implement ให้อ่านไฟล์แทน Payload **โดย signature เดิมเป๊ะ**
+  → ทุกหน้า UI ไม่ถูกแตะแม้แต่บรรทัดเดียว (เงื่อนไข "UI เหมือนเดิม")
+- `scripts/generate-sample-content.mjs` — สร้าง content ตัวอย่างตรง schema (ใช้พัฒนา/ทดสอบ
+  ระหว่างรอข้อมูลจริง; ข้อมูลจริงจาก export จะเขียนทับ)
+- **ยืนยันแล้ว: `next build` ผ่านเต็มรูปแบบโดยไม่มี database** — public ทุกหน้าเป็น
+  Static/SSG (36 หน้า prerender), เหลือ dynamic แค่ /admin + /api ของ Payload เดิม
+- Payload ยังอยู่ในโปรเจกต์ชั่วคราว (เพื่อให้ export script รันได้ + /admin เดิมใช้ได้เมื่อมี DB)
+  จะถอดออกในขั้นตอนท้ายหลัง custom admin เสร็จ
 
 ### 1. `scripts/export-from-payload.mjs` — ตัวกันข้อมูลหาย (เสาหลัก)
 อ่านอย่างเดียว (ไม่แตะ Supabase) → ดึงออกมาเป็นไฟล์:

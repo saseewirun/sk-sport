@@ -1,0 +1,27 @@
+{
+  "id": "sample-0014",
+  "heroTitle": "About Us (ตัวอย่าง)",
+  "heroSubtitle": "รู้จักทีมงานและเรื่องราวของเรา",
+  "heroTitleFontSize": null,
+  "heroSubtitleFontSize": null,
+  "heroMedia": [
+    {
+      "id": "sample-0015",
+      "alt": "About hero",
+      "prefix": null,
+      "updatedAt": "2026-06-01T00:00:00.000Z",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "url": "/About Company BG.png",
+      "thumbnailURL": null,
+      "filename": "About Company BG.png",
+      "mimeType": "image/png",
+      "filesize": null,
+      "width": null,
+      "height": null,
+      "focalX": null,
+      "focalY": null
+    }
+  ],
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

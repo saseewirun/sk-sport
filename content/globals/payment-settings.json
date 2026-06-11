@@ -1,0 +1,13 @@
+{
+  "id": "sample-0027",
+  "isEnabled": true,
+  "orderNotificationEmail": null,
+  "bankName": "ธนาคารตัวอย่าง",
+  "accountName": "SK Sport Trading (ตัวอย่าง)",
+  "accountNumber": "000-0-00000-0",
+  "branch": null,
+  "paymentInstructions": "โอนแล้วแนบสลิปในขั้นตอนถัดไป (ข้อความตัวอย่าง)",
+  "qrCodeImage": null,
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

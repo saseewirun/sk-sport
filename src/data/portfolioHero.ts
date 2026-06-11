@@ -1,11 +1,6 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import type { PortfolioHero } from '@/payload-types'
+import { loadGlobal } from '@/lib/contentStore'
 
 export const getPortfolioHeroGlobal = async (): Promise<PortfolioHero> => {
-  const payload = await getPayload({ config })
-  return payload.findGlobal({
-    slug: 'portfolio-hero',
-    depth: 1,
-  })
+  return loadGlobal<PortfolioHero>('portfolio-hero')
 }

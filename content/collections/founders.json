@@ -1,0 +1,108 @@
+[
+  {
+    "id": "sample-0071",
+    "name": "Saseewirun (ตัวอย่าง)",
+    "slug": "saseewirun-sample",
+    "role": "Founder",
+    "excerpt": "ข้อความแนะนำสั้นของ Saseewirun (ตัวอย่าง) (ตัวอย่าง)",
+    "description": "ประวัติฉบับเต็มของ Saseewirun (ตัวอย่าง) (ตัวอย่าง) — ข้อมูลจริงมาจาก export",
+    "quote": "Push beyond limits. (ตัวอย่าง)",
+    "aboutImage": {
+      "relationTo": "gallery-media",
+      "value": {
+        "id": "sample-0072",
+        "alt": "Saseewirun (ตัวอย่าง)",
+        "prefix": null,
+        "updatedAt": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-01T00:00:00.000Z",
+        "url": "/gallery-1.png",
+        "thumbnailURL": null,
+        "filename": "gallery-1.png",
+        "mimeType": "image/png",
+        "filesize": null,
+        "width": null,
+        "height": null,
+        "focalX": null,
+        "focalY": null
+      }
+    },
+    "gallery": [
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "sample-0073",
+          "alt": "Saseewirun (ตัวอย่าง)",
+          "prefix": null,
+          "updatedAt": "2026-06-01T00:00:00.000Z",
+          "createdAt": "2026-06-01T00:00:00.000Z",
+          "url": "/gallery-1.png",
+          "thumbnailURL": null,
+          "filename": "gallery-1.png",
+          "mimeType": "image/png",
+          "filesize": null,
+          "width": null,
+          "height": null,
+          "focalX": null,
+          "focalY": null
+        }
+      }
+    ],
+    "sortOrder": 0,
+    "isVisible": true,
+    "updatedAt": "2026-06-01T00:00:00.000Z",
+    "createdAt": "2026-05-01T00:00:00.000Z"
+  },
+  {
+    "id": "sample-0074",
+    "name": "Nattanat (ตัวอย่าง)",
+    "slug": "nattanat-sample",
+    "role": "Team Member",
+    "excerpt": "ข้อความแนะนำสั้นของ Nattanat (ตัวอย่าง) (ตัวอย่าง)",
+    "description": "ประวัติฉบับเต็มของ Nattanat (ตัวอย่าง) (ตัวอย่าง) — ข้อมูลจริงมาจาก export",
+    "quote": "Push beyond limits. (ตัวอย่าง)",
+    "aboutImage": {
+      "relationTo": "gallery-media",
+      "value": {
+        "id": "sample-0075",
+        "alt": "Nattanat (ตัวอย่าง)",
+        "prefix": null,
+        "updatedAt": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-01T00:00:00.000Z",
+        "url": "/gallery-2.png",
+        "thumbnailURL": null,
+        "filename": "gallery-2.png",
+        "mimeType": "image/png",
+        "filesize": null,
+        "width": null,
+        "height": null,
+        "focalX": null,
+        "focalY": null
+      }
+    },
+    "gallery": [
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "sample-0076",
+          "alt": "Nattanat (ตัวอย่าง)",
+          "prefix": null,
+          "updatedAt": "2026-06-01T00:00:00.000Z",
+          "createdAt": "2026-06-01T00:00:00.000Z",
+          "url": "/gallery-2.png",
+          "thumbnailURL": null,
+          "filename": "gallery-2.png",
+          "mimeType": "image/png",
+          "filesize": null,
+          "width": null,
+          "height": null,
+          "focalX": null,
+          "focalY": null
+        }
+      }
+    ],
+    "sortOrder": 1,
+    "isVisible": true,
+    "updatedAt": "2026-06-01T00:00:00.000Z",
+    "createdAt": "2026-05-01T00:00:00.000Z"
+  }
+]

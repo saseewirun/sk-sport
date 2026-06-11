@@ -1,0 +1,34 @@
+{
+  "id": "sample-0016",
+  "heroTitle": "Our Services (ตัวอย่าง)",
+  "heroSubtitle": "บริการติดตั้งอุปกรณ์กีฬาครบวงจร",
+  "heroTitleFontSize": null,
+  "heroSubtitleFontSize": null,
+  "serviceCardTitleFontSize": null,
+  "serviceCardBodyFontSize": null,
+  "detailHeroTitleFontSize": null,
+  "detailContentTitleFontSize": null,
+  "detailContentBodyFontSize": null,
+  "relatedHeadingFontSize": null,
+  "relatedItemTitleFontSize": null,
+  "heroMedia": [
+    {
+      "id": "sample-0017",
+      "alt": "Services hero",
+      "prefix": null,
+      "updatedAt": "2026-06-01T00:00:00.000Z",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "url": "/services-hero.png",
+      "thumbnailURL": null,
+      "filename": "services-hero.png",
+      "mimeType": "image/png",
+      "filesize": null,
+      "width": null,
+      "height": null,
+      "focalX": null,
+      "focalY": null
+    }
+  ],
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

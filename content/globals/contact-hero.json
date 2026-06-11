@@ -1,0 +1,33 @@
+{
+  "id": "sample-0020",
+  "heroTitle": "Contact Us (ตัวอย่าง)",
+  "heroSubtitle": "ติดต่อทีมงานของเรา",
+  "heroTitleFontSize": null,
+  "heroSubtitleFontSize": null,
+  "contactSectionTitleFontSize": null,
+  "contactInfoTitleFontSize": null,
+  "contactInfoBodyFontSize": null,
+  "formLabelFontSize": null,
+  "formInputFontSize": null,
+  "googleMapEmbedUrl": null,
+  "heroMedia": [
+    {
+      "id": "sample-0021",
+      "alt": "Contact hero",
+      "prefix": null,
+      "updatedAt": "2026-06-01T00:00:00.000Z",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "url": "/Contact Section BG Desktop.png",
+      "thumbnailURL": null,
+      "filename": "Contact Section BG Desktop.png",
+      "mimeType": "image/png",
+      "filesize": null,
+      "width": null,
+      "height": null,
+      "focalX": null,
+      "focalY": null
+    }
+  ],
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

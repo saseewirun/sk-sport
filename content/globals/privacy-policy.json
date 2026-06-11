@@ -1,0 +1,29 @@
+{
+  "id": "sample-0025",
+  "heroTitle": "Privacy Policy",
+  "lastUpdated": "June 2026",
+  "content": {
+    "root": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "version": 1,
+          "children": [
+            {
+              "type": "text",
+              "text": "ข้อความตัวอย่างนโยบายความเป็นส่วนตัว — ข้อมูลจริงมาจาก export",
+              "version": 1
+            }
+          ]
+        }
+      ],
+      "direction": "ltr",
+      "format": "",
+      "indent": 0,
+      "version": 1
+    }
+  },
+  "updatedAt": "2026-06-01T00:00:00.000Z",
+  "createdAt": "2026-05-01T00:00:00.000Z"
+}

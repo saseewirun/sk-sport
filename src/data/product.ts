@@ -1,35 +1,15 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import type { Product } from '@/payload-types'
+import { byCreatedAtDesc, loadCollection } from '@/lib/contentStore'
 
-/** Returns full product docs including `mode` and `price` (depth 1 for `image`). */
+/** Returns full product docs including `mode` and `price` (image pre-populated in export). */
 export const getAllProducts = async (): Promise<Product[]> => {
-  const payload = await getPayload({ config })
-  const result = await payload.find({
-    collection: 'products',
-    depth: 1,
-    sort: '-createdAt',
-    limit: 0,
-  })
-
-  return result.docs
+  return loadCollection<Product>('products').sort(byCreatedAtDesc)
 }
 
 /** Resolves by slug with `mode`, `price`, and populated `image`. */
 export const getProductBySlug = async (slug: string): Promise<Product | null> => {
-  const payload = await getPayload({ config })
-  const result = await payload.find({
-    collection: 'products',
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-    depth: 1,
-    limit: 1,
-  })
-
-  return result.docs[0] ?? null
+  const all = await getAllProducts()
+  return all.find((p) => p.slug === slug) ?? null
 }
 
 const normCategory = (c: string | null | undefined) => (c ?? '').trim().toLowerCase()
