@@ -12,6 +12,8 @@ export async function onRequestPost({ request, env }) {
     return json(400, { error: 'invalid body' })
   }
   if (typeof body?.password !== 'string' || body.password !== env.ADMIN_PASSWORD) {
+    // หน่วงตอบเมื่อรหัสผิด ลดความเร็วของการเดารหัสแบบ brute force
+    await new Promise((resolve) => setTimeout(resolve, 1000))
     return json(401, { error: 'รหัสผ่านไม่ถูกต้อง' })
   }
   return json(200, { ok: true }, { 'Set-Cookie': await sessionCookie(env) })

@@ -131,7 +131,8 @@ export async function onRequestPost({ request, env }) {
       env,
       `public/uploads/payment-slips/${slipName}`,
       bytesToBase64(slipBytes),
-      `ออเดอร์ใหม่: สลิปโอนเงินจาก ${customerName.trim()}`,
+      // [skip ci]: ไฟล์ออเดอร์/สลิปไม่กระทบหน้าเว็บ ไม่ต้อง rebuild
+      `ออเดอร์ใหม่: สลิปโอนเงินจาก ${customerName.trim()} [skip ci]`,
     )
 
     // 2) ออเดอร์ → orders/YYYY/<id>.json
@@ -155,7 +156,7 @@ export async function onRequestPost({ request, env }) {
       env,
       `orders/${year}/${orderId}.json`,
       utf8ToBase64(stringifyContent(order)),
-      `ออเดอร์ใหม่จาก ${customerName.trim()} ยอด ${subtotal.toLocaleString('th-TH')} บาท`,
+      `ออเดอร์ใหม่จาก ${customerName.trim()} ยอด ${subtotal.toLocaleString('th-TH')} บาท [skip ci]`,
     )
 
     // 3) อีเมลแจ้งร้าน + ยืนยันลูกค้า

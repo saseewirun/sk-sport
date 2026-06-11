@@ -102,7 +102,8 @@ export async function onRequestPost({ request, env }) {
       env,
       `orders/${createdAt.slice(0, 4)}/${quoteId}.json`,
       utf8ToBase64(stringifyContent(quote)),
-      `คำขอใบเสนอราคาใหม่จาก ${customerName.trim()}`,
+      // [skip ci]: ไฟล์คำขอไม่กระทบหน้าเว็บ ไม่ต้อง rebuild
+      `คำขอใบเสนอราคาใหม่จาก ${customerName.trim()} [skip ci]`,
     )
 
     const settings = await ghGetJson(env, 'content/globals/payment-settings.json').catch(() => null)

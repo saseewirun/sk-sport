@@ -44,7 +44,8 @@ export async function onRequestPost({ request, env }) {
       env,
       `contact-submissions/${createdAt.slice(0, 4)}/${id}.json`,
       utf8ToBase64(stringifyContent(submission)),
-      `ข้อความติดต่อใหม่จาก ${name.trim()}`,
+      // [skip ci]: ไฟล์ข้อความติดต่อไม่กระทบหน้าเว็บ ไม่ต้อง rebuild
+      `ข้อความติดต่อใหม่จาก ${name.trim()} [skip ci]`,
     )
 
     const settings = await ghGetJson(env, 'content/globals/payment-settings.json').catch(() => null)
