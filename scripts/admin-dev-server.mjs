@@ -194,6 +194,197 @@ async function collectOrders() {
   return rows
 }
 
+// ----------------------------------------------------------- public endpoints --
+
+function uniqueUploadName(originalName, fallbackExt) {
+  const lastDot = originalName.lastIndexOf('.')
+  const ext = (lastDot !== -1 ? originalName.slice(lastDot + 1) : fallbackExt).toLowerCase()
+  const base = (lastDot !== -1 ? originalName.slice(0, lastDot) : originalName)
+    .replace(/[^\x20-\x7E]/g, '')
+    .replace(/[^\w\s.-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase()
+    .slice(0, 60)
+  const unique = Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
+  return `${base || 'file'}-${unique}.${ext}`
+}
+
+async function writeOrderFile(order) {
+  const dir = path.join(ROOT, 'orders', order.createdAt.slice(0, 4))
+  await mkdir(dir, { recursive: true })
+  await writeFile(path.join(dir, `${order.id}.json`), stringifyContent(order), 'utf8')
+}
+
+async function loadProducts() {
+  return JSON.parse(await readFile(path.join(ROOT, 'content/collections/products.json'), 'utf8'))
+}
+
+/** mirror of functions/api/checkout.js against the local working tree */
+async function handleCheckout(req, res) {
+  const buf = await readBody(req)
+  // Node 18+ undici parses multipart for us via the fetch Request API
+  const form = await new Request('http://localhost/api/checkout', {
+    method: 'POST',
+    headers: { 'content-type': req.headers['content-type'] || '' },
+    body: buf,
+  }).formData()
+
+  const customerName = form.get('customerName')
+  const email = form.get('email')
+  const itemsRaw = form.get('items')
+  const slip = form.get('slip')
+  if (typeof customerName !== 'string' || !customerName.trim()) {
+    return send(res, 400, { success: false, error: 'Customer name is required.' })
+  }
+  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return send(res, 400, { success: false, error: 'A valid email is required.' })
+  }
+  if (!slip || typeof slip === 'string' || slip.size < 1) {
+    return send(res, 400, { success: false, error: 'A payment slip file is required.' })
+  }
+  let items
+  try {
+    items = JSON.parse(itemsRaw)
+  } catch {
+    items = null
+  }
+  if (!Array.isArray(items) || items.length === 0) {
+    return send(res, 400, { success: false, error: 'Order items (items JSON) are required.' })
+  }
+
+  const products = await loadProducts()
+  const lineItems = []
+  for (const line of items) {
+    const product = products.find((p) => p.id === line.id || p.slug === line.slug)
+    if (!product || product.mode !== 'buy' || typeof product.price !== 'number') {
+      return send(res, 400, {
+        success: false,
+        error: 'One or more products are not available for purchase.',
+      })
+    }
+    lineItems.push({
+      productId: product.id,
+      slug: product.slug,
+      title: product.title,
+      quantity: line.quantity,
+      unitPrice: product.price,
+      lineTotal: product.price * line.quantity,
+    })
+  }
+  const subtotal = lineItems.reduce((s, li) => s + li.lineTotal, 0)
+
+  const slipName = uniqueUploadName(slip.name || 'payment-slip', 'jpg')
+  const slipDir = path.join(ROOT, 'public', 'uploads', 'payment-slips')
+  await mkdir(slipDir, { recursive: true })
+  await writeFile(path.join(slipDir, slipName), Buffer.from(await slip.arrayBuffer()))
+
+  const order = {
+    id: crypto.randomUUID(),
+    kind: 'order',
+    createdAt: new Date().toISOString(),
+    customerName: customerName.trim(),
+    email: email.trim(),
+    phone: String(form.get('phone') || '').trim() || undefined,
+    address: String(form.get('address') || '').trim() || undefined,
+    customerNote: String(form.get('customerNote') || '').trim() || undefined,
+    status: 'awaiting_verification',
+    paymentMethod: 'bank_transfer',
+    currency: 'THB',
+    subtotal,
+    slipUrl: `/uploads/payment-slips/${slipName}`,
+    lineItems,
+  }
+  await writeOrderFile(order)
+  console.log(`[checkout] order ${order.id} — ฿${subtotal} (email skipped in dev)`)
+  return send(res, 200, { success: true, orderId: order.id })
+}
+
+/** mirror of functions/api/quote-request.js */
+async function handleQuoteRequest(req, res) {
+  const body = await readJsonBody(req).catch(() => null)
+  if (!body) return send(res, 400, { success: false, error: 'Request body must be valid JSON.' })
+  const { customerName, email, items } = body
+  if (typeof customerName !== 'string' || !customerName.trim()) {
+    return send(res, 400, { success: false, error: 'Customer name is required.' })
+  }
+  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return send(res, 400, { success: false, error: 'A valid email is required.' })
+  }
+  if (!Array.isArray(items) || items.length === 0) {
+    return send(res, 400, {
+      success: false,
+      error: 'Items must be a non-empty array of { id, slug, quantity }.',
+    })
+  }
+  const products = await loadProducts()
+  const lineItems = []
+  for (const line of items) {
+    const product = products.find((p) => p.id === line.id || p.slug === line.slug)
+    if (!product || product.mode !== 'quote') {
+      return send(res, 400, {
+        success: false,
+        error: 'One or more products are not available for quote request.',
+      })
+    }
+    lineItems.push({
+      productId: String(product.id),
+      slug: product.slug,
+      title: product.title,
+      category: product.category || undefined,
+      quantity: line.quantity,
+    })
+  }
+  const quote = {
+    id: crypto.randomUUID(),
+    kind: 'quote',
+    createdAt: new Date().toISOString(),
+    customerName: customerName.trim(),
+    email: email.trim(),
+    phone: typeof body.phone === 'string' ? body.phone.trim() || undefined : undefined,
+    companyName:
+      typeof body.companyName === 'string' ? body.companyName.trim() || undefined : undefined,
+    message: typeof body.message === 'string' ? body.message.trim() || undefined : undefined,
+    status: 'new',
+    lineItems,
+  }
+  await writeOrderFile(quote)
+  console.log(`[quote] ${quote.id} from ${quote.customerName} (email skipped in dev)`)
+  return send(res, 200, { success: true, quoteRequestId: quote.id })
+}
+
+/** mirror of functions/api/contact.js */
+async function handleContact(req, res) {
+  const body = await readJsonBody(req).catch(() => null)
+  if (!body) return send(res, 400, { success: false, error: 'Request body must be valid JSON.' })
+  const { name, email, detail } = body
+  if (
+    typeof name !== 'string' ||
+    !name.trim() ||
+    typeof detail !== 'string' ||
+    !detail.trim() ||
+    typeof email !== 'string' ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  ) {
+    return send(res, 400, { success: false, error: 'name, email and detail are required.' })
+  }
+  const submission = {
+    id: crypto.randomUUID(),
+    createdAt: new Date().toISOString(),
+    name: name.trim(),
+    email: email.trim(),
+    phoneNumber:
+      typeof body.phoneNumber === 'string' ? body.phoneNumber.trim() || undefined : undefined,
+    detail: detail.trim(),
+  }
+  const dir = path.join(ROOT, 'contact-submissions', submission.createdAt.slice(0, 4))
+  await mkdir(dir, { recursive: true })
+  await writeFile(path.join(dir, `${submission.id}.json`), stringifyContent(submission), 'utf8')
+  console.log(`[contact] message from ${submission.name} (email skipped in dev)`)
+  return send(res, 200, { success: true })
+}
+
 // ------------------------------------------------------------------- server --
 
 const server = createServer(async (req, res) => {
@@ -263,6 +454,11 @@ const server = createServer(async (req, res) => {
     if (route === 'GET /api/admin/orders') {
       return send(res, 200, { orders: await collectOrders() })
     }
+
+    // public endpoints (no session) — mirror functions/api/*.js
+    if (route === 'POST /api/checkout') return await handleCheckout(req, res)
+    if (route === 'POST /api/quote-request') return await handleQuoteRequest(req, res)
+    if (route === 'POST /api/contact') return await handleContact(req, res)
 
     return send(res, 404, { error: `no route: ${route}` })
   } catch (err) {
