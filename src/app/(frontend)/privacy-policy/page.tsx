@@ -2,9 +2,6 @@ import { getPrivacyPolicyGlobal } from '@/data/privacyPolicy'
 import { CmsRichText } from '@/components/common/cmsRichText'
 import type { SerializedEditorState } from 'lexical'
 
-// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
-export const revalidate = 3600
-
 const DEFAULT_HERO_TITLE = 'Privacy Policy'
 
 export default async function PrivacyPolicyPage() {

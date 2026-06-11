@@ -5,9 +5,6 @@ import { getPortfolioArticles } from '@/data/portfolio'
 import { getPortfolioHeroGlobal } from '@/data/portfolioHero'
 import type { PortfolioArticle, GalleryMedia, HeroMedia } from '@/payload-types'
 
-// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
-export const revalidate = 3600
-
 function resolveImageUrl(sectionImage: PortfolioArticle['sectionImage']): string | undefined {
   if (!sectionImage || typeof sectionImage === 'string') return undefined
   return (sectionImage as GalleryMedia).url ?? undefined

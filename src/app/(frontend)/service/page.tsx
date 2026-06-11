@@ -6,9 +6,6 @@ import { getAllServices } from '@/data/service'
 import { getServicesHeroGlobal } from '@/data/servicesHero'
 import type { Service, ServiceMedia, HeroMedia } from '@/payload-types'
 
-// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
-export const revalidate = 3600
-
 function resolveHeroImageUrl(hero: Service['hero']): string {
   if (!hero || typeof hero === 'string') return ''
   return (hero as ServiceMedia).url ?? ''

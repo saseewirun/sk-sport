@@ -8,9 +8,8 @@ import AddToQuoteButton from '@/components/product/addToQuoteButton'
 import { CTAFooter } from '@/components/layout'
 import { getAllProducts } from '@/data/product'
 
-// Static-first: prerender known products at build, refresh via ISR, and render
-// any newly-added slug on demand (dynamicParams defaults to true).
-export const revalidate = 3600
+// Static export: every known slug is prerendered at build; unknown slugs 404.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const products = await getAllProducts()

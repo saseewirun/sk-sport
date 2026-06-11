@@ -2,9 +2,6 @@ import Link from 'next/link'
 import { getFaqGlobal } from '@/data/faq'
 import type { Faq } from '@/payload-types'
 
-// Static-first: prerender at build, refresh via ISR + on-demand revalidation.
-export const revalidate = 3600
-
 const DEFAULT_HERO_TITLE = 'Frequently Asked Questions'
 const DEFAULT_HERO_SUBTITLE =
   'Find answers to the most common questions about our products, services, and processes.'

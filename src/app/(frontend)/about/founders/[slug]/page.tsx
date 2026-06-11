@@ -7,9 +7,8 @@ import { resolveFounderDetailImages } from '@/components/about/founderMedia'
 
 type PageProps = { params: Promise<{ slug: string }> }
 
-// Static-first: prerender known founders at build, refresh via ISR, and render
-// any newly-added slug on demand (dynamicParams defaults to true).
-export const revalidate = 3600
+// Static export: every known slug is prerendered at build; unknown slugs 404.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const founders = await getVisibleFounders()
