@@ -24,13 +24,39 @@ type AboutHero = {
 } & Record<string, unknown>
 
 type Highlight = { id?: string; value: string; label: string }
+type HistoryCard = { id?: string; title: string; description: string }
 type YoutubeVideo = { id?: string; title?: string | null; youtubeUrl: string }
+
+/** ค่าเริ่มต้นของการ์ดประวัติ — ตรงกับ INTRO_CARDS บนหน้าจริง เพื่อให้หน้าเว็บไม่เปลี่ยนจนกว่าจะแก้ */
+const DEFAULT_HISTORY_CARDS: HistoryCard[] = [
+  {
+    title: 'Authorized Global Brands',
+    description:
+      'Official distributor in Thailand for leading international sports science and equipment brands across gymnastics, athletics, basketball, outdoor fitness, and performance assessment.',
+  },
+  {
+    title: 'Founder-Led Experience',
+    description:
+      'Led by Dr. Sasiwiral Kaenchanhom, a former Thai national athlete with deep experience in elite sport, management, and performance-focused organizations.',
+  },
+  {
+    title: 'Science-Driven Expertise',
+    description:
+      'Built on sports science knowledge, practical field experience, and long-term partnerships with global manufacturers and trusted institutions.',
+  },
+  {
+    title: 'Beyond Equipment',
+    description:
+      'Part of the United Group network, with extended capabilities in sports tourism and international field-trip programs through United Discovery Co., Ltd.',
+  },
+]
 
 type AboutGlobal = {
   historySectionTitle?: string | null
   companyName?: string | null
   historyDescription?: string | null
   historyHighlights?: Highlight[] | null
+  historyCards?: HistoryCard[] | null
   missionTitle?: string | null
   missionDescription?: string | null
   visionTitle?: string | null
@@ -148,6 +174,11 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
   const [company, setCompany] = useState(data.companyName ?? '')
   const [desc, setDesc] = useState(data.historyDescription ?? '')
   const [highlights, setHighlights] = useState<Highlight[]>(data.historyHighlights ?? [])
+  const [cards, setCards] = useState<HistoryCard[]>(
+    data.historyCards && data.historyCards.length > 0
+      ? data.historyCards.map((c) => ({ title: c.title ?? '', description: c.description ?? '' }))
+      : DEFAULT_HISTORY_CARDS,
+  )
   const [sectionTitleFontSize, setSectionTitleFontSize] = useState(
     (data.sectionTitleFontSize as number | null) ?? 32,
   )
@@ -169,6 +200,7 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
           companyName: company || null,
           historyDescription: desc || null,
           historyHighlights: highlights,
+          historyCards: cards,
           sectionTitleFontSize,
           statNumberFontSize,
           statLabelFontSize,
@@ -183,6 +215,35 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
       />
       <TextField label="ชื่อบริษัท" value={company} onChange={setCompany} />
       <TextAreaField label="คำบรรยายประวัติบริษัท" value={desc} onChange={setDesc} rows={6} />
+      <div>
+        <p className="text-sm font-medium">การ์ดแนะนำ 4 ใบ</p>
+        <p className="mb-2 text-xs text-base-content/55">
+          การ์ด 4 ใบที่แสดงใต้หัวข้อ “About Us” บนหน้าจริง — แก้หัวข้อและเนื้อหาของแต่ละใบได้
+        </p>
+        <div className="flex flex-col gap-3">
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-3 rounded-lg border border-base-200 bg-base-50 p-3"
+            >
+              <p className="text-xs font-semibold text-base-content/60">การ์ดที่ {i + 1}</p>
+              <TextField
+                label="หัวข้อการ์ด"
+                value={card.title}
+                onChange={(v) => setCards(cards.map((c, j) => (i === j ? { ...c, title: v } : c)))}
+              />
+              <TextAreaField
+                label="เนื้อหาการ์ด"
+                value={card.description}
+                onChange={(v) =>
+                  setCards(cards.map((c, j) => (i === j ? { ...c, description: v } : c)))
+                }
+                rows={3}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
       <div>
         <p className="text-sm font-medium">กล่องสถิติ</p>
         <p className="mb-2 text-xs text-base-content/55">

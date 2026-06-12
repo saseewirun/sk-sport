@@ -1023,6 +1023,13 @@ export interface About {
         id?: string | null
       }[]
     | null
+  historyCards?:
+    | {
+        title?: string | null
+        description?: string | null
+        id?: string | null
+      }[]
+    | null
   missionTitle?: string | null
   missionDescription?: string | null
   visionTitle?: string | null
@@ -1476,6 +1483,13 @@ export interface AboutSelect<T extends boolean = true> {
     | {
         value?: T
         label?: T
+        id?: T
+      }
+  historyCards?:
+    | T
+    | {
+        title?: T
+        description?: T
         id?: T
       }
   missionTitle?: T

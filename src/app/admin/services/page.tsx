@@ -8,6 +8,7 @@ import { ImageListEditor } from '@/admin/components/ImageListEditor'
 import { ImageField } from '@/admin/components/ImageField'
 import { ItemList } from '@/admin/components/ItemList'
 import { useContentFile, LoadingOrError } from '@/admin/useContentFile'
+import { thaiSafeSlug, uniqueSlug } from '@/admin/slug'
 import { previewUrl, type MediaDoc } from '@/admin/media'
 
 const SERVICES_HERO = 'content/globals/services-hero.json'
@@ -152,19 +153,53 @@ function ServiceListCard({
     setServices((list) => list.map((s) => (s.id === id ? { ...s, ...next } : s)))
   }
 
+  function addService() {
+    const service: Service = {
+      id: crypto.randomUUID(),
+      title: '',
+      subtitle: '',
+      hero: null,
+      slug: '',
+      sections: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+    setServices([service, ...services])
+    setOpenId(service.id)
+  }
+
+  async function handleSave() {
+    // สร้างที่อยู่ลิงก์อัตโนมัติจากชื่อ (แปลงเป็น ASCII เสมอ) เฉพาะบริการที่ยังไม่มี
+    const finalized = services.map((s) => ({
+      ...s,
+      slug:
+        s.slug && s.slug.trim() !== ''
+          ? s.slug
+          : uniqueSlug(
+              thaiSafeSlug(s.title || 'service'),
+              services.map((x) => x.slug),
+            ),
+      updatedAt: new Date().toISOString(),
+    }))
+    setServices(finalized)
+    await save('แก้ไขบริการ: รายละเอียดบริการ', () => finalized)
+    await saveHero('แก้ไขบริการ: ขนาดตัวอักษรรายการบริการ', (latest) => ({
+      ...latest,
+      ...sizes,
+    }))
+  }
+
   return (
     <SectionCard
       order={2}
       title="รายการบริการ"
-      description="บริการทั้งหมดที่แสดงบนหน้า บริการ และการ์ดบริการบนหน้าแรก — กดชื่อเพื่อแก้ไขรายตัว"
-      onSave={async () => {
-        await save('แก้ไขบริการ: รายละเอียดบริการ', () => services)
-        await saveHero('แก้ไขบริการ: ขนาดตัวอักษรรายการบริการ', (latest) => ({
-          ...latest,
-          ...sizes,
-        }))
-      }}
+      description="บริการทั้งหมดที่แสดงบนหน้า บริการ และการ์ดบริการบนหน้าแรก — กดชื่อเพื่อแก้ไขรายตัว บริการใหม่ใช้ปุ่มบนสุด"
+      onSave={handleSave}
     >
+      <button type="button" className="btn btn-primary btn-sm w-fit" onClick={addService}>
+        + เพิ่มบริการใหม่
+      </button>
+
       <ul className="flex flex-col gap-2">
         {services.map((s) => (
           <li key={s.id} className="rounded-lg border border-base-200">
@@ -186,7 +221,9 @@ function ServiceListCard({
                 </span>
               )}
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium">{s.title}</span>
+                <span className="block truncate text-sm font-medium">
+                  {s.title || '(บริการใหม่ ยังไม่ใส่ชื่อ)'}
+                </span>
                 <span className="block truncate text-xs text-base-content/50">{s.subtitle}</span>
               </span>
               <span className="btn btn-ghost btn-xs">{openId === s.id ? 'ปิด' : 'แก้ไข'}</span>
@@ -283,6 +320,26 @@ function ServiceListCard({
                       </>
                     )}
                   />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm w-fit"
+                    onClick={handleSave}
+                  >
+                    บันทึก
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-error btn-sm w-fit"
+                    onClick={() => {
+                      if (window.confirm(`ลบบริการ “${s.title || 'บริการใหม่'}” ?`)) {
+                        setServices(services.filter((x) => x.id !== s.id))
+                      }
+                    }}
+                  >
+                    ลบบริการนี้
+                  </button>
                 </div>
               </div>
             )}

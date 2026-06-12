@@ -8,6 +8,7 @@ import siteContact from '../../content/globals/site-contact.json'
  */
 export const CONTACT = {
   phone: siteContact.phone,
+  phone2: (siteContact as { phone2?: string | null }).phone2 || null,
   email: siteContact.email,
   address: siteContact.address,
   mapEmbedSrc: siteContact.mapEmbedSrc,

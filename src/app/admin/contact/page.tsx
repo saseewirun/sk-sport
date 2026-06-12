@@ -26,6 +26,7 @@ type ContactHero = {
 
 type SiteContact = {
   phone: string
+  phone2?: string | null
   email: string
   address: string
   mapEmbedSrc: string
@@ -46,13 +47,13 @@ export default function AdminContactPage() {
       {hero.data && site.data && (
         <>
           <HeroCard data={hero.data} save={hero.saveFields} />
-          <MapCard data={site.data} save={site.saveFields} />
           <ContactInfoCard
             data={site.data}
             save={site.saveFields}
             heroData={hero.data}
             saveHero={hero.saveFields}
           />
+          <MapCard data={site.data} save={site.saveFields} />
         </>
       )}
     </AdminShell>
@@ -117,7 +118,7 @@ function MapCard({ data, save }: { data: SiteContact; save: SaveFn<SiteContact> 
   const [map, setMap] = useState(data.mapEmbedSrc ?? '')
   return (
     <SectionCard
-      order={2}
+      order={3}
       title="แผนที่ Google Map"
       description="แผนที่ที่แสดงบนหน้า ติดต่อเรา และส่วนติดต่อท้ายหน้าแรก"
       onSave={() =>
@@ -163,6 +164,7 @@ function ContactInfoCard({
 }) {
   const [info, setInfo] = useState({
     phone: data.phone ?? '',
+    phone2: data.phone2 ?? '',
     email: data.email ?? '',
     address: data.address ?? '',
     facebook: data.facebook ?? '',
@@ -183,13 +185,14 @@ function ContactInfoCard({
   const [formInputFontSize, setFormInputFontSize] = useState(heroData.formInputFontSize ?? 16)
   return (
     <SectionCard
-      order={3}
+      order={2}
       title="ข้อมูลติดต่อ"
       description="เบอร์ อีเมล ที่อยู่ และโซเชียล — แสดงบนหน้า ติดต่อเรา และท้ายเว็บทุกหน้า"
       onSave={async () => {
         await save('แก้ไขติดต่อเรา: ข้อมูลติดต่อ', (latest) => ({
           ...latest,
           phone: info.phone,
+          phone2: info.phone2 || null,
           email: info.email,
           address: info.address,
           facebook: info.facebook || null,
@@ -207,6 +210,12 @@ function ContactInfoCard({
       }}
     >
       <TextField label="เบอร์โทรศัพท์" value={info.phone} onChange={set('phone')} />
+      <TextField
+        label="เบอร์โทรศัพท์ (เพิ่มเติม)"
+        description="เว้นว่าง = แสดงเบอร์เดียว"
+        value={info.phone2}
+        onChange={set('phone2')}
+      />
       <TextField label="อีเมล" value={info.email} onChange={set('email')} />
       <TextAreaField label="ที่อยู่" value={info.address} onChange={set('address')} rows={2} />
       <TextField

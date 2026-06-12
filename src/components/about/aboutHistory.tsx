@@ -3,13 +3,20 @@ interface HistoryHighlight {
   label?: string | null
 }
 
+interface HistoryCard {
+  title?: string | null
+  description?: string | null
+}
+
 interface AboutHistoryProps {
   /** Retained for CMS compatibility; intro uses fixed "About Us" heading per layout. */
   historySectionTitle?: string | null
   companyName?: string | null
-  /** Retained for CMS compatibility; description is presented via INTRO_CARDS below. */
+  /** Retained for CMS compatibility; description is presented via the cards below. */
   historyDescription?: string | null
   historyHighlights?: HistoryHighlight[] | null
+  /** Editable intro cards; falls back to INTRO_CARDS when not provided by CMS. */
+  historyCards?: HistoryCard[] | null
   sectionTitleFontSizePx: number
   highlightCardTitleFontSizePx: number
   highlightCardBodyFontSizePx: number
@@ -17,7 +24,7 @@ interface AboutHistoryProps {
   statLabelFontSizePx: number
 }
 
-const INTRO_CARDS = [
+export const INTRO_CARDS = [
   {
     title: 'Authorized Global Brands',
     description:
@@ -43,12 +50,20 @@ const INTRO_CARDS = [
 export default function AboutHistory({
   companyName,
   historyHighlights,
+  historyCards,
   sectionTitleFontSizePx,
   highlightCardTitleFontSizePx,
   highlightCardBodyFontSizePx,
   statNumberFontSizePx,
   statLabelFontSizePx,
 }: AboutHistoryProps) {
+  const cards =
+    historyCards && historyCards.length > 0
+      ? historyCards.map((c) => ({
+          title: c.title ?? '',
+          description: c.description ?? '',
+        }))
+      : INTRO_CARDS
   return (
     <section className="w-full bg-header-bg pt-12 pb-6 md:pt-16 md:pb-8">
       <div className="container mx-auto flex flex-col items-center gap-5 px-6 md:gap-6">
@@ -66,9 +81,9 @@ export default function AboutHistory({
         </div>
 
         <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 md:flex-row md:items-stretch md:gap-4">
-          {INTRO_CARDS.map((card) => (
+          {cards.map((card, index) => (
             <div
-              key={card.title}
+              key={`${card.title}-${index}`}
               className="relative transition-transform duration-200 md:flex-1 md:min-w-0 md:hover:-translate-y-1"
             >
               <div className="flex h-full flex-col gap-2 rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20 px-6 py-5 shadow-lg transition hover:shadow-xl">
