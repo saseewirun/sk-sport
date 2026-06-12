@@ -1,0 +1,28 @@
+{
+  "id": "062fd2b6-29ee-4333-80cd-1743ca841215",
+  "heroTitle": null,
+  "heroSubtitle": null,
+  "heroTitleFontSize": 56,
+  "heroSubtitleFontSize": 20,
+  "heroMedia": [
+    {
+      "id": "c019b5b1-d11b-4db9-8dc2-8981383c22ae",
+      "alt": "ชุดวัดและประเมินผลสมรรถภาพทางกายด้วยระบบคอมพิวเตอร์",
+      "prefix": "hero-media",
+      "updatedAt": "2026-05-09T10:30:41.086Z",
+      "createdAt": "2026-05-09T10:30:37.892Z",
+      "url": "/api/hero-media/file/logo%20Helmas.png",
+      "thumbnailURL": null,
+      "filename": "logo Helmas.png",
+      "mimeType": "image/png",
+      "filesize": 1453549,
+      "width": 1920,
+      "height": 1080,
+      "focalX": 50,
+      "focalY": 50
+    }
+  ],
+  "updatedAt": "2026-05-09T10:32:14.240Z",
+  "createdAt": "2026-04-14T10:46:40.965Z",
+  "globalType": "about-hero"
+}

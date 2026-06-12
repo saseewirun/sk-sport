@@ -1,0 +1,34 @@
+{
+  "id": "9e239ef8-008a-4bd0-8832-47fc4535bfa8",
+  "heroTitle": "PORTFOLIO",
+  "heroSubtitle": "Venues, facilities, and training projects delivered with precision and care.",
+  "heroTitleFontSize": 56,
+  "heroSubtitleFontSize": 25,
+  "highlightsTitleFontSize": 40,
+  "sectionTitleFontSize": 28,
+  "cardTitleFontSize": 18,
+  "detailHeroTitleFontSize": 40,
+  "detailBodyFontSize": 16,
+  "moreProjectsTitleFontSize": 24,
+  "heroMedia": [
+    {
+      "id": "3f2da48c-3b55-4fae-8aab-815816dc25c9",
+      "alt": "ติดตั้งบ่อฟองน้ำโรงเรียนกีฬาจังหวัดสุพรรณบุรี1",
+      "prefix": "hero-media",
+      "updatedAt": "2026-05-09T11:00:50.996Z",
+      "createdAt": "2026-05-09T11:00:48.858Z",
+      "url": "/api/hero-media/file/S__15360022_0.jpg",
+      "thumbnailURL": null,
+      "filename": "S__15360022_0.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 466263,
+      "width": 1706,
+      "height": 960,
+      "focalX": 50,
+      "focalY": 50
+    }
+  ],
+  "updatedAt": "2026-05-09T11:00:57.149Z",
+  "createdAt": "2026-04-14T10:44:23.359Z",
+  "globalType": "portfolio-hero"
+}

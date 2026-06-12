@@ -7,6 +7,16 @@ import { getPortfolioArticleBySlug, getPortfolioArticles } from '@/data/portfoli
 import { getPortfolioHeroGlobal } from '@/data/portfolioHero'
 import type { GalleryMedia } from '@/payload-types'
 
+// Static export: every known slug is prerendered at build; unknown slugs 404.
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const articles = await getPortfolioArticles()
+  return articles
+    .filter((a): a is typeof a & { slug: string } => Boolean(a.slug))
+    .map((a) => ({ slug: a.slug }))
+}
+
 function resolveMediaUrl(media: string | GalleryMedia | null | undefined): string {
   if (!media || typeof media === 'string') return ''
   return media.url ?? ''

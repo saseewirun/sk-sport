@@ -17,6 +17,7 @@ const CardItem = ({
   date,
   title,
   href,
+  objectPosition,
   cardTitleFontSizePx,
 }: Omit<ArticleItem, 'id'> & { cardTitleFontSizePx: number }) => {
   const router = useRouter()
@@ -33,6 +34,7 @@ const CardItem = ({
           alt={title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          style={objectPosition ? { objectPosition } : undefined}
           draggable={false}
         />
       </button>
@@ -106,6 +108,7 @@ export function HomeAccomplishmentArticleList({
               date={item.date}
               title={item.title}
               href={item.href}
+              objectPosition={item.objectPosition}
               cardTitleFontSizePx={cardTitleFontSizePx}
             />
           </div>

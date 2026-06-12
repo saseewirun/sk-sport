@@ -1,0 +1,46 @@
+[
+  {
+    "id": "0c33454d-d933-4784-8cea-50c4f2eb3923",
+    "status": "new",
+    "customerName": "Name Surname",
+    "email": "email@email.com",
+    "phone": "0612345678",
+    "companyName": "Test company",
+    "message": "Test message",
+    "lineItems": [
+      {
+        "id": "69edcbb513a0fc564c9d40b0",
+        "productId": "cdc5fa30-f4f6-41ef-8069-9530a299b2fe",
+        "slug": "super-sam-325-pro",
+        "title": "Super SAM 325 PRO",
+        "category": "Basketball Equipment",
+        "quantity": 1
+      }
+    ],
+    "adminNotes": null,
+    "updatedAt": "2026-04-26T08:24:21.405Z",
+    "createdAt": "2026-04-26T08:24:21.404Z"
+  },
+  {
+    "id": "6e9eae7e-3cb5-4e7c-890b-12e597080df1",
+    "status": "new",
+    "customerName": "Test name",
+    "email": "test@email.com",
+    "phone": "0612345678",
+    "companyName": "test company",
+    "message": "test message",
+    "lineItems": [
+      {
+        "id": "69edc88113a0fc564c9d40af",
+        "productId": "d93bdb76-c87d-4925-9ab2-a8d3de56ab0a",
+        "slug": "sam-school-3x3",
+        "title": "SAM School 3x3",
+        "category": "Basketball Equipment",
+        "quantity": 1
+      }
+    ],
+    "adminNotes": null,
+    "updatedAt": "2026-04-26T08:10:41.856Z",
+    "createdAt": "2026-04-26T08:10:41.853Z"
+  }
+]

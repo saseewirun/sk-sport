@@ -1,0 +1,164 @@
+[
+  {
+    "id": "7bbb8193-5187-4f6e-9c00-35629c39e82f",
+    "name": "Dr.Saseewirun Kanchanhom",
+    "slug": "dr_saseewirun_kanchanhom",
+    "role": "FOUNDER & CEO",
+    "excerpt": "A former national gymnastics and hockey athlete with a PhD in Sports Management. With over two decades of experience, including serving as the Assistant Manager for the Thai Women's National Futsal team, she leads the company with a profound understanding of athlete physiology and international equipment standards.",
+    "description": "A former national gymnastics and hockey athlete with a PhD in Sports Management. With over two decades of experience, including serving as the Assistant Manager for the Thai Women's National Futsal team, she leads the company with a profound understanding of athlete physiology and international equipment standards.",
+    "quote": "To select the best sports equipment, one must truly understand sports from the inside out.",
+    "aboutImage": {
+      "relationTo": "hero-media",
+      "value": {
+        "id": "b137c74b-6981-4ad7-9b97-15a7978387c7",
+        "alt": "ผู้ก่อตั้ง",
+        "prefix": "hero-media",
+        "updatedAt": "2026-05-09T10:50:15.716Z",
+        "createdAt": "2026-05-09T10:50:13.663Z",
+        "url": "/api/hero-media/file/44033730_10215896313337204_8505373063968194560_n.jpg",
+        "thumbnailURL": null,
+        "filename": "44033730_10215896313337204_8505373063968194560_n.jpg",
+        "mimeType": "image/jpeg",
+        "filesize": 71836,
+        "width": 726,
+        "height": 960,
+        "focalX": 50,
+        "focalY": 50
+      }
+    },
+    "gallery": [
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "306d7ff8-73f7-42c5-a3d4-5524c73c0453",
+          "alt": "597393865_1492870309332504_7112252823993741735_n",
+          "prefix": "gallery-media",
+          "updatedAt": "2026-04-25T07:23:11.808Z",
+          "createdAt": "2026-04-25T07:23:10.491Z",
+          "url": "/api/gallery-media/file/597393865_1492870309332504_7112252823993741735_n.jpg",
+          "thumbnailURL": null,
+          "filename": "597393865_1492870309332504_7112252823993741735_n.jpg",
+          "mimeType": "image/jpeg",
+          "filesize": 511997,
+          "width": 2048,
+          "height": 1536,
+          "focalX": 50,
+          "focalY": 50
+        }
+      },
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "2ef6f7ec-1f01-42a6-81af-ee06b90f539f",
+          "alt": "493586440_1281346707151533_7851474945005439718_n",
+          "prefix": "gallery-media",
+          "updatedAt": "2026-04-25T07:23:31.694Z",
+          "createdAt": "2026-04-25T07:23:30.361Z",
+          "url": "/api/gallery-media/file/493586440_1281346707151533_7851474945005439718_n.jpg",
+          "thumbnailURL": null,
+          "filename": "493586440_1281346707151533_7851474945005439718_n.jpg",
+          "mimeType": "image/jpeg",
+          "filesize": 270830,
+          "width": 1536,
+          "height": 2048,
+          "focalX": 50,
+          "focalY": 50
+        }
+      },
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "55cc4dd1-3ce7-4509-8e80-52f3a203262e",
+          "alt": "489951103_1266459138640290_2123103602355401312_n",
+          "prefix": "gallery-media",
+          "updatedAt": "2026-04-25T07:23:58.869Z",
+          "createdAt": "2026-04-25T07:23:57.358Z",
+          "url": "/api/gallery-media/file/489951103_1266459138640290_2123103602355401312_n.jpg",
+          "thumbnailURL": null,
+          "filename": "489951103_1266459138640290_2123103602355401312_n.jpg",
+          "mimeType": "image/jpeg",
+          "filesize": 191748,
+          "width": 1108,
+          "height": 1478,
+          "focalX": 50,
+          "focalY": 50
+        }
+      },
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "b224157a-daac-41ba-a7d5-9926d60f1dcf",
+          "alt": "386647144_855952693024272_7452906006685691713_n",
+          "prefix": "gallery-media",
+          "updatedAt": "2026-04-25T07:24:21.986Z",
+          "createdAt": "2026-04-25T07:24:20.658Z",
+          "url": "/api/gallery-media/file/386647144_855952693024272_7452906006685691713_n.jpg",
+          "thumbnailURL": null,
+          "filename": "386647144_855952693024272_7452906006685691713_n.jpg",
+          "mimeType": "image/jpeg",
+          "filesize": 920094,
+          "width": 2048,
+          "height": 2048,
+          "focalX": 50,
+          "focalY": 50
+        }
+      },
+      {
+        "relationTo": "gallery-media",
+        "value": {
+          "id": "577ae7cc-b20d-45da-a580-dd09a77a851f",
+          "alt": "486071371_9755641677813890_837123115162497225_n",
+          "prefix": "gallery-media",
+          "updatedAt": "2026-04-25T07:24:44.142Z",
+          "createdAt": "2026-04-25T07:24:42.677Z",
+          "url": "/api/gallery-media/file/486071371_9755641677813890_837123115162497225_n.jpg",
+          "thumbnailURL": null,
+          "filename": "486071371_9755641677813890_837123115162497225_n.jpg",
+          "mimeType": "image/jpeg",
+          "filesize": 448447,
+          "width": 1466,
+          "height": 2048,
+          "focalX": 50,
+          "focalY": 50
+        }
+      }
+    ],
+    "sortOrder": 0,
+    "isVisible": true,
+    "updatedAt": "2026-06-12T11:01:10.478Z",
+    "createdAt": "2026-04-25T07:20:11.736Z"
+  },
+  {
+    "id": "09ca461f-d5fd-4628-824c-83d64398a0e8",
+    "name": "Nattanat Ujjin",
+    "slug": "nattanat-ujjin",
+    "role": "ผู้จัดการฝ่ายการตลาด",
+    "excerpt": " มหาวิทยาลัยมหิดล (ภาคอินเตอร์)",
+    "description": "จบการศึกษาจาก Harrow International School และปริญญาตรีจาก มหาวิทยาลับมหิดล (ภาคอินเตอร์)",
+    "quote": "DO EVERYTING THE BEST!",
+    "aboutImage": {
+      "relationTo": "hero-media",
+      "value": {
+        "id": "08513028-00db-43e0-b521-914c94a6add6",
+        "alt": "Ponn",
+        "prefix": "hero-media",
+        "updatedAt": "2026-05-17T10:18:30.710Z",
+        "createdAt": "2026-05-17T10:18:29.046Z",
+        "url": "/api/hero-media/file/ponn.webp",
+        "thumbnailURL": null,
+        "filename": "ponn.webp",
+        "mimeType": "image/webp",
+        "filesize": 13150,
+        "width": 407,
+        "height": 472,
+        "focalX": 50,
+        "focalY": 50
+      }
+    },
+    "gallery": [],
+    "sortOrder": 1,
+    "isVisible": true,
+    "updatedAt": "2026-06-12T11:01:10.478Z",
+    "createdAt": "2026-05-15T09:37:18.513Z"
+  }
+]

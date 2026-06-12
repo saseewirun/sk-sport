@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { HomeLargeServiceCard, HomeSupportServiceCard } from './homeServiceCards'
 import { BasketballIcon, HeartbeatIcon, InfoIcon } from '@phosphor-icons/react/dist/ssr'
 
@@ -81,6 +82,7 @@ export const Services = ({
   cardTitleFontSizePx,
   cardBodyFontSizePx,
 }: ServicesProps) => {
+  const t = useTranslations('Home.Services')
   const firstLargeCard = integratedSportsInstallationTeaser ?? legacyFirstLargeServiceCard
   const secondLargeCard = equipmentForTopGymnastsTeaser ?? legacySecondLargeServiceCard
   const firstSupportCard = sportsVisionTrainingTeaser ?? legacyFirstSupportCard
@@ -91,10 +93,10 @@ export const Services = ({
     <section className="w-full">
       <div className="relative text-primary space-y-4 text-center py-12 px-4">
         <h2 className="font-body font-semibold" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
-          Our Services
+          {t('title')}
         </h2>
         <p className="font-body" style={{ fontSize: `${taglineFontSizePx}px` }}>
-          Professional solution for sports facility development
+          {t('tagline')}
         </p>
       </div>
 

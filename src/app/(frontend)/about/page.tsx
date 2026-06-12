@@ -90,6 +90,7 @@ export default async function AboutPage() {
         companyName={about.companyName}
         historyDescription={about.historyDescription}
         historyHighlights={about.historyHighlights}
+        historyCards={about.historyCards}
         sectionTitleFontSizePx={sectionTitlePx(about)}
         highlightCardTitleFontSizePx={highlightTitlePx(about)}
         highlightCardBodyFontSizePx={highlightBodyPx(about)}

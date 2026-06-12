@@ -11,6 +11,7 @@ type AboutCompanyProps = {
   highlightTitleFontSizePx: number
   highlightBodyFontSizePx: number
   cardBodyFontSizePx: number
+  buttonFontSizePx: number
 }
 
 export const AboutCompany = ({
@@ -18,6 +19,7 @@ export const AboutCompany = ({
   highlightTitleFontSizePx,
   highlightBodyFontSizePx,
   cardBodyFontSizePx,
+  buttonFontSizePx,
 }: AboutCompanyProps) => {
   const t = useTranslations('Home.AboutCompany')
   const router = useRouter()
@@ -54,7 +56,12 @@ export const AboutCompany = ({
                 onClick={() => router.push(NAV_PATHS[NavKey.ABOUT_US])}
                 className="btn btn-gradient-solid-border btn-sm-typo w-27 md:w-38.5 h-7 md:h-12"
               >
-                <span className="text-primary-content">About Us</span>
+                <span
+                  className="text-primary-content"
+                  style={{ fontSize: `${buttonFontSizePx}px` }}
+                >
+                  {t('button')}
+                </span>
               </button>
             </div>
           </div>

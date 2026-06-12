@@ -1,0 +1,917 @@
+[
+  {
+    "id": "aec79160-3c6f-43a7-a302-64ac6a6ac727",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "6c34235e-7a23-4915-b024-fe3c35bd215d",
+        "role": "editor",
+        "updatedAt": "2026-05-17T09:27:32.745Z",
+        "createdAt": "2026-05-17T09:27:32.744Z",
+        "email": "thisisforwork9p@gmail.com",
+        "sessions": [
+          {
+            "id": "2f51be48-096c-403c-a94b-c649ced090b0",
+            "createdAt": "2026-05-17T10:33:30.518Z",
+            "expiresAt": "2026-05-17T12:33:30.518Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-users",
+    "value": {
+      "limit": 10
+    },
+    "updatedAt": "2026-05-17T10:31:05.025Z",
+    "createdAt": "2026-05-17T10:30:34.908Z"
+  },
+  {
+    "id": "5daf2f67-831f-4885-8ff7-693d15820c20",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "6c34235e-7a23-4915-b024-fe3c35bd215d",
+        "role": "editor",
+        "updatedAt": "2026-05-17T09:27:32.745Z",
+        "createdAt": "2026-05-17T09:27:32.744Z",
+        "email": "thisisforwork9p@gmail.com",
+        "sessions": [
+          {
+            "id": "2f51be48-096c-403c-a94b-c649ced090b0",
+            "createdAt": "2026-05-17T10:33:30.518Z",
+            "expiresAt": "2026-05-17T12:33:30.518Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-founders",
+    "value": {},
+    "updatedAt": "2026-05-17T09:29:23.285Z",
+    "createdAt": "2026-05-17T09:29:23.284Z"
+  },
+  {
+    "id": "69ddbb8d-c526-4b1f-980c-909542f30195",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-quote-requests",
+    "value": {},
+    "updatedAt": "2026-05-08T02:08:48.134Z",
+    "createdAt": "2026-05-08T02:08:48.132Z"
+  },
+  {
+    "id": "b2984c26-1c47-43be-aa9a-58b49437e7ce",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-payment-settings",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-25T10:25:45.234Z",
+    "createdAt": "2026-04-25T10:25:45.789Z"
+  },
+  {
+    "id": "391de1bb-38c3-4935-8ec2-9aab8e0f7816",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-orders",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-25T11:47:12.950Z",
+    "createdAt": "2026-04-25T10:25:38.317Z"
+  },
+  {
+    "id": "ab6c883f-c56f-4783-af68-d13bedf50be6",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-payment-slips",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-25T10:31:25.456Z",
+    "createdAt": "2026-04-25T10:25:30.082Z"
+  },
+  {
+    "id": "4c8fe2b0-dfd8-44f1-aa64-4920bab98d15",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-founders",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-25T07:34:57.921Z",
+    "createdAt": "2026-04-25T07:14:19.529Z"
+  },
+  {
+    "id": "a47759b4-7eba-4cde-b597-3a266cf82eb7",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-email-tests",
+    "value": {},
+    "updatedAt": "2026-04-14T10:47:48.265Z",
+    "createdAt": "2026-04-14T10:47:48.265Z"
+  },
+  {
+    "id": "305e323e-8852-4a66-9372-6ec7a143f5d6",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-services-hero",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:44:29.308Z",
+    "createdAt": "2026-04-14T10:44:31.260Z"
+  },
+  {
+    "id": "a76d3cb7-3220-4d1b-9a6c-98d55ed22967",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-portfolio-hero",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:44:00.532Z",
+    "createdAt": "2026-04-14T10:44:02.484Z"
+  },
+  {
+    "id": "0879b9ac-285c-4c5b-b659-6b76269a45b1",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-products-hero",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:43:21.532Z",
+    "createdAt": "2026-04-14T10:43:23.482Z"
+  },
+  {
+    "id": "eab6bbc6-8ff8-4a16-b037-4ba175a384a7",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-contact-hero",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:41:28.457Z",
+    "createdAt": "2026-04-14T10:41:30.404Z"
+  },
+  {
+    "id": "9d7bb6d4-87de-4b44-a62a-b60e92303711",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-about-hero",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:38:43.892Z",
+    "createdAt": "2026-04-14T10:38:45.834Z"
+  },
+  {
+    "id": "f9fe986e-a787-4973-8036-829a4a8cc485",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-terms-of-service",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T03:59:39.849Z",
+    "createdAt": "2026-04-14T03:59:41.090Z"
+  },
+  {
+    "id": "ffe6df93-8498-4721-9efd-3bfd37a5597a",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-privacy-policy",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T03:57:58.928Z",
+    "createdAt": "2026-04-14T03:58:00.165Z"
+  },
+  {
+    "id": "a78f82ed-1644-48a1-9ca0-2a0db04cb597",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-faq",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T03:54:13.626Z",
+    "createdAt": "2026-04-14T03:54:14.855Z"
+  },
+  {
+    "id": "7b153343-8249-40be-89ed-f66b050dccf4",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-partner-media",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-12T10:07:24.254Z",
+    "createdAt": "2026-04-12T10:02:15.804Z"
+  },
+  {
+    "id": "7306fcdd-7d0a-42f2-ab77-3c805a978a42",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-users",
+    "value": {
+      "limit": 10
+    },
+    "updatedAt": "2026-04-14T10:48:34.897Z",
+    "createdAt": "2026-04-09T15:54:08.350Z"
+  },
+  {
+    "id": "a3700e80-4026-461d-be77-0b0d5b7f5122",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-hero-media",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-13T06:29:54.151Z",
+    "createdAt": "2026-04-09T15:46:52.983Z"
+  },
+  {
+    "id": "49581a5c-e872-44d9-8e53-bea95bad200a",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services-cb7eeb93-8263-4e8f-a48d-6acf885ebfa8",
+    "value": {
+      "fields": {
+        "sections": {
+          "collapsed": []
+        }
+      }
+    },
+    "updatedAt": "2026-04-09T15:13:51.169Z",
+    "createdAt": "2026-04-09T15:13:27.543Z"
+  },
+  {
+    "id": "bff6eae1-7f43-4f97-acb5-9bf27bde3260",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services-e98f5857-9126-48cc-b5b4-91ef19638730",
+    "value": {
+      "fields": {
+        "sections": {
+          "collapsed": ["69c56726c7ff2a97045f1a6e"]
+        }
+      }
+    },
+    "updatedAt": "2026-04-09T15:12:08.412Z",
+    "createdAt": "2026-04-09T15:12:08.380Z"
+  },
+  {
+    "id": "7f98fe88-4265-478a-bbbe-b252d140799e",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services-a2942051-8fc5-4d03-90e3-67096b8920fb",
+    "value": {
+      "fields": {
+        "sections": {
+          "collapsed": []
+        }
+      }
+    },
+    "updatedAt": "2026-04-09T15:41:10.512Z",
+    "createdAt": "2026-04-09T14:50:12.987Z"
+  },
+  {
+    "id": "caf4c888-5967-4c3c-9dc2-7fa8feecaef6",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-products",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-12T14:56:00.039Z",
+    "createdAt": "2026-04-07T14:51:37.162Z"
+  },
+  {
+    "id": "e6fcf32f-3db6-4414-ad1c-5b6952873312",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-gallery-media",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-05-15T07:23:38.864Z",
+    "createdAt": "2026-04-07T14:09:26.559Z"
+  },
+  {
+    "id": "76c01786-b944-4194-92d6-a102e62a6f30",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-portfolio-articles",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-10T08:16:50.866Z",
+    "createdAt": "2026-04-07T14:06:05.803Z"
+  },
+  {
+    "id": "4e180c51-1f93-4ad0-9ac3-fded867bf22d",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-about",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-07T11:34:36.023Z",
+    "createdAt": "2026-04-07T11:34:38.483Z"
+  },
+  {
+    "id": "38b32ba9-86a5-4816-8f67-9b5a95d359d2",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services-c7a4a6d7-27d9-42d0-8986-c38398fa772e",
+    "value": {
+      "fields": {
+        "sections": {
+          "collapsed": []
+        }
+      }
+    },
+    "updatedAt": "2026-03-27T08:35:42.869Z",
+    "createdAt": "2026-03-27T08:35:41.864Z"
+  },
+  {
+    "id": "465c8ce3-70eb-4cf6-96d8-2163158f4358",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services-75efb3c9-283b-466b-a748-b29ad1b38cb6",
+    "value": {
+      "fields": {
+        "tags": {
+          "collapsed": []
+        }
+      }
+    },
+    "updatedAt": "2026-03-26T16:41:52.825Z",
+    "createdAt": "2026-03-26T16:41:52.076Z"
+  },
+  {
+    "id": "a1ea414b-b896-4524-8fd9-fa504a8d9ccd",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-contact",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-09T04:07:20.028Z",
+    "createdAt": "2026-03-05T06:57:30.784Z"
+  },
+  {
+    "id": "ffd28ffb-ca82-4aaa-95e2-de689944e580",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-service-media",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-04-14T10:22:11.856Z",
+    "createdAt": "2026-03-05T05:47:13.246Z"
+  },
+  {
+    "id": "b3f47772-c597-4780-9244-b5f354627552",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "global-home",
+    "value": {
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-03-05T05:44:59.079Z",
+    "createdAt": "2026-03-05T05:44:59.712Z"
+  },
+  {
+    "id": "a8aa9abc-eb39-4f0f-b35f-de59d5c75706",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "nav",
+    "value": {
+      "open": true
+    },
+    "updatedAt": "2026-04-27T08:41:29.392Z",
+    "createdAt": "2026-03-05T05:07:25.880Z"
+  },
+  {
+    "id": "b1bbda00-32ae-4381-b91b-f122f47599a9",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "key": "collection-services",
+    "value": {
+      "limit": 10,
+      "editViewType": "default"
+    },
+    "updatedAt": "2026-03-05T05:44:37.075Z",
+    "createdAt": "2026-03-04T20:18:00.232Z"
+  }
+]

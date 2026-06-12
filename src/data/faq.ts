@@ -1,11 +1,6 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import type { Faq } from '@/payload-types'
+import { loadGlobal } from '@/lib/contentStore'
 
 export const getFaqGlobal = async (): Promise<Faq> => {
-  const payload = await getPayload({ config })
-  return payload.findGlobal({
-    slug: 'faq',
-    depth: 0,
-  })
+  return loadGlobal<Faq>('faq')
 }

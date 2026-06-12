@@ -1,0 +1,32 @@
+[
+  {
+    "id": "6c34235e-7a23-4915-b024-fe3c35bd215d",
+    "role": "editor",
+    "updatedAt": "2026-05-17T09:27:32.745Z",
+    "createdAt": "2026-05-17T09:27:32.744Z",
+    "email": "thisisforwork9p@gmail.com",
+    "sessions": [
+      {
+        "id": "2f51be48-096c-403c-a94b-c649ced090b0",
+        "createdAt": "2026-05-17T10:33:30.518Z",
+        "expiresAt": "2026-05-17T12:33:30.518Z"
+      }
+    ],
+    "collection": "users"
+  },
+  {
+    "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+    "role": "master",
+    "updatedAt": "2026-03-04T20:17:54.494Z",
+    "createdAt": "2026-03-04T20:17:54.492Z",
+    "email": "admin@admin.com",
+    "sessions": [
+      {
+        "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+        "createdAt": "2026-05-17T10:31:31.291Z",
+        "expiresAt": "2026-05-17T12:31:31.291Z"
+      }
+    ],
+    "collection": "users"
+  }
+]

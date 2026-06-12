@@ -12,6 +12,8 @@ export interface ArticleItem {
   date: string
   title: string
   href: string
+  /** ตำแหน่งโฟกัสของรูป (object-position) เพื่อกันภาพโดนตัดหัว — ไม่ระบุ = กึ่งกลาง */
+  objectPosition?: string
 }
 
 interface ArticleCardProps {

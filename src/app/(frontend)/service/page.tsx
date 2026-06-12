@@ -1,4 +1,5 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { defaultLocale } from '@/i18n/config'
 import { ServiceHero } from '@/components/hero/serviceHero'
 import { ServiceCard } from '@/components/service/'
 import { getAllServices } from '@/data/service'
@@ -58,6 +59,7 @@ function serviceCardBodyFontPx(v: number | null | undefined): number {
 }
 
 export default async function ServicePage() {
+  setRequestLocale(defaultLocale)
   const [t, services, servicesHero] = await Promise.all([
     getTranslations('Service.Hero'),
     getAllServices(),

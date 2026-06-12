@@ -91,7 +91,7 @@ export default buildConfig({
     },
     schemaName: 'payload',
     idType: 'uuid',
-    push: true,
+    push: false,
   }),
   sharp,
   plugins: [

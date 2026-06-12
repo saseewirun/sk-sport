@@ -1,0 +1,14 @@
+{
+  "id": "92767221-9697-45e8-8870-7818b9fb55ca",
+  "isEnabled": true,
+  "orderNotificationEmail": "saseewirun@sksporttrading.com",
+  "bankName": "SCB",
+  "accountName": "SK Sport",
+  "accountNumber": "1234567890",
+  "branch": "Thanyaburi",
+  "paymentInstructions": null,
+  "qrCodeImage": null,
+  "updatedAt": "2026-04-25T11:24:18.540Z",
+  "createdAt": "2026-04-25T10:29:19.853Z",
+  "globalType": "payment-settings"
+}

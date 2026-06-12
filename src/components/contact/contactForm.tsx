@@ -85,7 +85,7 @@ export const ContactForm = (props: ContactFormTypography) => {
     {
       Icon: PhoneIcon,
       title: 'Call us',
-      detail: CONTACT.phone,
+      detail: CONTACT.phone2 ? `${CONTACT.phone}, ${CONTACT.phone2}` : CONTACT.phone,
     },
   ]
 

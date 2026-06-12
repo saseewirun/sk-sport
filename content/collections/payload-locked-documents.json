@@ -1,0 +1,138 @@
+[
+  {
+    "id": "b7614400-c05c-4cf5-92dd-2bd4096f8be3",
+    "globalSlug": "portfolio-hero",
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "updatedAt": "2026-05-09T11:00:58.387Z",
+    "createdAt": "2026-05-09T11:00:58.386Z"
+  },
+  {
+    "id": "314a1425-2881-4ecd-aece-36081dd6d269",
+    "document": {
+      "relationTo": "hero-media",
+      "value": "f54f7073-e80b-467b-abbd-24e69b48f41c"
+    },
+    "globalSlug": null,
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "updatedAt": "2026-04-12T07:45:13.749Z",
+    "createdAt": "2026-04-12T07:45:13.748Z"
+  },
+  {
+    "id": "853287ec-f077-42b5-8ecf-2727f35c8b20",
+    "document": {
+      "relationTo": "gallery-media",
+      "value": "03195c35-c459-449f-9a3e-b00283e84124"
+    },
+    "globalSlug": null,
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "updatedAt": "2026-04-10T08:26:29.268Z",
+    "createdAt": "2026-04-10T08:26:29.268Z"
+  },
+  {
+    "id": "1451881e-d21b-4f9d-9190-d4999873a0b0",
+    "document": {
+      "relationTo": "services",
+      "value": "c7a4a6d7-27d9-42d0-8986-c38398fa772e"
+    },
+    "globalSlug": null,
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "updatedAt": "2026-04-10T06:08:10.734Z",
+    "createdAt": "2026-04-10T06:08:10.734Z"
+  },
+  {
+    "id": "2368eb14-1db6-4782-ad81-50aa47aadfe8",
+    "document": {
+      "relationTo": "service-media",
+      "value": "d488ca66-4023-454e-a6bf-d1f94ae0c996"
+    },
+    "globalSlug": null,
+    "user": {
+      "relationTo": "users",
+      "value": {
+        "id": "e77e3777-64f7-4a02-9e53-b8bbf80e2fc8",
+        "role": "master",
+        "updatedAt": "2026-03-04T20:17:54.494Z",
+        "createdAt": "2026-03-04T20:17:54.492Z",
+        "email": "admin@admin.com",
+        "sessions": [
+          {
+            "id": "3d853acc-34ae-40c5-8de9-16b36abcf993",
+            "createdAt": "2026-05-17T10:31:31.291Z",
+            "expiresAt": "2026-05-17T12:31:31.291Z"
+          }
+        ],
+        "collection": "users"
+      }
+    },
+    "updatedAt": "2026-04-09T13:27:00.988Z",
+    "createdAt": "2026-04-09T13:27:00.988Z"
+  }
+]

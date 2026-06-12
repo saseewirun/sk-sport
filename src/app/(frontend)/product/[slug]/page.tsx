@@ -6,6 +6,17 @@ import type { Product, GalleryMedia } from '@/payload-types'
 import AddToCartButton from '@/components/product/addToCartButton'
 import AddToQuoteButton from '@/components/product/addToQuoteButton'
 import { CTAFooter } from '@/components/layout'
+import { getAllProducts } from '@/data/product'
+
+// Static export: every known slug is prerendered at build; unknown slugs 404.
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const products = await getAllProducts()
+  return products
+    .filter((p): p is typeof p & { slug: string } => Boolean(p.slug))
+    .map((p) => ({ slug: p.slug }))
+}
 
 const DETAIL_TITLE_MIN = 32
 const DETAIL_TITLE_MAX = 96

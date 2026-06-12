@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { getHomeGlobal } from '@/data'
 import { getContactHeroGlobal } from '@/data/contactHero'
 import { getPortfolioArticles } from '@/data/portfolio'
@@ -24,6 +22,16 @@ function resolveMediaUrl(media: string | GalleryMedia | null | undefined): strin
   return media.url ?? ''
 }
 
+/** ตำแหน่งโฟกัสของรูป (object-position) จาก focalX/focalY — กันภาพโดนตัดหัว */
+function resolveObjectPosition(
+  media: string | GalleryMedia | null | undefined,
+): string | undefined {
+  if (!media || typeof media === 'string') return undefined
+  const m = media as { focalX?: number | null; focalY?: number | null }
+  if (m.focalX == null && m.focalY == null) return undefined
+  return `${m.focalX ?? 50}% ${m.focalY ?? 50}%`
+}
+
 const INTEGRATED_SPORTS_INSTALLATION_SLUG = 'integrated-sports-installation'
 const EQUIPMENT_FOR_TOP_GYMNASTS_SLUG = 'equipment-for-top-gymnasts'
 const SPORTS_VISION_TRAINING_SLUG = 'sports-vision-training'
@@ -45,6 +53,9 @@ function px(v: number | null | undefined, min: number, max: number, fallback: nu
 }
 
 function homeTypography(h: Home) {
+  // ฟิลด์ฟอนต์ใหม่ราย section ยังไม่อยู่ใน payload type → อ่านผ่าน cast
+  const x = h as unknown as Record<string, unknown>
+  const num = (k: string) => x[k] as number | null | undefined
   return {
     heroTitle: px(h.heroTitleFontSize, 32, 96, 56),
     heroSubtitle: px(h.heroSubtitleFontSize, 14, 32, 20),
@@ -53,6 +64,11 @@ function homeTypography(h: Home) {
     highlightBody: px(h.highlightBodyFontSize, 14, 24, 16),
     cardTitle: px(h.cardTitleFontSize, 16, 36, 20),
     cardBody: px(h.cardBodyFontSize, 12, 22, 14),
+    servicesTitle: px(num('servicesTitleFontSize'), 20, 56, 32),
+    productsTitle: px(num('productsTitleFontSize'), 20, 56, 32),
+    accomplishmentTitle: px(num('accomplishmentTitleFontSize'), 20, 56, 32),
+    aboutButton: px(num('aboutButtonFontSize'), 12, 24, 16),
+    contactSectionTitle: px(num('contactSectionTitleFontSize'), 20, 56, 32),
   }
 }
 
@@ -162,6 +178,7 @@ export default async function HomePage() {
   const accomplishmentItems = portfolioArticles.slice(0, 5).map((article) => ({
     id: article.id,
     image: resolveMediaUrl(article.sectionImage as string | GalleryMedia | null),
+    objectPosition: resolveObjectPosition(article.sectionImage as string | GalleryMedia | null),
     date: new Date(article.createdAt).toLocaleDateString('en-US', {
       month: 'long',
       year: 'numeric',
@@ -184,19 +201,19 @@ export default async function HomePage() {
         sportsVisionTrainingTeaser={sportsVisionTrainingTeaser}
         healthManagementSystemTeaser={healthManagementSystemTeaser}
         unitedDiscoveryTeaser={unitedDiscoveryTeaser}
-        sectionTitleFontSizePx={tf.sectionTitle}
+        sectionTitleFontSizePx={tf.servicesTitle}
         taglineFontSizePx={tf.highlightBody}
         cardTitleFontSizePx={tf.cardTitle}
         cardBodyFontSizePx={tf.cardBody}
       />
       <OurProducts
         products={productTeasers}
-        sectionTitleFontSizePx={tf.sectionTitle}
+        sectionTitleFontSizePx={tf.productsTitle}
         cardTitleFontSizePx={tf.cardTitle}
       />
       <Accomplishment
         items={accomplishmentItems}
-        sectionTitleFontSizePx={tf.sectionTitle}
+        sectionTitleFontSizePx={tf.accomplishmentTitle}
         cardTitleFontSizePx={tf.cardTitle}
       />
       <CTAFooter />
@@ -205,9 +222,10 @@ export default async function HomePage() {
         highlightTitleFontSizePx={tf.highlightTitle}
         highlightBodyFontSizePx={tf.highlightBody}
         cardBodyFontSizePx={tf.cardBody}
+        buttonFontSizePx={tf.aboutButton}
       />
       <ContactSection
-        sectionTitleFontSizePx={tf.sectionTitle}
+        sectionTitleFontSizePx={tf.contactSectionTitle}
         mapEmbedSrc={contactHeroData.googleMapEmbedUrl ?? undefined}
       />
       <Gallery media={homeData.galleryMedia} sectionTitleFontSizePx={tf.sectionTitle} />

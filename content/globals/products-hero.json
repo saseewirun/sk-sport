@@ -1,0 +1,46 @@
+{
+  "id": "a2e98cf6-c77b-469c-ac5f-6c8e26a2e7a6",
+  "heroTitle": "สินค้าของฉัน",
+  "heroSubtitle": "Professional sports equipment and facility gear, specified and installed by our team for venues of every scale.",
+  "eyebrow": "Equipment & Gear",
+  "titleFontSize": 56,
+  "subtitleFontSize": 30,
+  "categoryTitleFontSize": 32,
+  "productCardTitleFontSize": 22,
+  "productPriceFontSize": 16,
+  "detailTitleFontSize": 56,
+  "detailSubtitleFontSize": 20,
+  "detailSectionTitleFontSize": 28,
+  "detailBodyFontSize": 20,
+  "relatedTitleFontSize": 28,
+  "heroMedia": [
+    {
+      "id": "08d39027-c44f-451b-9bb8-b6db36c5536e",
+      "alt": "Schelde Sports",
+      "prefix": "hero-media",
+      "updatedAt": "2026-04-18T03:57:19.593Z",
+      "createdAt": "2026-04-18T03:57:18.174Z",
+      "url": "/api/hero-media/file/Screenshot%202026-04-18%20115437.png",
+      "thumbnailURL": null,
+      "filename": "Screenshot 2026-04-18 115437.png",
+      "mimeType": "image/png",
+      "filesize": 1528718,
+      "width": 1122,
+      "height": 793,
+      "focalX": 50,
+      "focalY": 50
+    }
+  ],
+  "updatedAt": "2026-04-26T05:22:12.681Z",
+  "createdAt": "2026-04-14T10:43:53.059Z",
+  "globalType": "products-hero",
+  "categories": [
+    "อุปกรณ์ทดสอบ",
+    "บริการติดตั้งอุปกรณ์ยิมนาสติก",
+    "Gymnastics Equipment",
+    "Volleyball Equipment",
+    "Outdoor Exercise Equipment",
+    "Health Management System",
+    "Basketball Equipment"
+  ]
+}

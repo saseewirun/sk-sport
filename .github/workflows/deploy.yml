@@ -1,0 +1,56 @@
+name: Deploy to Cloudflare Pages
+
+# เว็บ SK-Sport เป็น static (Next.js output: 'export') + Cloudflare Pages Functions
+# (โฟลเดอร์ functions/). ทุกครั้งที่ push เข้า main (หรือ branch งานนี้ตอนทดสอบ)
+# จะ build แล้วส่งขึ้น Cloudflare Pages อัตโนมัติ — ไม่ต้องเชื่อม Cloudflare เข้ากับ
+# GitHub ของเจ้าของ repo (ใช้ API token แทน)
+#
+# ต้องตั้ง repo secrets 2 ตัวก่อน (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — token สิทธิ์ Account · Cloudflare Pages · Edit
+#   CLOUDFLARE_ACCOUNT_ID  — Account ID ของ Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+      - claude/sk-sport-git-cms # branch ทดสอบ (เอาออกได้หลัง merge เข้า main)
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site (out/)
+        run: npm run build
+
+      # wrangler pages deploy ไม่สร้างโปรเจกต์ให้เอง — เช็คก่อน ถ้ายังไม่มีค่อยสร้าง
+      # (ครั้งแรกครั้งเดียว ครั้งต่อไปจะข้าม). production branch = main
+      - name: Ensure Cloudflare Pages project exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx --yes wrangler@3 pages project list 2>/dev/null | grep -qw sk-sport \
+            || npx --yes wrangler@3 pages project create sk-sport --production-branch=main
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # อัปทั้ง out/ + functions/ ; --commit-dirty กัน warning เรื่อง git ใน CI
+          command: pages deploy out --project-name=sk-sport --branch=${{ github.ref_name }} --commit-dirty=true

@@ -1,11 +1,21 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getFounderBySlug } from '@/data/founders'
+import { getFounderBySlug, getVisibleFounders } from '@/data/founders'
 import { getAboutGlobal } from '@/data/about'
 import { FounderDetailImages } from '@/components/about/founderDetailImages'
 import { resolveFounderDetailImages } from '@/components/about/founderMedia'
 
 type PageProps = { params: Promise<{ slug: string }> }
+
+// Static export: every known slug is prerendered at build; unknown slugs 404.
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const founders = await getVisibleFounders()
+  return founders
+    .filter((f): f is typeof f & { slug: string } => Boolean(f.slug))
+    .map((f) => ({ slug: f.slug }))
+}
 
 function clampInt(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(n)))
