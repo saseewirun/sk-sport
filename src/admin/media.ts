@@ -110,8 +110,9 @@ export async function uploadMediaFile(
     filesize: processed.blob.size,
     width: processed.width || null,
     height: processed.height || null,
-    focalX: null,
-    focalY: null,
+    // จุดโฟกัสเริ่มต้นของรูปใหม่: เลื่อนขึ้นเล็กน้อย (35%) เพื่อกันภาพแนวตั้งโดนตัดหัว
+    focalX: 50,
+    focalY: 35,
     createdAt: now,
     updatedAt: now,
   }
@@ -140,4 +141,17 @@ export function previewUrl(
   if (url.startsWith('/uploads/')) return url
   if (media.prefix && media.filename) return `/uploads/${media.prefix}/${media.filename}`
   return url
+}
+
+/**
+ * แปลงจุดโฟกัส (focalX/focalY 0–100) ของรูปเป็นค่า CSS object-position
+ * ใช้กับรูป object-cover เพื่อให้โชว์จุดที่เลือก (กันภาพโดนตัดหัว)
+ * ไม่ตั้งค่า → กึ่งกลาง (50% 50%)
+ */
+export function objectPositionFromFocal(
+  media: { focalX?: number | null; focalY?: number | null } | null | undefined,
+): string {
+  const x = media?.focalX ?? 50
+  const y = media?.focalY ?? 50
+  return `${x}% ${y}%`
 }

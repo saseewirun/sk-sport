@@ -26,7 +26,7 @@ export const Accomplishment = ({
       <div className="mx-auto md:px-10 px-6 md:pt-16 pt-8 md:pb-8">
         <div className="flex items-center justify-between">
           <h2 className="text-primary" style={{ fontSize: `${sectionTitleFontSizePx}px` }}>
-            Our Company’s Accomplishments
+            {t('title')}
           </h2>
           <button
             onClick={() => router.push(NAV_PATHS[NavKey.PORTFOLIO])}

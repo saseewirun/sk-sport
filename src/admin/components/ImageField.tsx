@@ -27,6 +27,18 @@ export function ImageField({
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
 
+  function setFocal(e: React.MouseEvent<HTMLImageElement>) {
+    if (!value) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const focalX = Math.round(
+      Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100)),
+    )
+    const focalY = Math.round(
+      Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100)),
+    )
+    onChange({ ...value, focalX, focalY })
+  }
+
   async function handleFile(files: FileList | null) {
     const file = files?.[0]
     if (!file) return
@@ -52,12 +64,21 @@ export function ImageField({
       {description && <span className="text-xs text-base-content/55">{description}</span>}
       <div className="mt-1 flex items-center gap-4">
         {value ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={previewUrl(value)}
-            alt={value.alt ?? value.filename}
-            className="h-24 w-36 rounded-md border border-base-200 bg-base-200 object-cover"
-          />
+          <div className="relative h-24 w-36">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={previewUrl(value)}
+              alt={value.alt ?? value.filename}
+              onClick={setFocal}
+              title="คลิกบนรูปเพื่อเลือกจุดที่อยากให้โชว์"
+              className="h-24 w-36 cursor-crosshair rounded-md border border-base-200 bg-base-200 object-cover"
+              style={{ objectPosition: `${value.focalX ?? 50}% ${value.focalY ?? 50}%` }}
+            />
+            <span
+              className="pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary-content bg-primary shadow"
+              style={{ left: `${value.focalX ?? 50}%`, top: `${value.focalY ?? 50}%` }}
+            />
+          </div>
         ) : (
           <div className="flex h-24 w-36 items-center justify-center rounded-md border border-dashed border-base-300 text-xs text-base-content/40">
             ยังไม่มีรูป
@@ -73,6 +94,11 @@ export function ImageField({
           {uploading ? 'กำลังอัปโหลด…' : value ? 'เปลี่ยนรูป' : 'เลือกรูป'}
         </button>
       </div>
+      {value && (
+        <span className="text-xs text-base-content/40">
+          คลิกบนรูปเพื่อเลือกจุดที่อยากให้โชว์ (กันภาพโดนตัดหัว)
+        </span>
+      )}
       {error && <p className="text-sm text-error">❌ {error}</p>}
       <input
         ref={fileInput}

@@ -233,7 +233,7 @@ function ArticleListCard({
               <div className="flex flex-col gap-4 border-t border-base-200 p-3">
                 <TextField
                   label="ชื่อบทความ"
-                  description="ที่อยู่ลิงก์สร้างให้อัตโนมัติจากชื่อนี้ (ตัดอักขระพิเศษให้เอง)"
+                  description="ที่อยู่ลิงก์สร้างให้อัตโนมัติจากชื่อนี้ (ตัดอักขระพิเศษให้เอง) — ที่อยู่ลิงก์ (URL) ของหน้านี้สร้างอัตโนมัติจากชื่อ และจะถูกแปลงเป็นภาษาอังกฤษเสมอ — แนะนำให้ตั้งชื่อเป็นภาษาอังกฤษเพื่อให้ลิงก์อ่านง่าย"
                   value={a.title}
                   onChange={(v) => update(a.id, { title: v })}
                 />

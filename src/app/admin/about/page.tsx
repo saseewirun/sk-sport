@@ -377,6 +377,21 @@ function TeamCard({
   const [highlightCardBodyFontSize, setHighlightCardBodyFontSize] = useState(
     (about.highlightCardBodyFontSize as number | null) ?? 15,
   )
+  const [founderCardTitleFontSize, setFounderCardTitleFontSize] = useState(
+    (about.founderCardTitleFontSize as number | null) ?? 28,
+  )
+  const [founderCardBodyFontSize, setFounderCardBodyFontSize] = useState(
+    (about.founderCardBodyFontSize as number | null) ?? 16,
+  )
+  const [founderQuoteFontSize, setFounderQuoteFontSize] = useState(
+    (about.founderQuoteFontSize as number | null) ?? 18,
+  )
+  const [founderDetailTitleFontSize, setFounderDetailTitleFontSize] = useState(
+    (about.founderDetailTitleFontSize as number | null) ?? 42,
+  )
+  const [founderDetailBodyFontSize, setFounderDetailBodyFontSize] = useState(
+    (about.founderDetailBodyFontSize as number | null) ?? 16,
+  )
 
   function update(id: string, next: Partial<Founder>) {
     setMembers((ms) => ms.map((m) => (m.id === id ? { ...m, ...next } : m)))
@@ -422,6 +437,11 @@ function TeamCard({
       ...latest,
       highlightCardTitleFontSize,
       highlightCardBodyFontSize,
+      founderCardTitleFontSize,
+      founderCardBodyFontSize,
+      founderQuoteFontSize,
+      founderDetailTitleFontSize,
+      founderDetailBodyFontSize,
     }))
   }
 
@@ -502,6 +522,7 @@ function TeamCard({
               <div className="flex flex-col gap-4 border-t border-base-200 p-3">
                 <TextField
                   label="ชื่อ"
+                  description="ที่อยู่ลิงก์ (URL) ของหน้านี้สร้างอัตโนมัติจากชื่อ และจะถูกแปลงเป็นภาษาอังกฤษเสมอ — แนะนำให้ตั้งชื่อเป็นภาษาอังกฤษเพื่อให้ลิงก์อ่านง่าย"
                   value={m.name}
                   onChange={(v) => update(m.id, { name: v })}
                 />
@@ -593,6 +614,36 @@ function TeamCard({
             label="ขนาดเนื้อหาการ์ดทีมงาน (px)"
             value={highlightCardBodyFontSize}
             onChange={setHighlightCardBodyFontSize}
+          />
+          <NumberField
+            label="ขนาดชื่อบนการ์ดผู้ก่อตั้ง (px)"
+            description="ชื่อสมาชิกบนการ์ดหน้า เกี่ยวกับเรา"
+            value={founderCardTitleFontSize}
+            onChange={setFounderCardTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำแนะนำบนการ์ดผู้ก่อตั้ง (px)"
+            description="คำแนะนำสั้นบนการ์ดสมาชิก"
+            value={founderCardBodyFontSize}
+            onChange={setFounderCardBodyFontSize}
+          />
+          <NumberField
+            label="ขนาดคำคม (px)"
+            description="ข้อความคำคมของสมาชิก"
+            value={founderQuoteFontSize}
+            onChange={setFounderQuoteFontSize}
+          />
+          <NumberField
+            label="ขนาดหัวข้อหน้ารายละเอียดผู้ก่อตั้ง (px)"
+            description="ชื่อบนหน้ารายละเอียดของสมาชิก"
+            value={founderDetailTitleFontSize}
+            onChange={setFounderDetailTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดเนื้อหาหน้ารายละเอียดผู้ก่อตั้ง (px)"
+            description="ประวัติเต็มบนหน้ารายละเอียดของสมาชิก"
+            value={founderDetailBodyFontSize}
+            onChange={setFounderDetailBodyFontSize}
           />
         </div>
       </div>

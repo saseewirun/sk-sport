@@ -23,6 +23,11 @@ type HomeGlobal = {
   highlightBodyFontSize?: number | null
   cardTitleFontSize?: number | null
   cardBodyFontSize?: number | null
+  servicesTitleFontSize?: number | null
+  productsTitleFontSize?: number | null
+  accomplishmentTitleFontSize?: number | null
+  aboutButtonFontSize?: number | null
+  contactSectionTitleFontSize?: number | null
 } & Record<string, unknown>
 
 type HomeMessages = {
@@ -33,9 +38,10 @@ type HomeMessages = {
     description: string
     contact_us: string
   }
+  Services: { title: string; tagline: string }
   Product: { title: string } & Record<string, unknown>
-  AboutCompany: { title: string; detail: string }
-  Accomplishment: { button: string }
+  AboutCompany: { title: string; detail: string; button: string }
+  Accomplishment: { title: string; button: string }
   ContactSection: { title1: string; title2: string }
 } & Record<string, unknown>
 
@@ -63,20 +69,24 @@ export default function AdminHomePage() {
           />
           <PartnersCard initial={global.data.partners ?? []} save={global.saveFields} />
 
-          <SectionCard
-            order={4}
-            title="ส่วนบริการ (การ์ด 5 ใบ)"
-            description="การ์ดบริการทั้ง 5 ใบกลางหน้าแรก ดึงข้อมูลจากหน้า “บริการ” โดยตรง"
-          >
-            <Link href="/admin/services" className="btn btn-outline btn-sm w-fit">
-              ไปแก้ที่หน้า บริการ →
-            </Link>
-          </SectionCard>
-
-          <ProductTitleCard initial={messages.data.Product.title} save={messages.saveFields} />
-          <AccomplishmentCard
-            initial={messages.data.Accomplishment.button}
+          <ServicesCard
+            initial={messages.data.Services}
             save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
+          />
+
+          <ProductTitleCard
+            initial={messages.data.Product.title}
+            save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
+          />
+          <AccomplishmentCard
+            initial={messages.data.Accomplishment}
+            save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
           />
           <AboutCompanyCard
             initial={messages.data.AboutCompany}
@@ -84,7 +94,12 @@ export default function AdminHomePage() {
             globalData={global.data}
             saveGlobal={global.saveFields}
           />
-          <ContactSectionCard initial={messages.data.ContactSection} save={messages.saveFields} />
+          <ContactSectionCard
+            initial={messages.data.ContactSection}
+            save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
+          />
           <GalleryCard
             initial={global.data.galleryMedia ?? []}
             globalData={global.data}
@@ -232,19 +247,97 @@ function PartnersCard({ initial, save }: { initial: MediaDoc[]; save: SaveFn<Hom
   )
 }
 
-function ProductTitleCard({ initial, save }: { initial: string; save: SaveFn<HomeMessages> }) {
+function ServicesCard({
+  initial,
+  save,
+  globalData,
+  saveGlobal,
+}: {
+  initial: HomeMessages['Services']
+  save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
+}) {
+  const [services, setServices] = useState(initial)
+  const [servicesTitleFontSize, setServicesTitleFontSize] = useState(
+    (globalData.servicesTitleFontSize as number | null) ?? 32,
+  )
+  return (
+    <SectionCard
+      order={4}
+      title="ส่วนบริการ (การ์ด 5 ใบ)"
+      description="การ์ดบริการทั้ง 5 ใบกลางหน้าแรก ดึงข้อมูลจากหน้า “บริการ” โดยตรง"
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: หัวข้อส่วนบริการ', (latest) => ({
+          ...latest,
+          Services: { ...latest.Services, ...services },
+        }))
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดหัวข้อส่วนบริการ', (latest) => ({
+          ...latest,
+          servicesTitleFontSize,
+        }))
+      }}
+    >
+      <TextField
+        label="หัวข้อ section"
+        description="หัวข้อใหญ่เหนือการ์ดบริการ เช่น “Our Services”"
+        value={services.title}
+        onChange={(v) => setServices({ ...services, title: v })}
+      />
+      <TextField
+        label="คำโปรย (tagline)"
+        description="ข้อความบรรทัดเล็กใต้หัวข้อส่วนบริการ"
+        value={services.tagline}
+        onChange={(v) => setServices({ ...services, tagline: v })}
+      />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <NumberField
+          label="ขนาดหัวข้อส่วนบริการ (px)"
+          description="หัวข้อใหญ่ของส่วนบริการ"
+          value={servicesTitleFontSize}
+          min={20}
+          max={56}
+          onChange={setServicesTitleFontSize}
+        />
+      </div>
+      <Link href="/admin/services" className="btn btn-outline btn-sm w-fit">
+        ไปแก้ที่หน้า บริการ →
+      </Link>
+    </SectionCard>
+  )
+}
+
+function ProductTitleCard({
+  initial,
+  save,
+  globalData,
+  saveGlobal,
+}: {
+  initial: string
+  save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
+}) {
   const [title, setTitle] = useState(initial)
+  const [productsTitleFontSize, setProductsTitleFontSize] = useState(
+    (globalData.productsTitleFontSize as number | null) ?? 32,
+  )
   return (
     <SectionCard
       order={5}
       title="สินค้าของเรา"
       description="หัวข้อของส่วนแสดงหมวดสินค้ากลางหน้าแรก (ตัวสินค้าแก้ที่หน้า “สินค้า”)"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: หัวข้อส่วนสินค้า', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: หัวข้อส่วนสินค้า', (latest) => ({
           ...latest,
           Product: { ...latest.Product, title },
         }))
-      }
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดหัวข้อส่วนสินค้า', (latest) => ({
+          ...latest,
+          productsTitleFontSize,
+        }))
+      }}
     >
       <TextField
         label="หัวข้อ section"
@@ -252,30 +345,81 @@ function ProductTitleCard({ initial, save }: { initial: string; save: SaveFn<Hom
         value={title}
         onChange={setTitle}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <NumberField
+          label="ขนาดหัวข้อส่วนสินค้า (px)"
+          description="หัวข้อใหญ่ของส่วนสินค้า"
+          value={productsTitleFontSize}
+          min={20}
+          max={56}
+          onChange={setProductsTitleFontSize}
+        />
+      </div>
+      <Link href="/admin/products" className="btn btn-outline btn-sm w-fit">
+        ไปแก้รายการสินค้าที่หน้า สินค้า →
+      </Link>
     </SectionCard>
   )
 }
 
-function AccomplishmentCard({ initial, save }: { initial: string; save: SaveFn<HomeMessages> }) {
-  const [button, setButton] = useState(initial)
+function AccomplishmentCard({
+  initial,
+  save,
+  globalData,
+  saveGlobal,
+}: {
+  initial: HomeMessages['Accomplishment']
+  save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
+}) {
+  const [accomplishment, setAccomplishment] = useState(initial)
+  const [accomplishmentTitleFontSize, setAccomplishmentTitleFontSize] = useState(
+    (globalData.accomplishmentTitleFontSize as number | null) ?? 32,
+  )
   return (
     <SectionCard
       order={6}
       title="ผลงาน (Accomplishment)"
       description="ส่วนแสดงบทความผลงานเด่นบนหน้าแรก (ตัวบทความแก้ที่หน้า “ผลงาน”)"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: ปุ่มส่วนผลงาน', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: ส่วนผลงาน', (latest) => ({
           ...latest,
-          Accomplishment: { ...latest.Accomplishment, button },
+          Accomplishment: { ...latest.Accomplishment, ...accomplishment },
         }))
-      }
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดหัวข้อส่วนผลงาน', (latest) => ({
+          ...latest,
+          accomplishmentTitleFontSize,
+        }))
+      }}
     >
+      <TextField
+        label="หัวข้อ section"
+        description="หัวข้อใหญ่ของส่วนผลงาน เช่น “Our Company’s Accomplishments”"
+        value={accomplishment.title}
+        onChange={(v) => setAccomplishment({ ...accomplishment, title: v })}
+      />
       <TextField
         label="ข้อความปุ่ม “ดูทั้งหมด”"
         description="ปุ่มท้ายส่วนผลงาน กดแล้วไปหน้า ผลงาน"
-        value={button}
-        onChange={setButton}
+        value={accomplishment.button}
+        onChange={(v) => setAccomplishment({ ...accomplishment, button: v })}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <NumberField
+          label="ขนาดหัวข้อส่วนผลงาน (px)"
+          description="หัวข้อใหญ่ของส่วนผลงาน"
+          value={accomplishmentTitleFontSize}
+          min={20}
+          max={56}
+          onChange={setAccomplishmentTitleFontSize}
+        />
+      </div>
+      <Link href="/admin/portfolio" className="btn btn-outline btn-sm w-fit">
+        ไปแก้บทความผลงานที่หน้า ผลงาน →
+      </Link>
     </SectionCard>
   )
 }
@@ -298,6 +442,9 @@ function AboutCompanyCard({
   const [highlightBodyFontSize, setHighlightBodyFontSize] = useState(
     (globalData.highlightBodyFontSize as number | null) ?? 16,
   )
+  const [aboutButtonFontSize, setAboutButtonFontSize] = useState(
+    (globalData.aboutButtonFontSize as number | null) ?? 16,
+  )
   return (
     <SectionCard
       order={7}
@@ -312,6 +459,7 @@ function AboutCompanyCard({
           ...latest,
           highlightTitleFontSize,
           highlightBodyFontSize,
+          aboutButtonFontSize,
         }))
       }}
     >
@@ -327,6 +475,12 @@ function AboutCompanyCard({
         value={about.detail}
         onChange={(v) => setAbout({ ...about, detail: v })}
         rows={5}
+      />
+      <TextField
+        label="ข้อความบนปุ่ม"
+        description="ปุ่มในกล่องนี้ กดแล้วไปหน้า เกี่ยวกับเรา (เช่น “About Us”)"
+        value={about.button}
+        onChange={(v) => setAbout({ ...about, button: v })}
       />
       <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
         <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
@@ -347,6 +501,14 @@ function AboutCompanyCard({
             max={24}
             onChange={setHighlightBodyFontSize}
           />
+          <NumberField
+            label="ขนาดข้อความบนปุ่ม (px)"
+            description="ขนาดตัวอักษรบนปุ่มในกล่องนี้"
+            value={aboutButtonFontSize}
+            min={12}
+            max={24}
+            onChange={setAboutButtonFontSize}
+          />
         </div>
       </div>
     </SectionCard>
@@ -356,22 +518,33 @@ function AboutCompanyCard({
 function ContactSectionCard({
   initial,
   save,
+  globalData,
+  saveGlobal,
 }: {
   initial: HomeMessages['ContactSection']
   save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
 }) {
   const [contact, setContact] = useState(initial)
+  const [contactSectionTitleFontSize, setContactSectionTitleFontSize] = useState(
+    (globalData.contactSectionTitleFontSize as number | null) ?? 32,
+  )
   return (
     <SectionCard
       order={8}
       title="ส่วนติดต่อ + แผนที่"
       description="แถบชวนติดต่อพร้อมแผนที่ ท้ายหน้าแรก — ตัวแผนที่และข้อมูลติดต่อแก้ที่หน้า “ติดต่อเรา”"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: ข้อความส่วนติดต่อ', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: ข้อความส่วนติดต่อ', (latest) => ({
           ...latest,
           ContactSection: { ...latest.ContactSection, ...contact },
         }))
-      }
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดหัวข้อส่วนติดต่อ', (latest) => ({
+          ...latest,
+          contactSectionTitleFontSize,
+        }))
+      }}
     >
       <TextField
         label="ข้อความบรรทัดที่ 1"
@@ -383,6 +556,17 @@ function ContactSectionCard({
         value={contact.title2}
         onChange={(v) => setContact({ ...contact, title2: v })}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <NumberField
+          label="ขนาดหัวข้อส่วนติดต่อ (px)"
+          description="หัวข้อใหญ่ของส่วนติดต่อ + แผนที่"
+          value={contactSectionTitleFontSize}
+          min={20}
+          max={56}
+          onChange={setContactSectionTitleFontSize}
+        />
+      </div>
     </SectionCard>
   )
 }

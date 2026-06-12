@@ -34,6 +34,17 @@ export function ImageListEditor({
     onChange(next)
   }
 
+  function setFocal(index: number, e: React.MouseEvent<HTMLImageElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const focalX = Math.round(
+      Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100)),
+    )
+    const focalY = Math.round(
+      Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100)),
+    )
+    onChange(items.map((it, i) => (i === index ? { ...it, focalX, focalY } : it)))
+  }
+
   async function handleFiles(files: FileList | null) {
     if (!files?.length) return
     setError('')
@@ -70,15 +81,27 @@ export function ImageListEditor({
             key={item.id}
             className="flex items-center gap-3 rounded-lg border border-base-200 bg-base-100 p-2"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={previewUrl(item)}
-              alt={item.alt ?? item.filename}
-              className="h-16 w-24 shrink-0 rounded-md bg-base-200 object-cover"
-            />
+            <div className="relative h-16 w-24 shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={previewUrl(item)}
+                alt={item.alt ?? item.filename}
+                onClick={(e) => setFocal(index, e)}
+                title="คลิกบนรูปเพื่อเลือกจุดที่อยากให้โชว์"
+                className="h-16 w-24 cursor-crosshair rounded-md bg-base-200 object-cover"
+                style={{ objectPosition: `${item.focalX ?? 50}% ${item.focalY ?? 50}%` }}
+              />
+              <span
+                className="pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary-content bg-primary shadow"
+                style={{ left: `${item.focalX ?? 50}%`, top: `${item.focalY ?? 50}%` }}
+              />
+            </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm">{item.alt || item.name || item.filename}</p>
               <p className="text-xs text-base-content/45">ลำดับที่ {index + 1}</p>
+              <p className="text-xs text-base-content/40">
+                คลิกบนรูปเพื่อเลือกจุดที่อยากให้โชว์ (กันภาพโดนตัดหัว)
+              </p>
             </div>
             <div className="flex shrink-0 items-center gap-1">
               <button
