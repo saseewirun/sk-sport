@@ -1,0 +1,46 @@
+name: Deploy to Cloudflare Pages
+
+# เว็บ SK-Sport เป็น static (Next.js output: 'export') + Cloudflare Pages Functions
+# (โฟลเดอร์ functions/). ทุกครั้งที่ push เข้า main (หรือ branch งานนี้ตอนทดสอบ)
+# จะ build แล้วส่งขึ้น Cloudflare Pages อัตโนมัติ — ไม่ต้องเชื่อม Cloudflare เข้ากับ
+# GitHub ของเจ้าของ repo (ใช้ API token แทน)
+#
+# ต้องตั้ง repo secrets 2 ตัวก่อน (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — token สิทธิ์ Account · Cloudflare Pages · Edit
+#   CLOUDFLARE_ACCOUNT_ID  — Account ID ของ Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+      - claude/sk-sport-git-cms # branch ทดสอบ (เอาออกได้หลัง merge เข้า main)
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site (out/)
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # สร้างโปรเจกต์ชื่อ sk-sport อัตโนมัติถ้ายังไม่มี, อัปทั้ง out/ + functions/
+          command: pages deploy out --project-name=sk-sport --branch=${{ github.ref_name }}
