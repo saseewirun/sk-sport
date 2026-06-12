@@ -55,7 +55,12 @@ export default function AdminHomePage() {
       {global.data && messages.data && (
         <>
           <HeroImagesCard initial={global.data.heroMedia ?? []} save={global.saveFields} />
-          <HeroTextCard initial={messages.data.Hero} save={messages.saveFields} />
+          <HeroTextCard
+            initial={messages.data.Hero}
+            save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
+          />
           <PartnersCard initial={global.data.partners ?? []} save={global.saveFields} />
 
           <SectionCard
@@ -73,10 +78,18 @@ export default function AdminHomePage() {
             initial={messages.data.Accomplishment.button}
             save={messages.saveFields}
           />
-          <AboutCompanyCard initial={messages.data.AboutCompany} save={messages.saveFields} />
+          <AboutCompanyCard
+            initial={messages.data.AboutCompany}
+            save={messages.saveFields}
+            globalData={global.data}
+            saveGlobal={global.saveFields}
+          />
           <ContactSectionCard initial={messages.data.ContactSection} save={messages.saveFields} />
-          <GalleryCard initial={global.data.galleryMedia ?? []} save={global.saveFields} />
-          <FontSizesCard data={global.data} save={global.saveFields} />
+          <GalleryCard
+            initial={global.data.galleryMedia ?? []}
+            globalData={global.data}
+            save={global.saveFields}
+          />
         </>
       )}
     </AdminShell>
@@ -107,23 +120,38 @@ function HeroImagesCard({ initial, save }: { initial: MediaDoc[]; save: SaveFn<H
 function HeroTextCard({
   initial,
   save,
+  globalData,
+  saveGlobal,
 }: {
   initial: HomeMessages['Hero']
   save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
 }) {
   const [hero, setHero] = useState(initial)
   const set = (k: keyof HomeMessages['Hero']) => (v: string) => setHero({ ...hero, [k]: v })
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(
+    (globalData.heroTitleFontSize as number | null) ?? 56,
+  )
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(
+    (globalData.heroSubtitleFontSize as number | null) ?? 20,
+  )
   return (
     <SectionCard
       order={2}
       title="ข้อความบนแบนเนอร์"
       description="หัวข้อใหญ่ 3 ท่อน คำอธิบาย และข้อความบนปุ่ม ที่ทับอยู่บนรูปแบนเนอร์"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: ข้อความบนแบนเนอร์', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: ข้อความบนแบนเนอร์', (latest) => ({
           ...latest,
           Hero: { ...latest.Hero, ...hero },
         }))
-      }
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดตัวอักษรแบนเนอร์', (latest) => ({
+          ...latest,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
+        }))
+      }}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <TextField
@@ -158,6 +186,27 @@ function HeroTextCard({
         value={hero.contact_us}
         onChange={set('contact_us')}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            description="หัวข้อหลักบนแบนเนอร์ (หลายบรรทัด) ไม่รวมปุ่ม"
+            value={heroTitleFontSize}
+            min={32}
+            max={96}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            description="คำอธิบายใต้หัวข้อ บนแบนเนอร์"
+            value={heroSubtitleFontSize}
+            min={14}
+            max={32}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -234,22 +283,37 @@ function AccomplishmentCard({ initial, save }: { initial: string; save: SaveFn<H
 function AboutCompanyCard({
   initial,
   save,
+  globalData,
+  saveGlobal,
 }: {
   initial: HomeMessages['AboutCompany']
   save: SaveFn<HomeMessages>
+  globalData: HomeGlobal
+  saveGlobal: SaveFn<HomeGlobal>
 }) {
   const [about, setAbout] = useState(initial)
+  const [highlightTitleFontSize, setHighlightTitleFontSize] = useState(
+    (globalData.highlightTitleFontSize as number | null) ?? 28,
+  )
+  const [highlightBodyFontSize, setHighlightBodyFontSize] = useState(
+    (globalData.highlightBodyFontSize as number | null) ?? 16,
+  )
   return (
     <SectionCard
       order={7}
       title="เกี่ยวกับบริษัท"
       description="กล่องแนะนำบริษัทช่วงล่างของหน้าแรก (มีปุ่มไปหน้า เกี่ยวกับเรา)"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: ส่วนเกี่ยวกับบริษัท', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขหน้าแรก: ส่วนเกี่ยวกับบริษัท', (latest) => ({
           ...latest,
           AboutCompany: { ...latest.AboutCompany, ...about },
         }))
-      }
+        await saveGlobal('แก้ไขหน้าแรก: ขนาดตัวอักษรส่วนเกี่ยวกับบริษัท', (latest) => ({
+          ...latest,
+          highlightTitleFontSize,
+          highlightBodyFontSize,
+        }))
+      }}
     >
       <TextField
         label="ชื่อบริษัท"
@@ -264,6 +328,27 @@ function AboutCompanyCard({
         onChange={(v) => setAbout({ ...about, detail: v })}
         rows={5}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อเนื้อหาเน้น (px)"
+            description="หัวย่อยบล็อกเนื้อหา / รายละเอียด (เช่น เกี่ยวกับบริษัท)"
+            value={highlightTitleFontSize}
+            min={20}
+            max={48}
+            onChange={setHighlightTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดเนื้อหาเน้น (px)"
+            description="เนื้อหายาวในบล็อกเน้น ไม่รวมป้ายเล็ก"
+            value={highlightBodyFontSize}
+            min={14}
+            max={24}
+            onChange={setHighlightBodyFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -302,45 +387,7 @@ function ContactSectionCard({
   )
 }
 
-function GalleryCard({ initial, save }: { initial: MediaDoc[]; save: SaveFn<HomeGlobal> }) {
-  const [items, setItems] = useState(initial)
-  return (
-    <SectionCard
-      order={9}
-      title="แกลเลอรีรูปภาพ"
-      description="ตารางรูปภาพผลงาน/บรรยากาศ ล่างสุดของหน้าแรก"
-      onSave={() =>
-        save('แก้ไขหน้าแรก: แกลเลอรีรูปภาพ', (latest) => ({ ...latest, galleryMedia: items }))
-      }
-    >
-      <ImageListEditor
-        items={items}
-        onChange={setItems}
-        folder="gallery-media"
-        uploadCommitMessage="แก้ไขหน้าแรก: อัปโหลดรูปแกลเลอรีใหม่"
-      />
-    </SectionCard>
-  )
-}
-
-/** ขนาดตัวอักษรของหน้าแรก — label/คำอธิบาย/ช่วงค่า ตรงกับของเดิมใน Payload */
-const FONT_FIELDS = [
-  {
-    key: 'heroTitleFontSize',
-    label: 'ขนาดหัวข้อบนแบนเนอร์ (px)',
-    description: 'หัวข้อหลักบนแบนเนอร์ (หลายบรรทัด) ไม่รวมปุ่ม',
-    fallback: 56,
-    min: 32,
-    max: 96,
-  },
-  {
-    key: 'heroSubtitleFontSize',
-    label: 'ขนาดคำอธิบายบนแบนเนอร์ (px)',
-    description: 'คำอธิบายใต้หัวข้อ บนแบนเนอร์',
-    fallback: 20,
-    min: 14,
-    max: 32,
-  },
+const HOME_SHARED_FONTS = [
   {
     key: 'sectionTitleFontSize',
     label: 'ขนาดหัวข้อแต่ละส่วน (px)',
@@ -348,22 +395,6 @@ const FONT_FIELDS = [
     fallback: 32,
     min: 20,
     max: 56,
-  },
-  {
-    key: 'highlightTitleFontSize',
-    label: 'ขนาดหัวข้อเนื้อหาเน้น (px)',
-    description: 'หัวย่อยบล็อกเนื้อหา / รายละเอียด (เช่น เกี่ยวกับบริษัท)',
-    fallback: 28,
-    min: 20,
-    max: 48,
-  },
-  {
-    key: 'highlightBodyFontSize',
-    label: 'ขนาดเนื้อหาเน้น (px)',
-    description: 'เนื้อหายาวในบล็อกเน้น ไม่รวมป้ายเล็ก',
-    fallback: 16,
-    min: 14,
-    max: 24,
   },
   {
     key: 'cardTitleFontSize',
@@ -383,32 +414,57 @@ const FONT_FIELDS = [
   },
 ] as const
 
-function FontSizesCard({ data, save }: { data: HomeGlobal; save: SaveFn<HomeGlobal> }) {
+function GalleryCard({
+  initial,
+  globalData,
+  save,
+}: {
+  initial: MediaDoc[]
+  globalData: HomeGlobal
+  save: SaveFn<HomeGlobal>
+}) {
+  const [items, setItems] = useState(initial)
   const [sizes, setSizes] = useState<Record<string, number>>(() =>
     Object.fromEntries(
-      FONT_FIELDS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback]),
+      HOME_SHARED_FONTS.map((f) => [f.key, (globalData[f.key] as number | null) ?? f.fallback]),
     ),
   )
   return (
     <SectionCard
-      order={10}
-      title="🔠 ขนาดตัวอักษรของหน้าแรก"
-      description="ปรับขนาดตัวหนังสือส่วนต่างๆ ของหน้าแรก (หน่วยเป็นพิกเซล ใหญ่ขึ้น = ตัวโตขึ้น)"
-      collapsible
-      onSave={() => save('แก้ไขหน้าแรก: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
+      order={9}
+      title="แกลเลอรีรูปภาพ"
+      description="ตารางรูปภาพผลงาน/บรรยากาศ ล่างสุดของหน้าแรก"
+      onSave={() =>
+        save('แก้ไขหน้าแรก: แกลเลอรีรูปภาพ', (latest) => ({
+          ...latest,
+          galleryMedia: items,
+          ...sizes,
+        }))
+      }
     >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {FONT_FIELDS.map((f) => (
-          <NumberField
-            key={f.key}
-            label={f.label}
-            description={f.description}
-            value={sizes[f.key]}
-            min={f.min}
-            max={f.max}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
-          />
-        ))}
+      <ImageListEditor
+        items={items}
+        onChange={setItems}
+        folder="gallery-media"
+        uploadCommitMessage="แก้ไขหน้าแรก: อัปโหลดรูปแกลเลอรีใหม่"
+      />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">
+          🔠 ขนาดตัวอักษร (ใช้ร่วมหัวข้อ section + การ์ดทั้งหน้า)
+        </p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {HOME_SHARED_FONTS.map((f) => (
+            <NumberField
+              key={f.key}
+              label={f.label}
+              description={f.description}
+              value={sizes[f.key]}
+              min={f.min}
+              max={f.max}
+              onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            />
+          ))}
+        </div>
       </div>
     </SectionCard>
   )

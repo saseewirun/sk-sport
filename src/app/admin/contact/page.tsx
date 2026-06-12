@@ -15,6 +15,13 @@ type ContactHero = {
   heroTitle?: string | null
   heroSubtitle?: string | null
   heroMedia?: MediaDoc[] | null
+  heroTitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null
+  contactSectionTitleFontSize?: number | null
+  contactInfoTitleFontSize?: number | null
+  contactInfoBodyFontSize?: number | null
+  formLabelFontSize?: number | null
+  formInputFontSize?: number | null
 } & Record<string, unknown>
 
 type SiteContact = {
@@ -40,8 +47,12 @@ export default function AdminContactPage() {
         <>
           <HeroCard data={hero.data} save={hero.saveFields} />
           <MapCard data={site.data} save={site.saveFields} />
-          <ContactInfoCard data={site.data} save={site.saveFields} />
-          <FontSizesCard data={hero.data} save={hero.saveFields} />
+          <ContactInfoCard
+            data={site.data}
+            save={site.saveFields}
+            heroData={hero.data}
+            saveHero={hero.saveFields}
+          />
         </>
       )}
     </AdminShell>
@@ -52,6 +63,8 @@ function HeroCard({ data, save }: { data: ContactHero; save: SaveFn<ContactHero>
   const [title, setTitle] = useState(data.heroTitle ?? '')
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
   const [media, setMedia] = useState<MediaDoc[]>(data.heroMedia ?? [])
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(data.heroTitleFontSize ?? 56)
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(data.heroSubtitleFontSize ?? 20)
   return (
     <SectionCard
       order={1}
@@ -63,6 +76,8 @@ function HeroCard({ data, save }: { data: ContactHero; save: SaveFn<ContactHero>
           heroTitle: title || null,
           heroSubtitle: subtitle || null,
           heroMedia: media,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
         }))
       }
     >
@@ -79,6 +94,21 @@ function HeroCard({ data, save }: { data: ContactHero; save: SaveFn<ContactHero>
         folder="hero-media"
         uploadCommitMessage="แก้ไขติดต่อเรา: อัปโหลดรูปแบนเนอร์"
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            value={heroTitleFontSize}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            value={heroSubtitleFontSize}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -120,7 +150,17 @@ function MapCard({ data, save }: { data: SiteContact; save: SaveFn<SiteContact> 
   )
 }
 
-function ContactInfoCard({ data, save }: { data: SiteContact; save: SaveFn<SiteContact> }) {
+function ContactInfoCard({
+  data,
+  save,
+  heroData,
+  saveHero,
+}: {
+  data: SiteContact
+  save: SaveFn<SiteContact>
+  heroData: ContactHero
+  saveHero: SaveFn<ContactHero>
+}) {
   const [info, setInfo] = useState({
     phone: data.phone ?? '',
     email: data.email ?? '',
@@ -130,13 +170,24 @@ function ContactInfoCard({ data, save }: { data: SiteContact; save: SaveFn<SiteC
     line: data.line ?? '',
   })
   const set = (k: keyof typeof info) => (v: string) => setInfo({ ...info, [k]: v })
+  const [contactSectionTitleFontSize, setContactSectionTitleFontSize] = useState(
+    heroData.contactSectionTitleFontSize ?? 32,
+  )
+  const [contactInfoTitleFontSize, setContactInfoTitleFontSize] = useState(
+    heroData.contactInfoTitleFontSize ?? 20,
+  )
+  const [contactInfoBodyFontSize, setContactInfoBodyFontSize] = useState(
+    heroData.contactInfoBodyFontSize ?? 16,
+  )
+  const [formLabelFontSize, setFormLabelFontSize] = useState(heroData.formLabelFontSize ?? 14)
+  const [formInputFontSize, setFormInputFontSize] = useState(heroData.formInputFontSize ?? 16)
   return (
     <SectionCard
       order={3}
       title="ข้อมูลติดต่อ"
       description="เบอร์ อีเมล ที่อยู่ และโซเชียล — แสดงบนหน้า ติดต่อเรา และท้ายเว็บทุกหน้า"
-      onSave={() =>
-        save('แก้ไขติดต่อเรา: ข้อมูลติดต่อ', (latest) => ({
+      onSave={async () => {
+        await save('แก้ไขติดต่อเรา: ข้อมูลติดต่อ', (latest) => ({
           ...latest,
           phone: info.phone,
           email: info.email,
@@ -145,7 +196,15 @@ function ContactInfoCard({ data, save }: { data: SiteContact; save: SaveFn<SiteC
           youtube: info.youtube || null,
           line: info.line || null,
         }))
-      }
+        await saveHero('แก้ไขติดต่อเรา: ขนาดตัวอักษรส่วนติดต่อ', (latest) => ({
+          ...latest,
+          contactSectionTitleFontSize,
+          contactInfoTitleFontSize,
+          contactInfoBodyFontSize,
+          formLabelFontSize,
+          formInputFontSize,
+        }))
+      }}
     >
       <TextField label="เบอร์โทรศัพท์" value={info.phone} onChange={set('phone')} />
       <TextField label="อีเมล" value={info.email} onChange={set('email')} />
@@ -168,43 +227,35 @@ function ContactInfoCard({ data, save }: { data: SiteContact; save: SaveFn<SiteC
         value={info.line}
         onChange={set('line')}
       />
-    </SectionCard>
-  )
-}
-
-const CONTACT_FONTS = [
-  { key: 'heroTitleFontSize', label: 'ขนาดหัวข้อบนแบนเนอร์ (px)', fallback: 56 },
-  { key: 'heroSubtitleFontSize', label: 'ขนาดคำอธิบายบนแบนเนอร์ (px)', fallback: 20 },
-  { key: 'contactSectionTitleFontSize', label: 'ขนาดหัวข้อส่วนติดต่อ (px)', fallback: 32 },
-  { key: 'contactInfoTitleFontSize', label: 'ขนาดหัวข้อข้อมูลติดต่อ (px)', fallback: 20 },
-  { key: 'contactInfoBodyFontSize', label: 'ขนาดเนื้อหาข้อมูลติดต่อ (px)', fallback: 16 },
-  { key: 'formLabelFontSize', label: 'ขนาดป้ายช่องกรอกฟอร์ม (px)', fallback: 14 },
-  { key: 'formInputFontSize', label: 'ขนาดตัวอักษรในช่องกรอก (px)', fallback: 16 },
-] as const
-
-function FontSizesCard({ data, save }: { data: ContactHero; save: SaveFn<ContactHero> }) {
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(
-      CONTACT_FONTS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback]),
-    ),
-  )
-  return (
-    <SectionCard
-      order={4}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือของหน้า ติดต่อเรา (พิกเซล)"
-      collapsible
-      onSave={() => save('แก้ไขติดต่อเรา: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {CONTACT_FONTS.map((f) => (
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            label="ขนาดหัวข้อส่วนติดต่อ (px)"
+            value={contactSectionTitleFontSize}
+            onChange={setContactSectionTitleFontSize}
           />
-        ))}
+          <NumberField
+            label="ขนาดหัวข้อข้อมูลติดต่อ (px)"
+            value={contactInfoTitleFontSize}
+            onChange={setContactInfoTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดเนื้อหาข้อมูลติดต่อ (px)"
+            value={contactInfoBodyFontSize}
+            onChange={setContactInfoBodyFontSize}
+          />
+          <NumberField
+            label="ขนาดป้ายช่องกรอกฟอร์ม (px)"
+            value={formLabelFontSize}
+            onChange={setFormLabelFontSize}
+          />
+          <NumberField
+            label="ขนาดตัวอักษรในช่องกรอก (px)"
+            value={formInputFontSize}
+            onChange={setFormInputFontSize}
+          />
+        </div>
       </div>
     </SectionCard>
   )

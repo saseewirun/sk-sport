@@ -46,8 +46,12 @@ export default function AdminProductsPage() {
       {hero.data && products.data && (
         <>
           <HeroCard data={hero.data} save={hero.saveFields} />
-          <ProductListCard initial={products.data} save={products.saveFields} />
-          <FontSizesCard data={hero.data} save={hero.saveFields} />
+          <ProductListCard
+            initial={products.data}
+            save={products.saveFields}
+            heroData={hero.data}
+            saveHero={hero.saveFields}
+          />
         </>
       )}
     </AdminShell>
@@ -59,6 +63,10 @@ function HeroCard({ data, save }: { data: ProductsHero; save: SaveFn<ProductsHer
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
   const [eyebrow, setEyebrow] = useState(data.eyebrow ?? '')
   const [media, setMedia] = useState<MediaDoc[]>(data.heroMedia ?? [])
+  const [titleFontSize, setTitleFontSize] = useState((data.titleFontSize as number | null) ?? 56)
+  const [subtitleFontSize, setSubtitleFontSize] = useState(
+    (data.subtitleFontSize as number | null) ?? 20,
+  )
   return (
     <SectionCard
       order={1}
@@ -71,6 +79,8 @@ function HeroCard({ data, save }: { data: ProductsHero; save: SaveFn<ProductsHer
           heroSubtitle: subtitle || null,
           eyebrow: eyebrow || null,
           heroMedia: media,
+          titleFontSize,
+          subtitleFontSize,
         }))
       }
     >
@@ -88,13 +98,54 @@ function HeroCard({ data, save }: { data: ProductsHero; save: SaveFn<ProductsHer
         folder="hero-media"
         uploadCommitMessage="แก้ไขสินค้า: อัปโหลดรูปแบนเนอร์"
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            value={titleFontSize}
+            onChange={setTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            value={subtitleFontSize}
+            onChange={setSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
 
-function ProductListCard({ initial, save }: { initial: Product[]; save: SaveFn<Product[]> }) {
+const PRODUCT_LIST_FONTS = [
+  { key: 'categoryTitleFontSize', label: 'ขนาดหัวข้อหมวดสินค้า (px)', fallback: 28 },
+  { key: 'productCardTitleFontSize', label: 'ขนาดชื่อสินค้าบนการ์ด (px)', fallback: 18 },
+  { key: 'productPriceFontSize', label: 'ขนาดราคาบนการ์ด (px)', fallback: 16 },
+  { key: 'detailTitleFontSize', label: 'ขนาดชื่อสินค้าในหน้ารายละเอียด (px)', fallback: 36 },
+  { key: 'detailSubtitleFontSize', label: 'ขนาดชื่อรองในหน้ารายละเอียด (px)', fallback: 20 },
+  { key: 'detailSectionTitleFontSize', label: 'ขนาดหัวข้อย่อยในหน้ารายละเอียด (px)', fallback: 24 },
+  { key: 'detailBodyFontSize', label: 'ขนาดเนื้อหาในหน้ารายละเอียด (px)', fallback: 16 },
+  { key: 'relatedTitleFontSize', label: 'ขนาดหัวข้อ “สินค้าอื่นๆ” (px)', fallback: 24 },
+] as const
+
+function ProductListCard({
+  initial,
+  save,
+  heroData,
+  saveHero,
+}: {
+  initial: Product[]
+  save: SaveFn<Product[]>
+  heroData: ProductsHero
+  saveHero: SaveFn<ProductsHero>
+}) {
   const [products, setProducts] = useState(initial)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [sizes, setSizes] = useState<Record<string, number>>(() =>
+    Object.fromEntries(
+      PRODUCT_LIST_FONTS.map((f) => [f.key, (heroData[f.key] as number | null) ?? f.fallback]),
+    ),
+  )
 
   function update(id: string, next: Partial<Product>) {
     setProducts((list) => list.map((p) => (p.id === id ? { ...p, ...next } : p)))
@@ -134,6 +185,7 @@ function ProductListCard({ initial, save }: { initial: Product[]; save: SaveFn<P
     }))
     setProducts(finalized)
     await save('แก้ไขสินค้า: รายการสินค้า', () => finalized)
+    await saveHero('แก้ไขสินค้า: ขนาดตัวอักษรรายการสินค้า', (latest) => ({ ...latest, ...sizes }))
   }
 
   return (
@@ -244,46 +296,19 @@ function ProductListCard({ initial, save }: { initial: Product[]; save: SaveFn<P
           </li>
         ))}
       </ul>
-    </SectionCard>
-  )
-}
 
-const PRODUCT_FONTS = [
-  { key: 'titleFontSize', label: 'ขนาดหัวข้อบนแบนเนอร์ (px)', fallback: 56 },
-  { key: 'subtitleFontSize', label: 'ขนาดคำอธิบายบนแบนเนอร์ (px)', fallback: 20 },
-  { key: 'categoryTitleFontSize', label: 'ขนาดหัวข้อหมวดสินค้า (px)', fallback: 28 },
-  { key: 'productCardTitleFontSize', label: 'ขนาดชื่อสินค้าบนการ์ด (px)', fallback: 18 },
-  { key: 'productPriceFontSize', label: 'ขนาดราคาบนการ์ด (px)', fallback: 16 },
-  { key: 'detailTitleFontSize', label: 'ขนาดชื่อสินค้าในหน้ารายละเอียด (px)', fallback: 36 },
-  { key: 'detailSubtitleFontSize', label: 'ขนาดชื่อรองในหน้ารายละเอียด (px)', fallback: 20 },
-  { key: 'detailSectionTitleFontSize', label: 'ขนาดหัวข้อย่อยในหน้ารายละเอียด (px)', fallback: 24 },
-  { key: 'detailBodyFontSize', label: 'ขนาดเนื้อหาในหน้ารายละเอียด (px)', fallback: 16 },
-  { key: 'relatedTitleFontSize', label: 'ขนาดหัวข้อ “สินค้าอื่นๆ” (px)', fallback: 24 },
-] as const
-
-function FontSizesCard({ data, save }: { data: ProductsHero; save: SaveFn<ProductsHero> }) {
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(
-      PRODUCT_FONTS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback]),
-    ),
-  )
-  return (
-    <SectionCard
-      order={3}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือของหน้า สินค้า และหน้ารายละเอียดสินค้า (พิกเซล)"
-      collapsible
-      onSave={() => save('แก้ไขสินค้า: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {PRODUCT_FONTS.map((f) => (
-          <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
-          />
-        ))}
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {PRODUCT_LIST_FONTS.map((f) => (
+            <NumberField
+              key={f.key}
+              label={f.label}
+              value={sizes[f.key]}
+              onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            />
+          ))}
+        </div>
       </div>
     </SectionCard>
   )

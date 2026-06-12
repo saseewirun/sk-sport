@@ -16,6 +16,12 @@ type FaqGlobal = {
   heroSubtitle?: string | null
   faqItems?: FaqItem[] | null
   bottomCtaBody?: string | null
+  heroTitleFontSize?: number | null
+  heroSubtitleFontSize?: number | null
+  questionFontSize?: number | null
+  answerFontSize?: number | null
+  bottomCtaTitleFontSize?: number | null
+  bottomCtaBodyFontSize?: number | null
 } & Record<string, unknown>
 
 type SaveFn<T> = (message: string, apply: (latest: T) => T) => Promise<void>
@@ -31,7 +37,6 @@ export default function AdminFaqPage() {
           <HeaderCard data={faq.data} save={faq.saveFields} />
           <ItemsCard data={faq.data} save={faq.saveFields} />
           <CtaCard data={faq.data} save={faq.saveFields} />
-          <FontSizesCard data={faq.data} save={faq.saveFields} />
         </>
       )}
     </AdminShell>
@@ -41,6 +46,8 @@ export default function AdminFaqPage() {
 function HeaderCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }) {
   const [title, setTitle] = useState(data.heroTitle ?? '')
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(data.heroTitleFontSize ?? 56)
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(data.heroSubtitleFontSize ?? 20)
   return (
     <SectionCard
       order={1}
@@ -51,6 +58,8 @@ function HeaderCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }
           ...latest,
           heroTitle: title || null,
           heroSubtitle: subtitle || null,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
         }))
       }
     >
@@ -61,18 +70,42 @@ function HeaderCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }
         value={subtitle}
         onChange={setSubtitle}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อหน้า (px)"
+            value={heroTitleFontSize}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายหัวหน้า (px)"
+            value={heroSubtitleFontSize}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
 
 function ItemsCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }) {
   const [items, setItems] = useState<FaqItem[]>(data.faqItems ?? [])
+  const [questionFontSize, setQuestionFontSize] = useState(data.questionFontSize ?? 18)
+  const [answerFontSize, setAnswerFontSize] = useState(data.answerFontSize ?? 16)
   return (
     <SectionCard
       order={2}
       title="รายการคำถาม-คำตอบ"
       description="คำถามแสดงเรียงตามลำดับในรายการนี้ ทั้งบนหน้า FAQ และตัวช่วยตอบคำถามมุมเว็บ"
-      onSave={() => save('แก้ไข FAQ: คำถาม-คำตอบ', (latest) => ({ ...latest, faqItems: items }))}
+      onSave={() =>
+        save('แก้ไข FAQ: คำถาม-คำตอบ', (latest) => ({
+          ...latest,
+          faqItems: items,
+          questionFontSize,
+          answerFontSize,
+        }))
+      }
     >
       <ItemList
         items={items}
@@ -96,19 +129,45 @@ function ItemsCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> })
           </>
         )}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดตัวคำถาม (px)"
+            value={questionFontSize}
+            onChange={setQuestionFontSize}
+          />
+          <NumberField
+            label="ขนาดตัวคำตอบ (px)"
+            value={answerFontSize}
+            onChange={setAnswerFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
 
 function CtaCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }) {
   const [body, setBody] = useState(data.bottomCtaBody ?? '')
+  const [bottomCtaTitleFontSize, setBottomCtaTitleFontSize] = useState(
+    data.bottomCtaTitleFontSize ?? 28,
+  )
+  const [bottomCtaBodyFontSize, setBottomCtaBodyFontSize] = useState(
+    data.bottomCtaBodyFontSize ?? 16,
+  )
   return (
     <SectionCard
       order={3}
       title="กล่องชวนติดต่อท้ายหน้า"
       description="กล่องล่างสุดของหน้า FAQ ที่ชวนให้ติดต่อเมื่อไม่พบคำตอบ"
       onSave={() =>
-        save('แก้ไข FAQ: กล่องชวนติดต่อ', (latest) => ({ ...latest, bottomCtaBody: body || null }))
+        save('แก้ไข FAQ: กล่องชวนติดต่อ', (latest) => ({
+          ...latest,
+          bottomCtaBody: body || null,
+          bottomCtaTitleFontSize,
+          bottomCtaBodyFontSize,
+        }))
       }
     >
       <TextAreaField
@@ -118,40 +177,20 @@ function CtaCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }) {
         onChange={setBody}
         rows={2}
       />
-    </SectionCard>
-  )
-}
-
-const FAQ_FONTS = [
-  { key: 'heroTitleFontSize', label: 'ขนาดหัวข้อหน้า (px)', fallback: 56 },
-  { key: 'heroSubtitleFontSize', label: 'ขนาดคำอธิบายหัวหน้า (px)', fallback: 20 },
-  { key: 'questionFontSize', label: 'ขนาดตัวคำถาม (px)', fallback: 18 },
-  { key: 'answerFontSize', label: 'ขนาดตัวคำตอบ (px)', fallback: 16 },
-  { key: 'bottomCtaTitleFontSize', label: 'ขนาดหัวข้อกล่องชวนติดต่อ (px)', fallback: 28 },
-  { key: 'bottomCtaBodyFontSize', label: 'ขนาดข้อความกล่องชวนติดต่อ (px)', fallback: 16 },
-] as const
-
-function FontSizesCard({ data, save }: { data: FaqGlobal; save: SaveFn<FaqGlobal> }) {
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(FAQ_FONTS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback])),
-  )
-  return (
-    <SectionCard
-      order={4}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือของหน้า คำถามที่พบบ่อย (พิกเซล)"
-      collapsible
-      onSave={() => save('แก้ไข FAQ: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {FAQ_FONTS.map((f) => (
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            label="ขนาดหัวข้อกล่องชวนติดต่อ (px)"
+            value={bottomCtaTitleFontSize}
+            onChange={setBottomCtaTitleFontSize}
           />
-        ))}
+          <NumberField
+            label="ขนาดข้อความกล่องชวนติดต่อ (px)"
+            value={bottomCtaBodyFontSize}
+            onChange={setBottomCtaBodyFontSize}
+          />
+        </div>
       </div>
     </SectionCard>
   )

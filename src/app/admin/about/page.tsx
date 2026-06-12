@@ -77,11 +77,10 @@ export default function AdminAboutPage() {
           <HistoryCard data={about.data} save={about.saveFields} />
           <MissionVisionCard data={about.data} save={about.saveFields} />
           <VideosCard data={about.data} save={about.saveFields} />
-          <TeamCard initial={founders.data} save={founders.saveFields} />
-          <FontSizesCard
-            hero={hero.data}
+          <TeamCard
+            initial={founders.data}
+            save={founders.saveFields}
             about={about.data}
-            saveHero={hero.saveFields}
             saveAbout={about.saveFields}
           />
         </>
@@ -94,6 +93,8 @@ function HeroCard({ data, save }: { data: AboutHero; save: SaveFn<AboutHero> }) 
   const [title, setTitle] = useState(data.heroTitle ?? '')
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
   const [media, setMedia] = useState<MediaDoc[]>(data.heroMedia ?? [])
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(data.heroTitleFontSize ?? 56)
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(data.heroSubtitleFontSize ?? 20)
   return (
     <SectionCard
       order={1}
@@ -105,6 +106,8 @@ function HeroCard({ data, save }: { data: AboutHero; save: SaveFn<AboutHero> }) 
           heroTitle: title || null,
           heroSubtitle: subtitle || null,
           heroMedia: media,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
         }))
       }
     >
@@ -121,6 +124,21 @@ function HeroCard({ data, save }: { data: AboutHero; save: SaveFn<AboutHero> }) 
         folder="hero-media"
         uploadCommitMessage="แก้ไขเกี่ยวกับเรา: อัปโหลดรูปแบนเนอร์"
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            value={heroTitleFontSize}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            value={heroSubtitleFontSize}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -130,6 +148,15 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
   const [company, setCompany] = useState(data.companyName ?? '')
   const [desc, setDesc] = useState(data.historyDescription ?? '')
   const [highlights, setHighlights] = useState<Highlight[]>(data.historyHighlights ?? [])
+  const [sectionTitleFontSize, setSectionTitleFontSize] = useState(
+    (data.sectionTitleFontSize as number | null) ?? 32,
+  )
+  const [statNumberFontSize, setStatNumberFontSize] = useState(
+    (data.statNumberFontSize as number | null) ?? 28,
+  )
+  const [statLabelFontSize, setStatLabelFontSize] = useState(
+    (data.statLabelFontSize as number | null) ?? 14,
+  )
   return (
     <SectionCard
       order={2}
@@ -142,6 +169,9 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
           companyName: company || null,
           historyDescription: desc || null,
           historyHighlights: highlights,
+          sectionTitleFontSize,
+          statNumberFontSize,
+          statLabelFontSize,
         }))
       }
     >
@@ -182,6 +212,26 @@ function HistoryCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlob
           )}
         />
       </div>
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อแต่ละส่วน (px)"
+            value={sectionTitleFontSize}
+            onChange={setSectionTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดตัวเลขกล่องสถิติ (px)"
+            value={statNumberFontSize}
+            onChange={setStatNumberFontSize}
+          />
+          <NumberField
+            label="ขนาดป้ายกล่องสถิติ (px)"
+            value={statLabelFontSize}
+            onChange={setStatLabelFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -194,6 +244,12 @@ function MissionVisionCard({ data, save }: { data: AboutGlobal; save: SaveFn<Abo
     visionDescription: data.visionDescription ?? '',
   })
   const set = (k: keyof typeof m) => (v: string) => setM({ ...m, [k]: v })
+  const [missionVisionTitleFontSize, setMissionVisionTitleFontSize] = useState(
+    (data.missionVisionTitleFontSize as number | null) ?? 28,
+  )
+  const [missionVisionBodyFontSize, setMissionVisionBodyFontSize] = useState(
+    (data.missionVisionBodyFontSize as number | null) ?? 16,
+  )
   return (
     <SectionCard
       order={3}
@@ -206,6 +262,8 @@ function MissionVisionCard({ data, save }: { data: AboutGlobal; save: SaveFn<Abo
           missionDescription: m.missionDescription || null,
           visionTitle: m.visionTitle || null,
           visionDescription: m.visionDescription || null,
+          missionVisionTitleFontSize,
+          missionVisionBodyFontSize,
         }))
       }
     >
@@ -223,6 +281,21 @@ function MissionVisionCard({ data, save }: { data: AboutGlobal; save: SaveFn<Abo
         onChange={set('visionDescription')}
         rows={4}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อพันธกิจ/วิสัยทัศน์ (px)"
+            value={missionVisionTitleFontSize}
+            onChange={setMissionVisionTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดเนื้อหาพันธกิจ/วิสัยทัศน์ (px)"
+            value={missionVisionBodyFontSize}
+            onChange={setMissionVisionBodyFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
@@ -230,6 +303,9 @@ function MissionVisionCard({ data, save }: { data: AboutGlobal; save: SaveFn<Abo
 function VideosCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGlobal> }) {
   const [title, setTitle] = useState(data.videoSectionTitle ?? '')
   const [videos, setVideos] = useState<YoutubeVideo[]>(data.youtubeVideos ?? [])
+  const [videoSectionTitleFontSize, setVideoSectionTitleFontSize] = useState(
+    (data.videoSectionTitleFontSize as number | null) ?? 32,
+  )
   return (
     <SectionCard
       order={4}
@@ -240,6 +316,7 @@ function VideosCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGloba
           ...latest,
           videoSectionTitle: title || null,
           youtubeVideos: videos,
+          videoSectionTitleFontSize,
         }))
       }
     >
@@ -266,6 +343,14 @@ function VideosCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGloba
           </>
         )}
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <NumberField
+          label="ขนาดหัวข้อส่วนวิดีโอ (px)"
+          value={videoSectionTitleFontSize}
+          onChange={setVideoSectionTitleFontSize}
+        />
+      </div>
     </SectionCard>
   )
 }
@@ -273,9 +358,25 @@ function VideosCard({ data, save }: { data: AboutGlobal; save: SaveFn<AboutGloba
 const toMediaList = (poly: PolyMedia[] | null | undefined): MediaDoc[] =>
   (poly ?? []).map((p) => p.value).filter(Boolean)
 
-function TeamCard({ initial, save }: { initial: Founder[]; save: SaveFn<Founder[]> }) {
+function TeamCard({
+  initial,
+  save,
+  about,
+  saveAbout,
+}: {
+  initial: Founder[]
+  save: SaveFn<Founder[]>
+  about: AboutGlobal
+  saveAbout: SaveFn<AboutGlobal>
+}) {
   const [members, setMembers] = useState(initial)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [highlightCardTitleFontSize, setHighlightCardTitleFontSize] = useState(
+    (about.highlightCardTitleFontSize as number | null) ?? 20,
+  )
+  const [highlightCardBodyFontSize, setHighlightCardBodyFontSize] = useState(
+    (about.highlightCardBodyFontSize as number | null) ?? 15,
+  )
 
   function update(id: string, next: Partial<Founder>) {
     setMembers((ms) => ms.map((m) => (m.id === id ? { ...m, ...next } : m)))
@@ -317,6 +418,11 @@ function TeamCard({ initial, save }: { initial: Founder[]; save: SaveFn<Founder[
     }))
     setMembers(finalized)
     await save('แก้ไขเกี่ยวกับเรา: ทีมงาน', () => finalized)
+    await saveAbout('แก้ไขเกี่ยวกับเรา: ขนาดตัวอักษรการ์ดทีมงาน', (latest) => ({
+      ...latest,
+      highlightCardTitleFontSize,
+      highlightCardBodyFontSize,
+    }))
   }
 
   return (
@@ -475,73 +581,20 @@ function TeamCard({ initial, save }: { initial: Founder[]; save: SaveFn<Founder[
       <button type="button" className="btn btn-outline btn-sm w-fit" onClick={addMember}>
         + เพิ่มสมาชิกใหม่
       </button>
-    </SectionCard>
-  )
-}
-
-const ABOUT_FONTS = [
-  { key: 'sectionTitleFontSize', label: 'ขนาดหัวข้อแต่ละส่วน (px)', fallback: 32 },
-  { key: 'highlightCardTitleFontSize', label: 'ขนาดหัวข้อการ์ดทีมงาน (px)', fallback: 20 },
-  { key: 'highlightCardBodyFontSize', label: 'ขนาดเนื้อหาการ์ดทีมงาน (px)', fallback: 15 },
-  { key: 'statNumberFontSize', label: 'ขนาดตัวเลขกล่องสถิติ (px)', fallback: 28 },
-  { key: 'statLabelFontSize', label: 'ขนาดป้ายกล่องสถิติ (px)', fallback: 14 },
-  { key: 'missionVisionTitleFontSize', label: 'ขนาดหัวข้อพันธกิจ/วิสัยทัศน์ (px)', fallback: 28 },
-  { key: 'missionVisionBodyFontSize', label: 'ขนาดเนื้อหาพันธกิจ/วิสัยทัศน์ (px)', fallback: 16 },
-  { key: 'videoSectionTitleFontSize', label: 'ขนาดหัวข้อส่วนวิดีโอ (px)', fallback: 32 },
-] as const
-
-function FontSizesCard({
-  hero,
-  about,
-  saveHero,
-  saveAbout,
-}: {
-  hero: AboutHero
-  about: AboutGlobal
-  saveHero: SaveFn<AboutHero>
-  saveAbout: SaveFn<AboutGlobal>
-}) {
-  const [heroTitlePx, setHeroTitlePx] = useState(hero.heroTitleFontSize ?? 56)
-  const [heroSubPx, setHeroSubPx] = useState(hero.heroSubtitleFontSize ?? 20)
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(
-      ABOUT_FONTS.map((f) => [f.key, (about[f.key] as number | null) ?? f.fallback]),
-    ),
-  )
-  return (
-    <SectionCard
-      order={6}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือส่วนต่างๆ ของหน้า เกี่ยวกับเรา (พิกเซล)"
-      collapsible
-      onSave={async () => {
-        await saveHero('แก้ไขเกี่ยวกับเรา: ขนาดตัวอักษรแบนเนอร์', (latest) => ({
-          ...latest,
-          heroTitleFontSize: heroTitlePx,
-          heroSubtitleFontSize: heroSubPx,
-        }))
-        await saveAbout('แก้ไขเกี่ยวกับเรา: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))
-      }}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <NumberField
-          label="ขนาดหัวข้อบนแบนเนอร์ (px)"
-          value={heroTitlePx}
-          onChange={setHeroTitlePx}
-        />
-        <NumberField
-          label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
-          value={heroSubPx}
-          onChange={setHeroSubPx}
-        />
-        {ABOUT_FONTS.map((f) => (
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            label="ขนาดหัวข้อการ์ดทีมงาน (px)"
+            value={highlightCardTitleFontSize}
+            onChange={setHighlightCardTitleFontSize}
           />
-        ))}
+          <NumberField
+            label="ขนาดเนื้อหาการ์ดทีมงาน (px)"
+            value={highlightCardBodyFontSize}
+            onChange={setHighlightCardBodyFontSize}
+          />
+        </div>
       </div>
     </SectionCard>
   )

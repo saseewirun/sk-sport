@@ -54,8 +54,12 @@ export default function AdminPortfolioPage() {
       {hero.data && articles.data && (
         <>
           <HeroCard data={hero.data} save={hero.saveFields} />
-          <ArticleListCard initial={articles.data} save={articles.saveFields} />
-          <FontSizesCard data={hero.data} save={hero.saveFields} />
+          <ArticleListCard
+            initial={articles.data}
+            save={articles.saveFields}
+            heroData={hero.data}
+            saveHero={hero.saveFields}
+          />
         </>
       )}
     </AdminShell>
@@ -66,6 +70,12 @@ function HeroCard({ data, save }: { data: PortfolioHero; save: SaveFn<PortfolioH
   const [title, setTitle] = useState(data.heroTitle ?? '')
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
   const [media, setMedia] = useState<MediaDoc[]>(data.heroMedia ?? [])
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(
+    (data.heroTitleFontSize as number | null) ?? 56,
+  )
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(
+    (data.heroSubtitleFontSize as number | null) ?? 20,
+  )
   return (
     <SectionCard
       order={1}
@@ -77,6 +87,8 @@ function HeroCard({ data, save }: { data: PortfolioHero; save: SaveFn<PortfolioH
           heroTitle: title || null,
           heroSubtitle: subtitle || null,
           heroMedia: media,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
         }))
       }
     >
@@ -88,13 +100,52 @@ function HeroCard({ data, save }: { data: PortfolioHero; save: SaveFn<PortfolioH
         folder="hero-media"
         uploadCommitMessage="แก้ไขผลงาน: อัปโหลดรูปแบนเนอร์"
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            value={heroTitleFontSize}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            value={heroSubtitleFontSize}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
 
-function ArticleListCard({ initial, save }: { initial: Article[]; save: SaveFn<Article[]> }) {
+const ARTICLE_LIST_FONTS = [
+  { key: 'highlightsTitleFontSize', label: 'ขนาดหัวข้อส่วนผลงานเด่น (px)', fallback: 28 },
+  { key: 'sectionTitleFontSize', label: 'ขนาดหัวข้อรายการผลงาน (px)', fallback: 32 },
+  { key: 'cardTitleFontSize', label: 'ขนาดชื่อบนการ์ดผลงาน (px)', fallback: 18 },
+  { key: 'detailHeroTitleFontSize', label: 'ขนาดชื่อบทความในหน้ารายละเอียด (px)', fallback: 40 },
+  { key: 'detailBodyFontSize', label: 'ขนาดเนื้อหาบทความ (px)', fallback: 16 },
+  { key: 'moreProjectsTitleFontSize', label: 'ขนาดหัวข้อ “ผลงานอื่นๆ” (px)', fallback: 24 },
+] as const
+
+function ArticleListCard({
+  initial,
+  save,
+  heroData,
+  saveHero,
+}: {
+  initial: Article[]
+  save: SaveFn<Article[]>
+  heroData: PortfolioHero
+  saveHero: SaveFn<PortfolioHero>
+}) {
   const [articles, setArticles] = useState(initial)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [sizes, setSizes] = useState<Record<string, number>>(() =>
+    Object.fromEntries(
+      ARTICLE_LIST_FONTS.map((f) => [f.key, (heroData[f.key] as number | null) ?? f.fallback]),
+    ),
+  )
 
   function update(id: string, next: Partial<Article>) {
     setArticles((list) => list.map((a) => (a.id === id ? { ...a, ...next } : a)))
@@ -134,6 +185,7 @@ function ArticleListCard({ initial, save }: { initial: Article[]; save: SaveFn<A
     }))
     setArticles(finalized)
     await save('แก้ไขผลงาน: บทความผลงาน', () => finalized)
+    await saveHero('แก้ไขผลงาน: ขนาดตัวอักษรรายการผลงาน', (latest) => ({ ...latest, ...sizes }))
   }
 
   return (
@@ -249,44 +301,19 @@ function ArticleListCard({ initial, save }: { initial: Article[]; save: SaveFn<A
           </li>
         ))}
       </ul>
-    </SectionCard>
-  )
-}
 
-const PORTFOLIO_FONTS = [
-  { key: 'heroTitleFontSize', label: 'ขนาดหัวข้อบนแบนเนอร์ (px)', fallback: 56 },
-  { key: 'heroSubtitleFontSize', label: 'ขนาดคำอธิบายบนแบนเนอร์ (px)', fallback: 20 },
-  { key: 'highlightsTitleFontSize', label: 'ขนาดหัวข้อส่วนผลงานเด่น (px)', fallback: 28 },
-  { key: 'sectionTitleFontSize', label: 'ขนาดหัวข้อรายการผลงาน (px)', fallback: 32 },
-  { key: 'cardTitleFontSize', label: 'ขนาดชื่อบนการ์ดผลงาน (px)', fallback: 18 },
-  { key: 'detailHeroTitleFontSize', label: 'ขนาดชื่อบทความในหน้ารายละเอียด (px)', fallback: 40 },
-  { key: 'detailBodyFontSize', label: 'ขนาดเนื้อหาบทความ (px)', fallback: 16 },
-  { key: 'moreProjectsTitleFontSize', label: 'ขนาดหัวข้อ “ผลงานอื่นๆ” (px)', fallback: 24 },
-] as const
-
-function FontSizesCard({ data, save }: { data: PortfolioHero; save: SaveFn<PortfolioHero> }) {
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(
-      PORTFOLIO_FONTS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback]),
-    ),
-  )
-  return (
-    <SectionCard
-      order={3}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือของหน้า ผลงาน และหน้าบทความ (พิกเซล)"
-      collapsible
-      onSave={() => save('แก้ไขผลงาน: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {PORTFOLIO_FONTS.map((f) => (
-          <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
-          />
-        ))}
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {ARTICLE_LIST_FONTS.map((f) => (
+            <NumberField
+              key={f.key}
+              label={f.label}
+              value={sizes[f.key]}
+              onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            />
+          ))}
+        </div>
       </div>
     </SectionCard>
   )

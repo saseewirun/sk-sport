@@ -50,8 +50,12 @@ export default function AdminServicesPage() {
       {hero.data && services.data && (
         <>
           <HeroCard data={hero.data} save={hero.saveFields} />
-          <ServiceListCard initial={services.data} save={services.saveFields} />
-          <FontSizesCard data={hero.data} save={hero.saveFields} />
+          <ServiceListCard
+            initial={services.data}
+            save={services.saveFields}
+            heroData={hero.data}
+            saveHero={hero.saveFields}
+          />
         </>
       )}
     </AdminShell>
@@ -62,6 +66,12 @@ function HeroCard({ data, save }: { data: ServicesHero; save: SaveFn<ServicesHer
   const [title, setTitle] = useState(data.heroTitle ?? '')
   const [subtitle, setSubtitle] = useState(data.heroSubtitle ?? '')
   const [media, setMedia] = useState<MediaDoc[]>(data.heroMedia ?? [])
+  const [heroTitleFontSize, setHeroTitleFontSize] = useState(
+    (data.heroTitleFontSize as number | null) ?? 56,
+  )
+  const [heroSubtitleFontSize, setHeroSubtitleFontSize] = useState(
+    (data.heroSubtitleFontSize as number | null) ?? 20,
+  )
   return (
     <SectionCard
       order={1}
@@ -73,6 +83,8 @@ function HeroCard({ data, save }: { data: ServicesHero; save: SaveFn<ServicesHer
           heroTitle: title || null,
           heroSubtitle: subtitle || null,
           heroMedia: media,
+          heroTitleFontSize,
+          heroSubtitleFontSize,
         }))
       }
     >
@@ -84,13 +96,57 @@ function HeroCard({ data, save }: { data: ServicesHero; save: SaveFn<ServicesHer
         folder="hero-media"
         uploadCommitMessage="แก้ไขบริการ: อัปโหลดรูปแบนเนอร์"
       />
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <NumberField
+            label="ขนาดหัวข้อบนแบนเนอร์ (px)"
+            value={heroTitleFontSize}
+            onChange={setHeroTitleFontSize}
+          />
+          <NumberField
+            label="ขนาดคำอธิบายบนแบนเนอร์ (px)"
+            value={heroSubtitleFontSize}
+            onChange={setHeroSubtitleFontSize}
+          />
+        </div>
+      </div>
     </SectionCard>
   )
 }
 
-function ServiceListCard({ initial, save }: { initial: Service[]; save: SaveFn<Service[]> }) {
+const SERVICE_LIST_FONTS = [
+  { key: 'serviceCardTitleFontSize', label: 'ขนาดชื่อบนการ์ดบริการ (px)', fallback: 20 },
+  { key: 'serviceCardBodyFontSize', label: 'ขนาดคำอธิบายบนการ์ดบริการ (px)', fallback: 14 },
+  { key: 'detailHeroTitleFontSize', label: 'ขนาดชื่อบริการในหน้ารายละเอียด (px)', fallback: 40 },
+  {
+    key: 'detailContentTitleFontSize',
+    label: 'ขนาดหัวข้อเนื้อหาในหน้ารายละเอียด (px)',
+    fallback: 28,
+  },
+  { key: 'detailContentBodyFontSize', label: 'ขนาดเนื้อหาในหน้ารายละเอียด (px)', fallback: 16 },
+  { key: 'relatedHeadingFontSize', label: 'ขนาดหัวข้อ “บริการอื่นๆ” (px)', fallback: 24 },
+  { key: 'relatedItemTitleFontSize', label: 'ขนาดชื่อบริการอื่นๆ ด้านล่าง (px)', fallback: 18 },
+] as const
+
+function ServiceListCard({
+  initial,
+  save,
+  heroData,
+  saveHero,
+}: {
+  initial: Service[]
+  save: SaveFn<Service[]>
+  heroData: ServicesHero
+  saveHero: SaveFn<ServicesHero>
+}) {
   const [services, setServices] = useState(initial)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [sizes, setSizes] = useState<Record<string, number>>(() =>
+    Object.fromEntries(
+      SERVICE_LIST_FONTS.map((f) => [f.key, (heroData[f.key] as number | null) ?? f.fallback]),
+    ),
+  )
 
   function update(id: string, next: Partial<Service>) {
     setServices((list) => list.map((s) => (s.id === id ? { ...s, ...next } : s)))
@@ -101,7 +157,13 @@ function ServiceListCard({ initial, save }: { initial: Service[]; save: SaveFn<S
       order={2}
       title="รายการบริการ"
       description="บริการทั้งหมดที่แสดงบนหน้า บริการ และการ์ดบริการบนหน้าแรก — กดชื่อเพื่อแก้ไขรายตัว"
-      onSave={() => save('แก้ไขบริการ: รายละเอียดบริการ', () => services)}
+      onSave={async () => {
+        await save('แก้ไขบริการ: รายละเอียดบริการ', () => services)
+        await saveHero('แก้ไขบริการ: ขนาดตัวอักษรรายการบริการ', (latest) => ({
+          ...latest,
+          ...sizes,
+        }))
+      }}
     >
       <ul className="flex flex-col gap-2">
         {services.map((s) => (
@@ -226,49 +288,19 @@ function ServiceListCard({ initial, save }: { initial: Service[]; save: SaveFn<S
           </li>
         ))}
       </ul>
-    </SectionCard>
-  )
-}
 
-const SERVICE_FONTS = [
-  { key: 'heroTitleFontSize', label: 'ขนาดหัวข้อบนแบนเนอร์ (px)', fallback: 56 },
-  { key: 'heroSubtitleFontSize', label: 'ขนาดคำอธิบายบนแบนเนอร์ (px)', fallback: 20 },
-  { key: 'serviceCardTitleFontSize', label: 'ขนาดชื่อบนการ์ดบริการ (px)', fallback: 20 },
-  { key: 'serviceCardBodyFontSize', label: 'ขนาดคำอธิบายบนการ์ดบริการ (px)', fallback: 14 },
-  { key: 'detailHeroTitleFontSize', label: 'ขนาดชื่อบริการในหน้ารายละเอียด (px)', fallback: 40 },
-  {
-    key: 'detailContentTitleFontSize',
-    label: 'ขนาดหัวข้อเนื้อหาในหน้ารายละเอียด (px)',
-    fallback: 28,
-  },
-  { key: 'detailContentBodyFontSize', label: 'ขนาดเนื้อหาในหน้ารายละเอียด (px)', fallback: 16 },
-  { key: 'relatedHeadingFontSize', label: 'ขนาดหัวข้อ “บริการอื่นๆ” (px)', fallback: 24 },
-  { key: 'relatedItemTitleFontSize', label: 'ขนาดชื่อบริการอื่นๆ ด้านล่าง (px)', fallback: 18 },
-] as const
-
-function FontSizesCard({ data, save }: { data: ServicesHero; save: SaveFn<ServicesHero> }) {
-  const [sizes, setSizes] = useState<Record<string, number>>(() =>
-    Object.fromEntries(
-      SERVICE_FONTS.map((f) => [f.key, (data[f.key] as number | null) ?? f.fallback]),
-    ),
-  )
-  return (
-    <SectionCard
-      order={3}
-      title="🔠 ขนาดตัวอักษรของหน้านี้"
-      description="ปรับขนาดตัวหนังสือของหน้า บริการ และหน้ารายละเอียดบริการ (พิกเซล)"
-      collapsible
-      onSave={() => save('แก้ไขบริการ: ขนาดตัวอักษร', (latest) => ({ ...latest, ...sizes }))}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {SERVICE_FONTS.map((f) => (
-          <NumberField
-            key={f.key}
-            label={f.label}
-            value={sizes[f.key]}
-            onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
-          />
-        ))}
+      <div className="mt-2 flex flex-col gap-4 rounded-lg border border-base-200 bg-base-50 p-3">
+        <p className="text-sm font-medium text-base-content/70">🔠 ขนาดตัวอักษร</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {SERVICE_LIST_FONTS.map((f) => (
+            <NumberField
+              key={f.key}
+              label={f.label}
+              value={sizes[f.key]}
+              onChange={(v) => setSizes({ ...sizes, [f.key]: v })}
+            />
+          ))}
+        </div>
       </div>
     </SectionCard>
   )
