@@ -5,12 +5,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { apiLoggedIn } from '../api'
 
-/** เมนูหลัก — เรียงตามเมนูบนเว็บจริง (spec §2) */
+/** เมนูหลัก — เรียงตามเมนูบนเว็บจริง: หน้าแรก → สินค้า → บริการ → ผลงาน →
+ *  เกี่ยวกับเรา → ติดต่อเรา แล้วตามด้วยหน้าจัดการ (spec §2) */
 export const ADMIN_MENU = [
   { key: 'home', icon: '🏠', label: 'หน้าแรก', href: '/admin/home', sitePath: '/' },
-  { key: 'about', icon: '👥', label: 'เกี่ยวกับเรา', href: '/admin/about', sitePath: '/about' },
-  { key: 'services', icon: '🛠', label: 'บริการ', href: '/admin/services', sitePath: '/service' },
   { key: 'products', icon: '📦', label: 'สินค้า', href: '/admin/products', sitePath: '/product' },
+  { key: 'services', icon: '🛠', label: 'บริการ', href: '/admin/services', sitePath: '/service' },
   {
     key: 'portfolio',
     icon: '🏆',
@@ -18,21 +18,22 @@ export const ADMIN_MENU = [
     href: '/admin/portfolio',
     sitePath: '/portfolio',
   },
+  { key: 'about', icon: '👥', label: 'เกี่ยวกับเรา', href: '/admin/about', sitePath: '/about' },
   { key: 'contact', icon: '☎️', label: 'ติดต่อเรา', href: '/admin/contact', sitePath: '/contact' },
   { key: 'faq', icon: '❓', label: 'คำถามที่พบบ่อย', href: '/admin/faq', sitePath: '/faq' },
-  {
-    key: 'policies',
-    icon: '📄',
-    label: 'นโยบาย & ข้อกำหนด',
-    href: '/admin/policies',
-    sitePath: '/privacy-policy',
-  },
   {
     key: 'orders',
     icon: '🧾',
     label: 'ประวัติการสั่งซื้อ',
     href: '/admin/orders',
     sitePath: null,
+  },
+  {
+    key: 'policies',
+    icon: '📄',
+    label: 'นโยบาย & ข้อกำหนด',
+    href: '/admin/policies',
+    sitePath: '/privacy-policy',
   },
   {
     key: 'payment',
