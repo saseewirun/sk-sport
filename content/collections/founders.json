@@ -1,38 +1,5 @@
 [
   {
-    "id": "09ca461f-d5fd-4628-824c-83d64398a0e8",
-    "name": "Nattanat Ujjin",
-    "slug": "nattanat-ujjin",
-    "role": "ผู้จัดการฝ่ายการตลาด",
-    "excerpt": " มหาวิทยาลัยมหิดล (ภาคอินเตอร์)",
-    "description": "จบการศึกษาจาก Harrow International School และปริญญาตรีจาก มหาวิทยาลับมหิดล (ภาคอินเตอร์)",
-    "quote": "DO EVERYTING THE BEST!",
-    "aboutImage": {
-      "relationTo": "hero-media",
-      "value": {
-        "id": "08513028-00db-43e0-b521-914c94a6add6",
-        "alt": "Ponn",
-        "prefix": "hero-media",
-        "updatedAt": "2026-05-17T10:18:30.710Z",
-        "createdAt": "2026-05-17T10:18:29.046Z",
-        "url": "/api/hero-media/file/ponn.webp",
-        "thumbnailURL": null,
-        "filename": "ponn.webp",
-        "mimeType": "image/webp",
-        "filesize": 13150,
-        "width": 407,
-        "height": 472,
-        "focalX": 50,
-        "focalY": 50
-      }
-    },
-    "gallery": [],
-    "sortOrder": 0,
-    "isVisible": true,
-    "updatedAt": "2026-06-12T08:56:06.558Z",
-    "createdAt": "2026-05-15T09:37:18.513Z"
-  },
-  {
     "id": "7bbb8193-5187-4f6e-9c00-35629c39e82f",
     "name": "Dr.Saseewirun Kanchanhom",
     "slug": "dr_saseewirun_kanchanhom",
@@ -156,9 +123,42 @@
         }
       }
     ],
+    "sortOrder": 0,
+    "isVisible": true,
+    "updatedAt": "2026-06-12T11:01:10.478Z",
+    "createdAt": "2026-04-25T07:20:11.736Z"
+  },
+  {
+    "id": "09ca461f-d5fd-4628-824c-83d64398a0e8",
+    "name": "Nattanat Ujjin",
+    "slug": "nattanat-ujjin",
+    "role": "ผู้จัดการฝ่ายการตลาด",
+    "excerpt": " มหาวิทยาลัยมหิดล (ภาคอินเตอร์)",
+    "description": "จบการศึกษาจาก Harrow International School และปริญญาตรีจาก มหาวิทยาลับมหิดล (ภาคอินเตอร์)",
+    "quote": "DO EVERYTING THE BEST!",
+    "aboutImage": {
+      "relationTo": "hero-media",
+      "value": {
+        "id": "08513028-00db-43e0-b521-914c94a6add6",
+        "alt": "Ponn",
+        "prefix": "hero-media",
+        "updatedAt": "2026-05-17T10:18:30.710Z",
+        "createdAt": "2026-05-17T10:18:29.046Z",
+        "url": "/api/hero-media/file/ponn.webp",
+        "thumbnailURL": null,
+        "filename": "ponn.webp",
+        "mimeType": "image/webp",
+        "filesize": 13150,
+        "width": 407,
+        "height": 472,
+        "focalX": 50,
+        "focalY": 50
+      }
+    },
+    "gallery": [],
     "sortOrder": 1,
     "isVisible": true,
-    "updatedAt": "2026-06-12T08:56:06.558Z",
-    "createdAt": "2026-04-25T07:20:11.736Z"
+    "updatedAt": "2026-06-12T11:01:10.478Z",
+    "createdAt": "2026-05-15T09:37:18.513Z"
   }
 ]
