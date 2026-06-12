@@ -195,6 +195,22 @@
       "height": 104,
       "focalX": 50,
       "focalY": 50
+    },
+    {
+      "id": "ff23e403-4299-4d7a-b6be-f627719e0925",
+      "alt": "BCAF4AEF-C900-42F0-9372-ED145CF36DE5",
+      "prefix": "partner-media",
+      "url": "/uploads/partner-media/bcaf4aef-c900-42f0-9372-ed145cf36de5-mqalsv8wsrzo.webp",
+      "thumbnailURL": null,
+      "filename": "bcaf4aef-c900-42f0-9372-ed145cf36de5-mqalsv8wsrzo.webp",
+      "mimeType": "image/webp",
+      "filesize": 34004,
+      "width": 1254,
+      "height": 1254,
+      "focalX": null,
+      "focalY": null,
+      "createdAt": "2026-06-12T07:27:13.688Z",
+      "updatedAt": "2026-06-12T07:27:13.688Z"
     }
   ],
   "heroTitleFontSize": 56,
