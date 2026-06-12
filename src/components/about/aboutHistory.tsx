@@ -49,6 +49,7 @@ export const INTRO_CARDS = [
 
 export default function AboutHistory({
   companyName,
+  historyDescription,
   historyHighlights,
   historyCards,
   sectionTitleFontSizePx,
@@ -79,6 +80,19 @@ export default function AboutHistory({
             <p className="text-base font-medium text-gradient md:text-lg">{companyName}</p>
           )}
         </div>
+
+        {historyDescription && (
+          <div className="mx-auto w-full max-w-4xl">
+            <div className="rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20 px-6 py-6 shadow-lg md:px-10 md:py-8">
+              <p
+                className="whitespace-pre-line leading-relaxed text-base-content/80"
+                style={{ fontSize: `${highlightCardBodyFontSizePx}px` }}
+              >
+                {historyDescription}
+              </p>
+            </div>
+          </div>
+        )}
 
         <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 md:flex-row md:items-stretch md:gap-4">
           {cards.map((card, index) => (
