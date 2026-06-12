@@ -33,5 +33,14 @@
   ],
   "updatedAt": "2026-04-26T05:22:12.681Z",
   "createdAt": "2026-04-14T10:43:53.059Z",
-  "globalType": "products-hero"
+  "globalType": "products-hero",
+  "categories": [
+    "อุปกรณ์ทดสอบ",
+    "บริการติดตั้งอุปกรณ์ยิมนาสติก",
+    "Gymnastics Equipment",
+    "Volleyball Equipment",
+    "Outdoor Exercise Equipment",
+    "Health Management System",
+    "Basketball Equipment"
+  ]
 }
