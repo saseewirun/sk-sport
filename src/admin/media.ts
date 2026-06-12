@@ -95,8 +95,12 @@ export async function uploadMediaFile(
   const base64 = await blobToBase64(processed.blob)
   const { path } = await uploadImage(folder, filename, base64, commitMessage)
   const now = new Date().toISOString()
+  const id = crypto.randomUUID()
+  // รูปเพิ่งอัปโหลด: ไฟล์ /uploads ยังไม่ขึ้นเว็บจน deploy เสร็จ — เก็บรูปจากเครื่อง
+  // ไว้โชว์ preview ทันที (เฉพาะใน session นี้ ไม่ถูกบันทึกลงไฟล์เนื้อหา)
+  localPreviews.set(id, URL.createObjectURL(processed.blob))
   return {
-    id: crypto.randomUUID(),
+    id,
     alt: alt ?? file.name.replace(/\.[^.]*$/, ''),
     prefix: folder,
     url: path,
@@ -113,11 +117,25 @@ export async function uploadMediaFile(
   }
 }
 
+/**
+ * รูปที่เพิ่งอัปโหลดใน session นี้ (id → object URL ของไฟล์ในเครื่อง)
+ * ใช้โชว์ preview ทันทีก่อนที่ deploy จะมีไฟล์จริงบนเว็บ
+ */
+const localPreviews = new Map<string, string>()
+
 /** url ที่แสดงตัวอย่างรูปได้ ทั้งของเก่า (Payload/Supabase) และของใหม่ (/uploads) */
 export function previewUrl(
-  media: { url?: string | null; prefix?: string; filename?: string } | null | undefined,
+  media:
+    | { id?: string; url?: string | null; prefix?: string; filename?: string }
+    | null
+    | undefined,
 ): string {
   if (!media) return ''
+  // รูปเพิ่งอัปโหลดในรอบนี้ → โชว์จากไฟล์ในเครื่องทันที (ยังไม่ต้องรอ deploy)
+  if (media.id) {
+    const local = localPreviews.get(media.id)
+    if (local) return local
+  }
   const url = media.url ?? ''
   if (url.startsWith('/uploads/')) return url
   if (media.prefix && media.filename) return `/uploads/${media.prefix}/${media.filename}`
