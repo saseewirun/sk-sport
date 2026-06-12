@@ -114,7 +114,56 @@
       "focalY": 50
     }
   ],
-  "galleryMedia": [],
+  "galleryMedia": [
+    {
+      "id": "53451465-5bf3-4275-9b9c-817e08fbbc27",
+      "alt": "ชุดไทยเรือนต้น-copy-4",
+      "prefix": "gallery-media",
+      "url": "/uploads/gallery-media/copy-4-mqam4ibwxpde.webp",
+      "thumbnailURL": null,
+      "filename": "copy-4-mqam4ibwxpde.webp",
+      "mimeType": "image/webp",
+      "filesize": 96306,
+      "width": 1333,
+      "height": 2000,
+      "focalX": null,
+      "focalY": null,
+      "createdAt": "2026-06-12T07:36:17.704Z",
+      "updatedAt": "2026-06-12T07:36:17.704Z"
+    },
+    {
+      "id": "629e7e03-9f5c-4131-af8a-b83e2d58ca18",
+      "alt": "oardefault",
+      "prefix": "gallery-media",
+      "url": "/uploads/gallery-media/oardefault-mqam4kt0ol0v.webp",
+      "thumbnailURL": null,
+      "filename": "oardefault-mqam4kt0ol0v.webp",
+      "mimeType": "image/webp",
+      "filesize": 28784,
+      "width": 405,
+      "height": 608,
+      "focalX": null,
+      "focalY": null,
+      "createdAt": "2026-06-12T07:36:20.051Z",
+      "updatedAt": "2026-06-12T07:36:20.051Z"
+    },
+    {
+      "id": "5471423e-3318-41a3-b5b6-bec09344f455",
+      "alt": "S04_0352-1-530x686",
+      "prefix": "gallery-media",
+      "url": "/uploads/gallery-media/s04_0352-1-530x686-mqam4mmn0tfn.webp",
+      "thumbnailURL": null,
+      "filename": "s04_0352-1-530x686-mqam4mmn0tfn.webp",
+      "mimeType": "image/webp",
+      "filesize": 38750,
+      "width": 530,
+      "height": 686,
+      "focalX": null,
+      "focalY": null,
+      "createdAt": "2026-06-12T07:36:22.829Z",
+      "updatedAt": "2026-06-12T07:36:22.829Z"
+    }
+  ],
   "partners": [
     {
       "id": "0393a1b9-0ec8-453d-978e-ccd469b17ea1",
