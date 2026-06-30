@@ -1,0 +1,25 @@
+{
+  "id": "31f5088e-5e47-466d-ae21-2fa703d4f640",
+  "kind": "order",
+  "createdAt": "2026-06-30T12:15:07.054Z",
+  "customerName": "Binwaran Milinthajinda",
+  "email": "binwaran.m@gmail.com",
+  "phone": "0123456789",
+  "address": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "customerNote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "status": "awaiting_verification",
+  "paymentMethod": "bank_transfer",
+  "currency": "THB",
+  "subtotal": 1500,
+  "slipUrl": "/uploads/payment-slips/screenshot-2026-04-17-221442-mr0m0h7yne4t.png",
+  "lineItems": [
+    {
+      "productId": "27388889-4e7e-49ba-9c0f-d2fe7ecad427",
+      "slug": "Rollable-Mat",
+      "title": "Rollable Mat \"Flexi-Roll\" 12 x 2 m, 40 mm",
+      "quantity": 1,
+      "unitPrice": 1500,
+      "lineTotal": 1500
+    }
+  ]
+}
