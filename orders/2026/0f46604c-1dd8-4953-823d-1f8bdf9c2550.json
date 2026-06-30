@@ -1,0 +1,20 @@
+{
+  "id": "0f46604c-1dd8-4953-823d-1f8bdf9c2550",
+  "kind": "quote",
+  "createdAt": "2026-06-30T10:45:47.357Z",
+  "customerName": "Binwaran Milinthajinda",
+  "email": "binwaran.m@gmail.com",
+  "phone": "0123456789",
+  "companyName": "ทดสอบ",
+  "message": "ข้อความทดสอบ",
+  "status": "new",
+  "lineItems": [
+    {
+      "productId": "7106650c-c8d8-4ca8-85a1-03d2bbdf713f",
+      "slug": "schelde-sports-pro-180-dunkring",
+      "title": "Schelde Sports Pro 180° Dunkring",
+      "category": "Basketball Equipment",
+      "quantity": 1
+    }
+  ]
+}
