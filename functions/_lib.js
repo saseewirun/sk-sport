@@ -154,6 +154,20 @@ export async function ghGetJson(env, path) {
   return file ? { json: JSON.parse(file.text), sha: file.sha } : null
 }
 
+/**
+ * Read a file as raw bytes (for images/PDF such as payment slips). Uses the
+ * GitHub "raw" media type so binary content is returned untouched and the 1 MB
+ * contents-API base64 limit does not apply. Returns Uint8Array or null (404).
+ */
+export async function ghGetRawBytes(env, path) {
+  const res = await fetch(`${ghUrl(env, path)}?ref=${encodeURIComponent(branch(env))}`, {
+    headers: { ...ghHeaders(env), Accept: 'application/vnd.github.raw' },
+  })
+  if (res.status === 404) return null
+  if (!res.ok) throw new Error(`GitHub raw ${path}: HTTP ${res.status}`)
+  return new Uint8Array(await res.arrayBuffer())
+}
+
 /** List a directory. Returns [{name, path, type}] or [] when missing. */
 export async function ghListDir(env, path) {
   const res = await fetch(`${ghUrl(env, path)}?ref=${encodeURIComponent(branch(env))}`, {
@@ -197,10 +211,24 @@ export async function ghPutFile(env, path, base64Content, message, knownSha) {
 
 // ------------------------------------------------------------------- orders --
 
+/** ลิงก์รูปสลิป → เสิร์ฟผ่าน API ที่ต้องล็อกอิน (ไฟล์อยู่ใน repo แต่ไม่ถูก deploy
+ *  เป็นไฟล์สาธารณะ จึงอ่านผ่านฟังก์ชันแทน — แก้ปัญหารูปสลิป 404 + กันคนนอกเปิดดู) */
+function slipApiUrl(filename) {
+  return `/api/admin/slip?file=${encodeURIComponent(filename)}`
+}
+
+/** แปลง slipUrl แบบไฟล์สาธารณะเดิม (/uploads/payment-slips/X) ให้ผ่าน API */
+function toSlipApiUrl(url) {
+  if (typeof url === 'string' && url.startsWith('/uploads/payment-slips/')) {
+    return slipApiUrl(url.split('/').pop())
+  }
+  return url
+}
+
 function localizeSlipUrl(slip) {
   if (!slip || typeof slip !== 'object') return undefined
-  if (slip.filename) return `/uploads/payment-slips/${slip.filename}`
-  return slip.url
+  if (slip.filename) return slipApiUrl(slip.filename)
+  return toSlipApiUrl(slip.url)
 }
 
 /** Merge legacy Payload orders/quotes with new order files under orders/. */
@@ -252,7 +280,11 @@ export async function collectOrders(env) {
       if (f.type !== 'file' || !f.name.endsWith('.json')) continue
       try {
         const file = await ghGetFile(env, `orders/${year.name}/${f.name}`)
-        if (file) rows.push(JSON.parse(file.text))
+        if (file) {
+          const row = JSON.parse(file.text)
+          row.slipUrl = toSlipApiUrl(row.slipUrl)
+          rows.push(row)
+        }
       } catch {
         // skip malformed order file
       }

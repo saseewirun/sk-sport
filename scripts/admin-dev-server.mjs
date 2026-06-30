@@ -105,11 +105,20 @@ function stringifyContent(json) {
 
 // ------------------------------------------------------------------- orders --
 
-/** Same media-URL localization the site's contentStore applies. */
+/** รูปสลิปเสิร์ฟผ่าน API ที่ต้องล็อกอิน (mirror ของ functions/api/admin/slip.js) */
+function slipApiUrl(filename) {
+  return `/api/admin/slip?file=${encodeURIComponent(filename)}`
+}
+function toSlipApiUrl(url) {
+  if (typeof url === 'string' && url.startsWith('/uploads/payment-slips/')) {
+    return slipApiUrl(url.split('/').pop())
+  }
+  return url
+}
 function localizeSlipUrl(slip) {
   if (!slip || typeof slip !== 'object') return undefined
-  if (slip.filename) return `/uploads/payment-slips/${slip.filename}`
-  return slip.url
+  if (slip.filename) return slipApiUrl(slip.filename)
+  return toSlipApiUrl(slip.url)
 }
 
 async function collectOrders() {
@@ -182,7 +191,9 @@ async function collectOrders() {
       for (const f of files) {
         if (!f.endsWith('.json')) continue
         try {
-          rows.push(JSON.parse(await readFile(path.join(yearDir, f), 'utf8')))
+          const row = JSON.parse(await readFile(path.join(yearDir, f), 'utf8'))
+          row.slipUrl = toSlipApiUrl(row.slipUrl)
+          rows.push(row)
         } catch {
           // skip malformed file
         }
@@ -453,6 +464,30 @@ const server = createServer(async (req, res) => {
 
     if (route === 'GET /api/admin/orders') {
       return send(res, 200, { orders: await collectOrders() })
+    }
+
+    if (route === 'GET /api/admin/slip') {
+      // mirror ของ functions/api/admin/slip.js — เสิร์ฟรูปสลิปจาก public/uploads
+      const name = (url.searchParams.get('file') || '').split('/').pop().split('\\').pop()
+      if (!name || name.includes('..')) return send(res, 400, { error: 'ชื่อไฟล์ไม่ถูกต้อง' })
+      const abs = path.join(ROOT, 'public', 'uploads', 'payment-slips', name)
+      if (!existsSync(abs)) return send(res, 404, { error: 'ไม่พบไฟล์สลิป' })
+      const ext = name.slice(name.lastIndexOf('.') + 1).toLowerCase()
+      const TYPES = {
+        png: 'image/png',
+        jpg: 'image/jpeg',
+        jpeg: 'image/jpeg',
+        webp: 'image/webp',
+        gif: 'image/gif',
+        pdf: 'application/pdf',
+      }
+      const buf = await readFile(abs)
+      res.writeHead(200, {
+        'Content-Type': TYPES[ext] || 'application/octet-stream',
+        'Content-Disposition': `inline; filename="${name}"`,
+        'Cache-Control': 'private, max-age=300',
+      })
+      return res.end(buf)
     }
 
     // public endpoints (no session) — mirror functions/api/*.js
