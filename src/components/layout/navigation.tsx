@@ -44,7 +44,7 @@ export const Navbar = () => {
           <Link
             href="/"
             onClick={closeMenu}
-            className="flex min-w-0 w-64 shrink-0 items-center sm:w-80 md:w-96 lg:w-96 scale-125 origin-left"
+            className="flex min-w-0 w-44 shrink-0 items-center sm:w-64 md:w-80 lg:w-96 scale-125 origin-left"
           >
             <Image
               src="/LogoSK.png"
@@ -159,15 +159,7 @@ export const Navbar = () => {
 
       <div
         className={cn(
-          'fixed inset-0 z-40 lg:hidden transition-opacity duration-300',
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
-        )}
-        onClick={closeMenu}
-      />
-
-      <div
-        className={cn(
-          'fixed top-0 right-0 z-50 h-full w-1/2 bg-base-content transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col',
+          'fixed top-0 right-0 z-50 h-full w-[calc(100vw-2rem)] max-w-xs bg-base-content transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col overflow-x-hidden',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
       >
